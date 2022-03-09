@@ -31,7 +31,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	returnOpenCommand = (): Command => {
 		return {
 			id: 'open-sync-version-history',
-			name: 'Show history',
+			name: 'Show history for active file',
 			checkCallback: this.giveCallback(this.openSyncHistory.bind(this)),
 		};
 	};
