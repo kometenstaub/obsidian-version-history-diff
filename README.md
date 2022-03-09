@@ -1,6 +1,5 @@
-TODO:
+# Sync Version History Command
 
-1. `mkdir node_modules`
-2. `chattr +d node_modules`
-3. `npm install`
-4. `eslint --init`
+This adds a command to access the version history of the Sync plugin for the currently active file.
+
+In Obsidian, it is only accessible over the file menu. This plugin improves keyboard accessibility.
