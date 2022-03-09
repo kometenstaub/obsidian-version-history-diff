@@ -1,4 +1,4 @@
-import {Command, Plugin, TFile} from 'obsidian';
+import { Command, Plugin, TFile } from 'obsidian';
 //import type { OpenSyncHistorySettings } from './interfaces';
 //import OpenSyncHistorySettingTab from './settings';
 
@@ -10,18 +10,16 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 
 	openSyncHistory(file: TFile): void {
 		// @ts-expect-error, untyped
-		const { instance } = this.app.internalPlugins.plugins['sync']
-		instance.showVersionHistory(file.path)
+		const { instance } = this.app.internalPlugins.plugins['sync'];
+		instance.showVersionHistory(file.path);
 	}
 
-	giveCallback(
-		fn: (file: TFile) => void
-	): Command['checkCallback'] {
+	giveCallback(fn: (file: TFile) => void): Command['checkCallback'] {
 		return (checking: boolean): boolean => {
 			const tfile: TFile | null = this.app.workspace.getActiveFile();
 			if (tfile !== null) {
 				if (!checking) {
-					fn(tfile)
+					fn(tfile);
 				}
 				return true;
 			} else {
@@ -34,15 +32,14 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		return {
 			id: 'open-sync-version-history',
 			name: 'Show history',
-			checkCallback: this.giveCallback(this.openSyncHistory.bind(this))
-		}
-	}
+			checkCallback: this.giveCallback(this.openSyncHistory.bind(this)),
+		};
+	};
 
 	async onload() {
 		console.log('loading Sync Version History plugin');
 
-
-		this.addCommand(this.returnOpenCommand())
+		this.addCommand(this.returnOpenCommand());
 
 		//await this.loadSettings();
 
