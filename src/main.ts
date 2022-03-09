@@ -1,34 +1,69 @@
-import { App, Plugin } from 'obsidian';
-import type { TemplateSettings } from './interfaces';
-import TemplateSettingTab from './settings';
+import { App, Plugin, TFile, Command } from 'obsidian';
+//import type { OpenSyncHistorySettings } from './interfaces';
+//import OpenSyncHistorySettingTab from './settings';
 
-const DEFAULT_SETTINGS: TemplateSettings = {};
+//const DEFAULT_SETTINGS: OpenSyncHistorySettings = {};
 
-export default class TemplatePlugin extends Plugin {
+export default class OpenSyncHistoryPlugin extends Plugin {
 	//@ts-ignore
-	settings: TemplateSettings;
+	//settings: OpenSyncHistorySettings;
+
+	openSyncHistory(file: TFile): void {
+		// @ts-expect-error, untyped
+		const { instance } = this.app.internalPlugins.plugins['sync']
+		const filePath = file.path
+		instance.showVersionHistory(filePath)
+
+	}
+
+	giveCallback(
+		fn: (file: TFile) => void
+	): Command['checkCallback'] {
+		return (checking: boolean): boolean => {
+			const tfile: TFile | null = this.app.workspace.getActiveFile();
+			if (tfile !== null) {
+				if (!checking) {
+					fn(tfile)
+				}
+				return true;
+			} else {
+				return false;
+			}
+		};
+	}
+
+	returnOpenCommand = (): Command => {
+		return {
+			id: 'open-sync-version-history',
+			name: 'Show history',
+			checkCallback: this.giveCallback(this.openSyncHistory.bind(this))
+		}
+	}
 
 	async onload() {
-		console.log('loading ... plugin');
+		console.log('loading Sync Version History plugin');
 
-		await this.loadSettings();
 
-		this.addSettingTab(new TemplateSettingTab(this.app, this));
+		this.addCommand(this.returnOpenCommand())
+
+		//await this.loadSettings();
+
+		//this.addSettingTab(new OpenSyncHistorySettingTab(this.app, this));
 	}
 
 	onunload() {
-		console.log('unloading ... plugin');
+		console.log('unloading Sync Version History plugin');
 	}
 
-	async loadSettings() {
-		this.settings = Object.assign(
-			{},
-			DEFAULT_SETTINGS,
-			await this.loadData()
-		);
-	}
+	//async loadSettings() {
+	//	this.settings = Object.assign(
+	//		{},
+	//		DEFAULT_SETTINGS,
+	//		await this.loadData()
+	//	);
+	//}
 
-	async saveSettings() {
-		await this.saveData(this.settings);
-	}
+	//async saveSettings() {
+	//	await this.saveData(this.settings);
+	//}
 }

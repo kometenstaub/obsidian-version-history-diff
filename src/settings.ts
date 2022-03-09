@@ -1,17 +1,17 @@
 import { App, PluginSettingTab, Setting } from 'obsidian';
-import type TemplatePlugin from './main';
+import type OpenSyncHistoryPlugin from './main';
 
-export default class TemplateSettingTab extends PluginSettingTab {
-	plugin: TemplatePlugin;
+export default class OpenSyncHistorySettingTab extends PluginSettingTab {
+	plugin: OpenSyncHistoryPlugin;
 
-	constructor(app: App, plugin: TemplatePlugin) {
+	constructor(app: App, plugin: OpenSyncHistoryPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
 
 	display(): void {
 		const { containerEl } = this;
-		const { settings } = this.plugin;
+		//const { settings } = this.plugin;
 
 		containerEl.empty();
 
@@ -19,17 +19,16 @@ export default class TemplateSettingTab extends PluginSettingTab {
 			text: ' ... Settings',
 		});
 
-		// keys for YAML
-		new Setting(containerEl)
-			.setName('')
-			.setDesc('')
-			.addText((text) => {
-				text.setPlaceholder('')
-					.setValue(settings.homeNote)
-					.onChange(async (value) => {
-						settings.homeNote = value.trim();
-						await this.plugin.saveSettings();
-					});
-			});
+		//new Setting(containerEl)
+		//	.setName('')
+		//	.setDesc('')
+		//	.addText((text) => {
+		//		text.setPlaceholder('')
+		//			.setValue(settings.homeNote)
+		//			.onChange(async (value) => {
+		//				settings.homeNote = value.trim();
+		//				await this.plugin.saveSettings();
+		//			});
+		//	});
 	}
 }
