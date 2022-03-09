@@ -1,7 +1,7 @@
 {
 	"id": "sync-version-history",
 	"name": "Sync Version History",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "0.13.30",
 	"description": "Add a command for displaying the Sync version history.",
 	"author": "kometenstaub",
