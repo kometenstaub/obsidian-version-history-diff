@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.0.1...1.0.2) (2022-03-09)
+
+
+### Bug Fixes
+
+* make openSyncHistory() async ([3c9890e](https://github.com/kometenstaub/obsidian-sync-version-history/commit/3c9890ef5ff33388c3d9e3771485644d55570dd6))
+
 ### 1.0.1 (2022-03-09)
 
 
