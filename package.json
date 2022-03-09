@@ -1,7 +1,7 @@
 {
-	"name": "<Sample_Plugin>",
+	"name": "sync-version-history",
 	"version": "0.0.0",
-	"description": "<Sample_Plugin>",
+	"description": "Add a hotkey to access Sync version history.",
 	"main": "src/main.ts",
 	"scripts": {
 		"dev": "cross-env BUILD=dev node esbuild.mjs",
@@ -42,10 +42,10 @@
 		"@typescript-eslint/parser": "^5.4.0",
 		"builtin-modules": "^3.2.0",
 		"cross-env": "^7.0.3",
-		"esbuild": "^0.14.11",
-		"eslint": "^8.3.0",
+		"esbuild": "^0.14.25",
+		"eslint": "^8.10.0",
 		"jest": "^27.4.3",
-		"obsidian": "^0.13.19",
+		"obsidian": "^0.13.30",
 		"prettier": "2.5.0",
 		"process": "^0.11.10",
 		"standard-version": "^9.3.1",
