@@ -31,7 +31,7 @@ const isProd = process.env.BUILD === 'production';
 			//platform: 'browser',
 			external: ['obsidian', 'electron', ...builtins],
 			format: 'cjs',
-			target: 'es2016',
+			target: 'es2018',
 			banner: { js: banner },
 			sourcemap: isProd ? false : 'inline',
 			minify: isProd,
