@@ -1,5 +1,5 @@
 # From: https://github.com/argenos/nldates-obsidian/blob/master/.github/workflows/release.yml
-name: Build obsidian plugin
+name: Build Sync version history plugin
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     - '*' # Push events to matching any tag format, i.e. 1.0, 20.15.10
 
 env:
-  PLUGIN_NAME: plugin-name # Change this to the name of your plugin-id folder
+  PLUGIN_NAME: sync-version-history # Change this to the name of your plugin-id folder
 
 jobs:
   build:
@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use Node.js
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3
       with:
-        node-version: '14.16.0' # You might need to adjust this value to your own version
+        node-version: '16.13.0' # You might need to adjust this value to your own version
     - name: Build
       id: build
       run: | 
