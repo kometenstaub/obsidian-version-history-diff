@@ -30,7 +30,7 @@
 				"section": "Bug Fixes"
 			}
 		],
-		"releaseCommitMessageFormat": "<Sample_Plugin>: {{currentTag}}"
+		"releaseCommitMessageFormat": "Sync version history: {{currentTag}}"
 	},
 	"keywords": [],
 	"author": "kometenstaub",
