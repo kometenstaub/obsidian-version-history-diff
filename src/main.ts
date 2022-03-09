@@ -8,13 +8,13 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	//@ts-ignore
 	//settings: OpenSyncHistorySettings;
 
-	openSyncHistory(file: TFile): void {
+	async openSyncHistory(file: TFile): Promise<void> {
 		// @ts-expect-error, untyped
 		const { instance } = this.app.internalPlugins.plugins['sync'];
-		instance.showVersionHistory(file.path);
+		await instance.showVersionHistory(file.path);
 	}
 
-	giveCallback(fn: (file: TFile) => void): Command['checkCallback'] {
+	giveCallback(fn: (file: TFile) => Promise<void>): Command['checkCallback'] {
 		return (checking: boolean): boolean => {
 			const tfile: TFile | null = this.app.workspace.getActiveFile();
 			if (tfile !== null) {
