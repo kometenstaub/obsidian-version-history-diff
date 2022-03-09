@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-sync-version-history",
 	"name": "Sync Version History",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"minAppVersion": "0.13.30",
 	"description": "Add a command for displaying the Sync version history.",
 	"author": "kometenstaub",

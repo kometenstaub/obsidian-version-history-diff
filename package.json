@@ -1,6 +1,6 @@
 {
 	"name": "sync-version-history",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Add a hotkey to access Sync version history.",
 	"main": "src/main.ts",
 	"scripts": {
