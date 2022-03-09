@@ -1,4 +1,4 @@
-import { App, Plugin, TFile, Command } from 'obsidian';
+import {Command, Plugin, TFile} from 'obsidian';
 //import type { OpenSyncHistorySettings } from './interfaces';
 //import OpenSyncHistorySettingTab from './settings';
 
@@ -11,9 +11,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	openSyncHistory(file: TFile): void {
 		// @ts-expect-error, untyped
 		const { instance } = this.app.internalPlugins.plugins['sync']
-		const filePath = file.path
-		instance.showVersionHistory(filePath)
-
+		instance.showVersionHistory(file.path)
 	}
 
 	giveCallback(
