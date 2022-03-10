@@ -9,7 +9,6 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	//settings: OpenSyncHistorySettings;
 
 	async openSyncHistory(file: TFile): Promise<void> {
-		// @ts-expect-error, untyped
 		const { instance } = this.app.internalPlugins.plugins['sync'];
 		await instance.showVersionHistory(file.path);
 	}
