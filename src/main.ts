@@ -2,6 +2,7 @@ import { Command, Plugin, TFile } from 'obsidian';
 //import type { OpenSyncHistorySettings } from './interfaces';
 //import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';
+import DiffView from './diff_view';
 
 //const DEFAULT_SETTINGS: OpenSyncHistorySettings = {};
 
@@ -10,12 +11,18 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	//settings: OpenSyncHistorySettings;
 	diff_utils = new DiffUtils(this, this.app);
 
+	openDiffModal(file: TFile): void {
+		new DiffView(this, this.app, file).open();
+	}
+
 	async openSyncHistory(file: TFile): Promise<void> {
 		const { instance } = this.app.internalPlugins.plugins['sync'];
 		await instance.showVersionHistory(file.path);
 	}
 
-	giveCallback(fn: (file: TFile) => Promise<void>): Command['checkCallback'] {
+	giveCallback(
+		fn: (file: TFile) => Promise<void> | void
+	): Command['checkCallback'] {
 		return (checking: boolean): boolean => {
 			const tfile: TFile | null = this.app.workspace.getActiveFile();
 			if (tfile !== null) {
@@ -29,13 +36,21 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		};
 	}
 
-	returnOpenCommand = (): Command => {
+	returnOpenCommand(): Command {
 		return {
 			id: 'open-sync-version-history',
 			name: 'Show history for active file',
 			checkCallback: this.giveCallback(this.openSyncHistory.bind(this)),
 		};
-	};
+	}
+
+	returnDiffCommand(): Command {
+		return {
+			id: 'open-diff-view',
+			name: 'Show diff view',
+			checkCallback: this.giveCallback(this.openDiffModal.bind(this)),
+		};
+	}
 
 	async onload() {
 		console.log('loading Sync Version History plugin');
