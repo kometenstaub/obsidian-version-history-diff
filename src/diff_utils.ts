@@ -19,10 +19,11 @@ export default class DiffUtils {
 		return await this.instance.getHistory(file.path, uid);
 	}
 
-	async getContent(uid: number) {
+	async getContent(uid: number): Promise<string> {
 		const content = await this.instance.getContentForVersion(uid);
 		const textDecoder = new TextDecoder('utf-8');
 		const text = textDecoder.decode(new Uint8Array(content));
+		return text
 	}
 
 	// Thank you: https://github.com/marcusolsson/obsidian-vale/blob/fdc0fc5d1c259cc823b867ae2d278f09703acf43/src/vale/ValeCli.ts#L12
