@@ -1,12 +1,14 @@
 import { Command, Plugin, TFile } from 'obsidian';
 //import type { OpenSyncHistorySettings } from './interfaces';
 //import OpenSyncHistorySettingTab from './settings';
+import DiffUtils from './diff_utils'
 
 //const DEFAULT_SETTINGS: OpenSyncHistorySettings = {};
 
 export default class OpenSyncHistoryPlugin extends Plugin {
 	//@ts-ignore
 	//settings: OpenSyncHistorySettings;
+	diff_utils = new DiffUtils(this, this.app);
 
 	async openSyncHistory(file: TFile): Promise<void> {
 		const { instance } = this.app.internalPlugins.plugins['sync'];

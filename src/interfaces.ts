@@ -11,7 +11,7 @@ declare module 'obsidian' {
 							// use the UID of the last element in the array to get the next 30 versions
 							uid?: null | number
 						): Promise<{
-							items: [
+							items:
 								{
 									deleted: boolean;
 									device: string; // from which device that version is
@@ -20,8 +20,7 @@ declare module 'obsidian' {
 									size: number;
 									ts: number; // `new Date(ts)` outputs the date
 									uid: number; // unique UID for the whole vault
-								}
-							];
+								}[];
 							more: boolean; // whether there are more versions
 						}>;
 						showVersionHistory(path: string): Promise<void>;
