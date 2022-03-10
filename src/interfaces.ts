@@ -14,15 +14,15 @@ declare module 'obsidian' {
 							items: [
 								{
 									deleted: boolean;
-									device: string;
+									device: string; // from which device that version is
 									folder: boolean;
 									path: string;
 									size: number;
-									ts: number;
-									uid: number;
+									ts: number; // `new Date(ts)` outputs the date
+									uid: number; // unique UID for the whole vault
 								}
 							];
-							more: boolean;
+							more: boolean; // whether there are more versions
 						}>;
 						showVersionHistory(path: string): Promise<void>;
 					};
