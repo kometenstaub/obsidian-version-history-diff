@@ -52,10 +52,12 @@ export default class DiffView extends Modal {
 			const syncHistoryContentContainer = parsedHtml.documentElement
 			syncHistoryContentContainer.addClasses(['sync-history-content-container', 'diff'])
 
-			this.contentEl.appendChild(leftHistory)
+			this.contentEl.appendChild(leftHistory[0])
 			this.contentEl.appendChild(syncHistoryContentContainer);
-			this.contentEl.appendChild(rightHistory)
+			this.contentEl.appendChild(rightHistory[0])
 
+			this.appendVersions(leftHistory[1], versions)
+			this.appendVersions(rightHistory[1], versions)
 
 
 		} else {
@@ -63,14 +65,14 @@ export default class DiffView extends Modal {
 		}
 	}
 
-	createHistory(el: HTMLElement): HTMLElement {
+	createHistory(el: HTMLElement): HTMLElement[] {
 		const syncHistoryListContainer = el.createDiv({
 			cls: 'sync-history-list-container'
 		})
 		const syncHistoryList = syncHistoryListContainer.createDiv({
 			cls: 'sync-history-list'
 		})
-		return syncHistoryListContainer
+		return [syncHistoryListContainer, syncHistoryList]
 	}
 
 	appendVersions(el: HTMLElement, versions: gHResult): void {
@@ -78,6 +80,10 @@ export default class DiffView extends Modal {
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
 				text: new Date(version.ts).toDateString()
+			})
+			const infoDiv = div.createDiv({
+				cls: ['u-small', 'u-muted'],
+				text: (version.size/1000).toString() + ' [' + version.device + ']'
 			})
 		}
 	}
