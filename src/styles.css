@@ -12,11 +12,6 @@
 .sync-history-list-container {
     max-width: 11vw;
 }
-/*
-span.d2h-code-line-ctn {
-    white-space: pre-wrap;
-}
-*/
 
 .sync-history-content-container.diff {
     padding: 0.5rem;
@@ -43,4 +38,16 @@ span.d2h-code-line-ctn {
 .d2h-code-side-line {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+
+/* needed for line-by-line*/
+
+.d2h-diff-tbody {
+    position: relative;
+}
+
+/* only works for line-by-line */
+
+span.d2h-code-line-ctn {
+    white-space: pre-wrap;
 }
