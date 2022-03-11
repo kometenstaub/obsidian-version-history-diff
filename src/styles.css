@@ -1,3 +1,6 @@
+/* unminified CSS, MIT-licensed from diff2html
+https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
+*/
 .d2h-d-none {
 	display: none;
 }
@@ -319,6 +322,9 @@
 .d2h-moved-tag {
 	border: 1px solid #3572b0;
 }
+
+
+/* CSS by @kometenstaub */
 
 .modal.mod-sync-history.diff {
 	min-width: 95vw;
