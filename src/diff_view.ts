@@ -31,7 +31,9 @@ export default class DiffView extends Modal {
 		this.rightContent = ''
 		this.leftContent = ''
 		// @ts-ignore
-		this.syncHistoryContentContainer = '';
+		this.syncHistoryContentContainer = this.contentEl.createDiv({
+			cls: ['sync-history-content-container', 'diff']
+		});
 		this.createHtml();
 	}
 
@@ -63,15 +65,16 @@ export default class DiffView extends Modal {
 
 		if (typeof uDiff === 'string') {
 			const diff = html(uDiff /*, {outputFormat: 'side-by-side'}*/);
-			const parsedHtml = this.parser.parseFromString(diff, 'text/html');
+			//const parsedHtml = this.parser.parseFromString(diff, 'text/html');
 
 			const leftHistory = this.createHistory(this.contentEl);
 			const rightHistory = this.createHistory(this.contentEl);
-			this.syncHistoryContentContainer = parsedHtml.documentElement;
-			this.syncHistoryContentContainer.addClasses([
-				'sync-history-content-container',
-				'diff',
-			]);
+			//this.syncHistoryContentContainer = parsedHtml.documentElement;
+			this.syncHistoryContentContainer.innerHTML = diff
+			//this.syncHistoryContentContainer.addClasses([
+			//	'sync-history-content-container',
+			//	'diff',
+			//]);
 
 			this.contentEl.appendChild(leftHistory[0]);
 			this.contentEl.appendChild(this.syncHistoryContentContainer);
@@ -146,14 +149,13 @@ export default class DiffView extends Modal {
 					// get the content for the clicked HTML element
 					const getContent = this.plugin.diff_utils.getContent.bind(this)
 					const leftContent = await getContent(clickedEl.uid)
-					const diff = await this.plugin.diff_utils.getUnifiedDiff(leftContent, this.rightContent)
+					const uDiff = await this.plugin.diff_utils.getUnifiedDiff(leftContent, this.rightContent)
+					const diff = html(uDiff as string)
 					// until here it works
 					//@ts-ignore
-					const parsedHtml = this.parser.parseFromString(diff, 'text/html')
-					console.log(parsedHtml)
 					//this.syncHistoryContentContainer.getElementsByTagName('head')[0].remove()
 					//this.syncHistoryContentContainer.getElementsByTagName('body')[0].remove()
-					this.syncHistoryContentContainer = parsedHtml.documentElement
+					this.syncHistoryContentContainer.innerHTML = diff
 				} else {
 					const rightVersion = this.rightVList
 				}
