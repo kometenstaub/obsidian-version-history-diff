@@ -57,6 +57,8 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 
 		this.addCommand(this.returnOpenCommand());
 
+		this.addCommand(this.returnDiffCommand());
+
 		//await this.loadSettings();
 
 		//this.addSettingTab(new OpenSyncHistorySettingTab(this.app, this));
