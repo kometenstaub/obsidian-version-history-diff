@@ -36,3 +36,8 @@ export interface item {
 	ts: number; // `new Date(ts)` outputs the date
 	uid: number; // unique UID for the whole vault
 }
+
+export interface vList {
+	html: HTMLElement;
+	uid: number;
+}
