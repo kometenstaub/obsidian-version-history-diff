@@ -19,7 +19,7 @@ export default class DiffView extends Modal {
 	}
 
 	async createHtml() {
-		const versions = await this.plugin.diff_utils.getVersions(this.file)
+		const versions = await this.plugin.diff_utils.getVersions(this.file);
 		const getContent = this.plugin.diff_utils.getContent.bind(this);
 		const getUnifiedDiff = this.plugin.diff_utils.getUnifiedDiff;
 		// need to choose the two versions somehow

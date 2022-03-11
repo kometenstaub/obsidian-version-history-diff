@@ -41,16 +41,16 @@ export default class DiffUtils {
 				(error, stdout, stderr) => {
 					if (stdout) {
 						//console.log(stdout);
-						resolve(stdout)
+						resolve(stdout);
 					} else if (error) {
 						console.error(`exec error: ${error}`);
 						reject(error);
 					} else if (stderr) {
 						console.error(`stderr: ${stderr}`);
-						reject(stderr)
+						reject(stderr);
 					}
 				}
 			);
-			})
+		});
 	}
 }
