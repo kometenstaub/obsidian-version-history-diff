@@ -11,7 +11,7 @@ export default class DiffUtils {
 	constructor(plugin: OpenSyncHistoryPlugin, app: App) {
 		this.plugin = plugin;
 		this.app = app;
-		this.instance = app.internalPlugins.plugins.sync.instance
+		this.instance = app.internalPlugins.plugins.sync.instance;
 	}
 
 	async getVersions(
@@ -23,7 +23,10 @@ export default class DiffUtils {
 	}
 
 	async getContent(uid: number): Promise<string> {
-		const content = await this.app.internalPlugins.plugins.sync.instance.getContentForVersion(uid);
+		const content =
+			await this.app.internalPlugins.plugins.sync.instance.getContentForVersion(
+				uid
+			);
 		const textDecoder = new TextDecoder('utf-8');
 		const text = textDecoder.decode(new Uint8Array(content));
 		return text;
@@ -32,19 +35,19 @@ export default class DiffUtils {
 	// Thank you: https://github.com/marcusolsson/obsidian-vale/blob/fdc0fc5d1c259cc823b867ae2d278f09703acf43/src/vale/ValeCli.ts#L12
 	async getUnifiedDiff(str1: string, str2: string): Promise<string | void> {
 		// 5 is currently the amount of context
-		const child = exec(`diff -u5 <(echo -e "${str1}") <(echo -e "${str2}")`, (error, stdout, stderr) => {
-			if (stdout) {
-				console.log(stdout)
-				return stdout
+		const child = exec(
+			`diff -u5 <(echo -e "${str1}") <(echo -e "${str2}")`,
+			(error, stdout, stderr) => {
+				if (stdout) {
+					console.log(stdout);
+					return stdout;
+				} else if (error) {
+					console.error(`exec error: ${error}`);
+					return;
+				} else if (stderr) {
+					console.error(`stderr: ${stderr}`);
+				}
 			}
-			else if (error) {
-				console.error(`exec error: ${error}`)
-				return
-			}
-			else if (stderr) {
-				console.error(`stderr: ${stderr}`)
-			}
-		});
-
+		);
 	}
 }
