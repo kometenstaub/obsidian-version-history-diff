@@ -30,11 +30,12 @@ export default class DiffUtils {
 	}
 
 	// Thank you: https://github.com/marcusolsson/obsidian-vale/blob/fdc0fc5d1c259cc823b867ae2d278f09703acf43/src/vale/ValeCli.ts#L12
-	async getUnifiedDiff(str1: string, str2: string): Promise<void> {
-		const child = exec(`diff -u <(echo "${str1}") <(echo "${str2}")`, (error, stdout, stderr) => {
+	async getUnifiedDiff(str1: string, str2: string): Promise<string | void> {
+		// 5 is currently the amount of context
+		const child = exec(`diff -u5 <(echo -e "${str1}") <(echo -e "${str2}")`, (error, stdout, stderr) => {
 			if (stdout) {
 				console.log(stdout)
-				return
+				return stdout
 			}
 			else if (error) {
 				console.error(`exec error: ${error}`)
