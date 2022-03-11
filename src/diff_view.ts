@@ -32,7 +32,7 @@ export default class DiffView extends Modal {
 		if (typeof uDiff === 'string') {
 			const diff = html(uDiff);
 			const parsedHtml = this.parser.parseFromString(diff, 'text/html');
-			this.contentEl.append(parsedHtml);
+			this.contentEl.appendChild(parsedHtml.documentElement);
 		} else {
 			new Notice('Something went wrong.');
 		}
