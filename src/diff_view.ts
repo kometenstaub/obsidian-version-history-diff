@@ -30,7 +30,7 @@ export default class DiffView extends Modal {
 		const uDiff = await getUnifiedDiff(c1, c2);
 		//console.log(`Udiff: ${uDiff}`)
 		if (typeof uDiff === 'string') {
-			const diff = html(uDiff);
+			const diff = html(uDiff, {outputFormat: 'side-by-side'});
 			const parsedHtml = this.parser.parseFromString(diff, 'text/html');
 			this.contentEl.appendChild(parsedHtml.documentElement);
 		} else {
