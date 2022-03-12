@@ -167,15 +167,7 @@ export default class DiffView extends Modal {
 						leftContent,
 						this.rightContent
 					);
-					//const uDiff = await this.plugin.diff_utils.getUnifiedDiff(
-					//	leftContent,
-					//	this.rightContent
-					//);
 					const diff = html(uDiff as string);
-					// until here it works
-					//@ts-ignore
-					//this.syncHistoryContentContainer.getElementsByTagName('head')[0].remove()
-					//this.syncHistoryContentContainer.getElementsByTagName('body')[0].remove()
 					this.syncHistoryContentContainer.innerHTML = diff;
 				} else {
 					const rightVersion = this.rightVList;
