@@ -1,7 +1,6 @@
 import type { Plugin, App, TFile } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type { gHResult, item, syncInstance } from './interfaces';
-import { exec } from 'child_process';
 
 export default class DiffUtils {
 	plugin: OpenSyncHistoryPlugin;
@@ -30,27 +29,5 @@ export default class DiffUtils {
 		const textDecoder = new TextDecoder('utf-8');
 		const text = textDecoder.decode(new Uint8Array(content));
 		return text;
-	}
-
-	// Thank you: https://github.com/marcusolsson/obsidian-vale/blob/fdc0fc5d1c259cc823b867ae2d278f09703acf43/src/vale/ValeCli.ts#L12
-	async getUnifiedDiff(str1: string, str2: string): Promise<string | void> {
-		// 5 is currently the amount of context
-		return new Promise((resolve, reject) => {
-			exec(
-				`diff -u5 <(echo -e "${str1}") <(echo -e "${str2}")`,
-				(error, stdout, stderr) => {
-					if (stdout) {
-						//console.log(stdout);
-						resolve(stdout);
-					} else if (error) {
-						console.error(`exec error: ${error}`);
-						reject(error);
-					} else if (stderr) {
-						console.error(`stderr: ${stderr}`);
-						reject(stderr);
-					}
-				}
-			);
-		});
 	}
 }

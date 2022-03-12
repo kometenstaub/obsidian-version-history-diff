@@ -53,7 +53,7 @@ It uses diff2html, which is MIT-licensed:
 	OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-diff2html in turn uses jsdiff. License:
+This plugin and diff2html use jsdiff. License:
 
 	Software License Agreement (BSD License)
 	

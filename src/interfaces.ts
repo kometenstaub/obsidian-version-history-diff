@@ -39,5 +39,5 @@ export interface item {
 
 export interface vList {
 	html: HTMLElement;
-	uid: number;
+	v: item;
 }
