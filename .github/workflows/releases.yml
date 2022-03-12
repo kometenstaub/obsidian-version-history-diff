@@ -27,13 +27,13 @@ jobs:
         npm install
         npm run build --if-present
         mkdir ${{ env.PLUGIN_NAME }}
-        cp build/main.js build/manifest.json ${{ env.PLUGIN_NAME }}
+        cp build/main.js build/manifest.json build/styles.css ${{ env.PLUGIN_NAME }}
         zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
         ls
-        echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
         git config user.name "kometenstaub"
         git config user.email "83140328+kometenstaub@users.noreply.github.com"
-        npx rexreplace "^.*?#+\s\[.*?\n.*?(?=\s*#+\s\[)" "_" -s -M -G -m -o "CHANGELOG.md" > CHANGELOG-LATEST.md
+        npx rexreplace "^.*?#(#+\s\[.*?\n.*?)(?=\s*#+\s\[)" "_" -s -M -G -m -o "CHANGELOG.md" > CHANGELOG-LATEST.md
+        echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -76,13 +76,13 @@ jobs:
         asset_path: build/manifest.json
         asset_name: manifest.json
         asset_content_type: application/json
-    # - name: Upload styles.css
-    #   id: upload-css
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ steps.create_release.outputs.upload_url }} 
-    #     asset_path: ./styles.css
-    #     asset_name: styles.css
-    #     asset_content_type: text/css
+    - name: Upload styles.css
+      id: upload-css
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: build/styles.css
+        asset_name: styles.css
+        asset_content_type: text/css
