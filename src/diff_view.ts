@@ -5,7 +5,6 @@ import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 
 export default class DiffView extends Modal {
-	parser: DOMParser;
 	leftVList: vList[];
 	rightVList: vList[];
 	leftActive: number;
@@ -27,7 +26,6 @@ export default class DiffView extends Modal {
 		this.plugin = plugin;
 		this.app = app;
 		this.file = file;
-		this.parser = new DOMParser();
 		this.modalEl.addClasses(['mod-sync-history', 'diff']);
 		this.leftVList = [];
 		this.rightVList = [];
@@ -169,15 +167,16 @@ export default class DiffView extends Modal {
 	): vList[] {
 		const versionList: vList[] = [];
 		for (let version of versions.items) {
+			const date = new Date(version.ts);
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
-				text: new Date(version.ts).toDateString(),
+				text: date.toDateString() + ', ' + date.toLocaleTimeString(),
 			});
 			const infoDiv = div.createDiv({
 				cls: ['u-small', 'u-muted'],
 				text:
 					(version.size / 1000).toString() +
-					' [' +
+					' KB [' +
 					version.device +
 					']',
 			});
