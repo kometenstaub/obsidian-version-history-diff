@@ -35,7 +35,8 @@ It is MIT-licensed:
 
 Other used code in this built file is licensed as follows:
 	
-It uses diff2html, which is MIT-licensed:
+This plugin uses diff2html:
+https://github.com/rtfpessoa/diff2html
 
 	Copyright 2014-2016 Rodrigo Fernandes https://rtfpessoa.github.io/
 
@@ -53,7 +54,8 @@ It uses diff2html, which is MIT-licensed:
 	OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-This plugin and diff2html use jsdiff. License:
+This plugin and diff2html use jsdiff:
+https://github.com/kpdecker/jsdiff
 
 	Software License Agreement (BSD License)
 	
@@ -88,7 +90,7 @@ This plugin and diff2html use jsdiff. License:
 	OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
-diff2html also uses hogan.js:
+diff2html uses hogan.js:
 https://github.com/twitter/hogan.js
 
                                  Apache License
