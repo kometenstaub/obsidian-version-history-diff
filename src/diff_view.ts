@@ -175,7 +175,7 @@ export default class DiffView extends Modal {
 			const infoDiv = div.createDiv({
 				cls: ['u-small', 'u-muted'],
 				text:
-					(version.size / 1000).toString() +
+					(version.size / 1000).toString().slice(0, -1) +
 					' KB [' +
 					version.device +
 					']',
