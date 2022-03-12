@@ -12,7 +12,6 @@ export default class DiffView extends Modal {
 	rightContent: string;
 	leftContent: string;
 	syncHistoryContentContainer: HTMLElement;
-	//more: boolean;
 	versions: gHResult;
 	leftHistory: HTMLElement[];
 	rightHistory: HTMLElement[];
