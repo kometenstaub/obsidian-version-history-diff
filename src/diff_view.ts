@@ -89,7 +89,9 @@ export default class DiffView extends Modal {
 		);
 
 		// create HTML from diff
-		const diff = html(uDiff /*, {outputFormat: 'side-by-side'}*/);
+		const diff = html(uDiff , {
+			diffStyle: this.plugin.settings.diffStyle,
+		});
 
 		// create both history lists
 		this.leftHistory = this.createHistory(this.contentEl);
