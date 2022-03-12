@@ -4,6 +4,12 @@ import type { gHResult, vList } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 
+function removeElements(element: HTMLCollection): void {
+	for (let i = element.length; i >= 0; i--) {
+		element.item(i)?.remove();
+	}
+}
+
 export default class DiffView extends Modal {
 	parser: DOMParser;
 	leftVList: vList[];
@@ -14,6 +20,9 @@ export default class DiffView extends Modal {
 	leftContent: string;
 	syncHistoryContentContainer: HTMLElement;
 	more: boolean;
+	versions: gHResult;
+	leftHistory: HTMLElement[];
+	rightHistory: HTMLElement[];
 
 	constructor(
 		private plugin: OpenSyncHistoryPlugin,
@@ -33,6 +42,12 @@ export default class DiffView extends Modal {
 		this.rightContent = '';
 		this.leftContent = '';
 		this.more = false;
+		//@ts-expect-error, it will be filled later
+		this.versions = [];
+		//@ts-expect-error
+		this.leftHistory = [null];
+		//@ts-expect-error
+		this.rightHistory = [null];
 		// @ts-ignore
 		this.syncHistoryContentContainer = this.contentEl.createDiv({
 			cls: ['sync-history-content-container', 'diff'],
@@ -42,14 +57,14 @@ export default class DiffView extends Modal {
 
 	async createHtml() {
 		// get first thirty versions
-		const versions = await this.plugin.diff_utils.getVersions(this.file);
-		this.more = versions.more
+		this.versions = await this.plugin.diff_utils.getVersions(this.file);
+		this.more = this.versions.more;
 		// for initial display, initialise variables
 		let [latestV, secondLatestV] = [0, 0];
 		// only display if at least two versions
-		if (versions.items.length > 1) {
-			latestV = versions.items[0].uid;
-			secondLatestV = versions.items[1].uid;
+		if (this.versions.items.length > 1) {
+			latestV = this.versions.items[0].uid;
+			secondLatestV = this.versions.items[1].uid;
 		} else {
 			new Notice('There are not at least two versions.');
 			this.close();
@@ -69,8 +84,8 @@ export default class DiffView extends Modal {
 
 		// get diff
 		const uDiff = createTwoFilesPatch(
-			this.getDate(versions.items[1].ts),
-			this.getDate(versions.items[0].ts),
+			this.getDate(this.versions.items[1].ts),
+			this.getDate(this.versions.items[0].ts),
 			this.leftContent,
 			this.rightContent
 		);
@@ -79,38 +94,67 @@ export default class DiffView extends Modal {
 		const diff = html(uDiff /*, {outputFormat: 'side-by-side'}*/);
 
 		// create both history lists
-		const leftHistory = this.createHistory(this.contentEl);
-		const rightHistory = this.createHistory(this.contentEl);
+		this.leftHistory = this.createHistory(this.contentEl);
+		this.rightHistory = this.createHistory(this.contentEl);
 
 		// create more button
-		const leftMoreButton = leftHistory[0].createDiv({
+		const leftMoreButton = this.leftHistory[0].createDiv({
 			cls: ['sync-history-load-more-button', 'diff'],
-			text: 'Load more'
-		})
-		const rightMoreButton = rightHistory[0].createDiv({
+			text: 'Load more',
+		});
+		const rightMoreButton = this.rightHistory[0].createDiv({
 			cls: ['sync-history-load-more-button', 'diff'],
-			text: 'Load more'
-		})
-		this.more ? leftMoreButton.style.display = 'block' : 'none'
-		leftMoreButton.addEventListener('click', async () => {
-			versions += await this.plugin.diff_utils.getVersions(this.file)
-		})
+			text: 'Load more',
+		});
+		this.more ? (leftMoreButton.style.display = 'block') : 'none';
+		for (const el of [leftMoreButton, rightMoreButton]) {
+			el.addEventListener('click', async () => {
+				const newVersions = await this.plugin.diff_utils.getVersions(
+					this.file
+				);
+				this.versions.more = newVersions.more;
+				this.versions.more
+					? (leftMoreButton.style.display = 'block')
+					: 'none';
+
+				// should not be needed because we append the new elements and don't
+				// recreate everything
+				//const leftChildren = this.leftHistory[1].children
+				//removeElements(leftChildren)
+				//const rightChildren = this.rightHistory[1].children
+				//removeElements(rightChildren)
+
+				// append new versions to sync list
+				this.leftVList = this.appendVersions(
+					this.leftHistory[1],
+					this.versions,
+					true
+				);
+				this.rightVList = this.appendVersions(
+					this.rightHistory[1],
+					this.versions,
+					false
+				);
+				// add new versions to version list
+				this.versions.items.push(...newVersions.items);
+			});
+		}
 
 		// add diff to container
 		this.syncHistoryContentContainer.innerHTML = diff;
 
 		// add history lists and diff to DOM
-		this.contentEl.appendChild(leftHistory[0]);
+		this.contentEl.appendChild(this.leftHistory[0]);
 		this.contentEl.appendChild(this.syncHistoryContentContainer);
-		this.contentEl.appendChild(rightHistory[0]);
+		this.contentEl.appendChild(this.rightHistory[0]);
 
 		// add the inner HTML element (the sync list) and keep a record
 		// of references to the elements
 		this.leftVList.push(
-			...this.appendVersions(leftHistory[1], versions, true)
+			...this.appendVersions(this.leftHistory[1], this.versions, true)
 		);
 		this.rightVList.push(
-			...this.appendVersions(rightHistory[1], versions, false)
+			...this.appendVersions(this.rightHistory[1], this.versions, false)
 		);
 
 		// highlight initial two versions
