@@ -89,7 +89,7 @@ export default class DiffView extends Modal {
 		);
 
 		// create HTML from diff
-		const diff = html(uDiff , {
+		const diff = html(uDiff, {
 			diffStyle: this.plugin.settings.diffStyle,
 		});
 
