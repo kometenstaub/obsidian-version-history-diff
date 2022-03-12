@@ -289,9 +289,4 @@ export default class DiffView extends Modal {
 		}
 		return versionList;
 	}
-
-	getDate(ts: number): string {
-		const date = new Date(ts);
-		return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-	}
 }
