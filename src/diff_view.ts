@@ -160,17 +160,46 @@ export default class DiffView extends Modal {
 					// get the content for the clicked HTML element
 					const getContent =
 						this.plugin.diff_utils.getContent.bind(this);
-					const leftContent = await getContent(clickedEl.v.uid);
+					this.leftContent = await getContent(clickedEl.v.uid);
 					const uDiff = createTwoFilesPatch(
 						this.getDate(clickedEl.v.ts),
 						this.getDate(this.rightVList[this.rightActive].v.ts),
-						leftContent,
+						this.leftContent,
 						this.rightContent
 					);
-					const diff = html(uDiff as string);
+					const diff = html(uDiff);
 					this.syncHistoryContentContainer.innerHTML = diff;
 				} else {
-					const rightVersion = this.rightVList;
+					// formerly active left version
+					const rightOldVersion = this.rightVList[this.rightActive];
+					// get the HTML of the new version to set it active
+					// @ts-ignore
+					const clickedEl: vList = this.rightVList.find((el) => {
+						if (el.html === div) {
+							return true;
+						}
+					});
+					const idx = this.rightVList.findIndex((el) => {
+						if (el.html === div) {
+							return true;
+						}
+					});
+					clickedEl.html.addClass('is-active');
+					this.rightActive = idx;
+					// make old not active
+					rightOldVersion.html.classList.remove('is-active');
+					// get the content for the clicked HTML element
+					const getContent =
+						this.plugin.diff_utils.getContent.bind(this);
+					this.rightContent = await getContent(clickedEl.v.uid);
+					const uDiff = createTwoFilesPatch(
+						this.getDate(this.leftVList[this.leftActive].v.ts),
+						this.getDate(clickedEl.v.ts),
+						this.leftContent,
+						this.rightContent
+					);
+					const diff = html(uDiff);
+					this.syncHistoryContentContainer.innerHTML = diff;
 				}
 			});
 		}
