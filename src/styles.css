@@ -366,13 +366,12 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 
 .d2h-file-wrapper {
 	overflow: auto;
-	max-height: 70vh;
+	max-height: 60vh;
 }
 
 .d2h-code-side-linenumber {
 	display: table-cell; /*changed*/
 	position: relative; /*changed */
-	width: 4em;
 }
 
 .d2h-code-side-line {
