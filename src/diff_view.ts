@@ -218,7 +218,7 @@ export default class DiffView extends Modal {
 					const diff = html(uDiff);
 					this.syncHistoryContentContainer.innerHTML = diff;
 				} else {
-					// formerly active left version
+					// formerly active right version
 					const rightOldVersion = this.rightVList[this.rightActive];
 					// get the HTML of the new version to set it active
 					// @ts-ignore
