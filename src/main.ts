@@ -1,14 +1,17 @@
 import { Command, Plugin, TFile } from 'obsidian';
-//import type { OpenSyncHistorySettings } from './interfaces';
-//import OpenSyncHistorySettingTab from './settings';
+import type { OpenSyncHistorySettings } from './interfaces';
+import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';
 import DiffView from './diff_view';
 
-//const DEFAULT_SETTINGS: OpenSyncHistorySettings = {};
+const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
+	context: '3',
+	diffStyle: 'word',
+};
 
 export default class OpenSyncHistoryPlugin extends Plugin {
 	//@ts-ignore
-	//settings: OpenSyncHistorySettings;
+	settings: OpenSyncHistorySettings;
 	diff_utils = new DiffUtils(this, this.app);
 
 	openDiffModal(file: TFile): void {
@@ -59,24 +62,24 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 
 		this.addCommand(this.returnDiffCommand());
 
-		//await this.loadSettings();
+		await this.loadSettings();
 
-		//this.addSettingTab(new OpenSyncHistorySettingTab(this.app, this));
+		this.addSettingTab(new OpenSyncHistorySettingTab(this.app, this));
 	}
 
 	onunload() {
 		console.log('unloading Sync Version History plugin');
 	}
 
-	//async loadSettings() {
-	//	this.settings = Object.assign(
-	//		{},
-	//		DEFAULT_SETTINGS,
-	//		await this.loadData()
-	//	);
-	//}
+	async loadSettings() {
+		this.settings = Object.assign(
+			{},
+			DEFAULT_SETTINGS,
+			await this.loadData()
+		);
+	}
 
-	//async saveSettings() {
-	//	await this.saveData(this.settings);
-	//}
+	async saveSettings() {
+		await this.saveData(this.settings);
+	}
 }

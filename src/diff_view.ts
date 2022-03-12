@@ -227,9 +227,18 @@ export default class DiffView extends Modal {
 						this.file.basename,
 						this.file.basename,
 						this.leftContent,
-						this.rightContent
+						this.rightContent,
+						undefined,
+						undefined,
+						{
+							context: Number.parseInt(
+								this.plugin.settings.context
+							),
+						}
 					);
-					const diff = html(uDiff);
+					const diff = html(uDiff, {
+						diffStyle: this.plugin.settings.diffStyle,
+					});
 					this.syncHistoryContentContainer.innerHTML = diff;
 				} else {
 					// formerly active right version
@@ -258,9 +267,18 @@ export default class DiffView extends Modal {
 						this.file.basename,
 						this.file.basename,
 						this.leftContent,
-						this.rightContent
+						this.rightContent,
+						undefined,
+						undefined,
+						{
+							context: Number.parseInt(
+								this.plugin.settings.context
+							),
+						}
 					);
-					const diff = html(uDiff);
+					const diff = html(uDiff, {
+						diffStyle: this.plugin.settings.diffStyle,
+					});
 					this.syncHistoryContentContainer.innerHTML = diff;
 				}
 			});

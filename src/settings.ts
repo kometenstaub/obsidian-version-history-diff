@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting } from 'obsidian';
+import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 
 export default class OpenSyncHistorySettingTab extends PluginSettingTab {
@@ -11,24 +11,44 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 
 	display(): void {
 		const { containerEl } = this;
-		//const { settings } = this.plugin;
+		const { settings } = this.plugin;
 
 		containerEl.empty();
 
 		containerEl.createEl('h2', {
-			text: ' ... Settings',
+			text: 'Sync Version History Diff Settings',
 		});
 
-		//new Setting(containerEl)
-		//	.setName('')
-		//	.setDesc('')
-		//	.addText((text) => {
-		//		text.setPlaceholder('')
-		//			.setValue(settings.homeNote)
-		//			.onChange(async (value) => {
-		//				settings.homeNote = value.trim();
-		//				await this.plugin.saveSettings();
-		//			});
-		//	});
+		new Setting(containerEl)
+			.setName('Context')
+			.setDesc('How many lines of context shall be included')
+			.addText((text) => {
+				text.setPlaceholder('3')
+					.setValue(settings.context)
+					.onChange(async (value) => {
+						const num = Number.parseInt(value.trim());
+						if (Number.isInteger(num) && num >= 0) {
+							settings.context = value.trim();
+							await this.plugin.saveSettings();
+						} else {
+							new Notice(
+								'Please enter an integer greater or equal to 0.'
+							);
+						}
+					});
+			});
+
+		new Setting(containerEl)
+			.setName('Diff style')
+			.setDesc('What difference level shall be shown')
+			.addDropdown((el) => {
+				el.addOption('word', 'Word difference level')
+					.addOption('char', 'Char difference level')
+					.setValue(settings.diffStyle)
+					.onChange(async (value) => {
+						settings.diffStyle = value as 'word' | 'char';
+						await this.plugin.saveSettings();
+					});
+			});
 	}
 }

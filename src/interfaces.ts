@@ -1,4 +1,7 @@
-export interface OpenSyncHistorySettings {}
+export interface OpenSyncHistorySettings {
+	context: string;
+	diffStyle: 'word' | 'char';
+}
 
 declare module 'obsidian' {
 	interface App {
