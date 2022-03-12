@@ -57,7 +57,7 @@ export default class DiffView extends Modal {
 		} else {
 			this.close();
 			new Notice('There are not at least two versions.');
-			return
+			return;
 		}
 
 		// set title
@@ -74,8 +74,8 @@ export default class DiffView extends Modal {
 
 		// get diff
 		const uDiff = createTwoFilesPatch(
-			this.getDate(this.versions.items[1].ts),
-			this.getDate(this.versions.items[0].ts),
+			this.file.basename,
+			this.file.basename,
 			this.leftContent,
 			this.rightContent
 		);
@@ -224,8 +224,8 @@ export default class DiffView extends Modal {
 						this.plugin.diff_utils.getContent.bind(this);
 					this.leftContent = await getContent(clickedEl.v.uid);
 					const uDiff = createTwoFilesPatch(
-						this.getDate(clickedEl.v.ts),
-						this.getDate(this.rightVList[this.rightActive].v.ts),
+						this.file.basename,
+						this.file.basename,
 						this.leftContent,
 						this.rightContent
 					);
@@ -255,8 +255,8 @@ export default class DiffView extends Modal {
 						this.plugin.diff_utils.getContent.bind(this);
 					this.rightContent = await getContent(clickedEl.v.uid);
 					const uDiff = createTwoFilesPatch(
-						this.getDate(this.leftVList[this.leftActive].v.ts),
-						this.getDate(clickedEl.v.ts),
+						this.file.basename,
+						this.file.basename,
 						this.leftContent,
 						this.rightContent
 					);
