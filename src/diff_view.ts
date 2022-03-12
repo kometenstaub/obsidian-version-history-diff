@@ -6,9 +6,9 @@ import { createTwoFilesPatch } from 'diff';
 
 function getSize(size: number): string {
 	if (size === 0) {
-		return '0'
+		return '0';
 	} else {
-		return (size / 1000).toString().slice(0, -1)
+		return (size / 1000).toString().slice(0, -1);
 	}
 }
 
@@ -197,11 +197,7 @@ export default class DiffView extends Modal {
 			});
 			const infoDiv = div.createDiv({
 				cls: ['u-small', 'u-muted'],
-				text:
-					getSize(version.size) +
-					' KB [' +
-					version.device +
-					']',
+				text: getSize(version.size) + ' KB [' + version.device + ']',
 			});
 			versionList.push({
 				html: div,
