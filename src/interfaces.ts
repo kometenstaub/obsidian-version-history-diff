@@ -1,5 +1,5 @@
 export interface OpenSyncHistorySettings {
-	context: string;
+	//context: string;
 	diffStyle: 'word' | 'char';
 }
 

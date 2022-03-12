@@ -19,6 +19,7 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 			text: 'Sync Version History Diff Settings',
 		});
 
+		/*
 		new Setting(containerEl)
 			.setName('Context')
 			.setDesc('How many lines of context shall be included')
@@ -37,6 +38,7 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 						}
 					});
 			});
+		*/
 
 		new Setting(containerEl)
 			.setName('Diff style')

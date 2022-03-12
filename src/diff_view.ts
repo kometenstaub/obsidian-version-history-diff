@@ -227,7 +227,8 @@ export default class DiffView extends Modal {
 						this.file.basename,
 						this.file.basename,
 						this.leftContent,
-						this.rightContent,
+						this.rightContent
+						/*
 						undefined,
 						undefined,
 						{
@@ -235,6 +236,7 @@ export default class DiffView extends Modal {
 								this.plugin.settings.context
 							),
 						}
+						 */
 					);
 					const diff = html(uDiff, {
 						diffStyle: this.plugin.settings.diffStyle,
@@ -267,7 +269,8 @@ export default class DiffView extends Modal {
 						this.file.basename,
 						this.file.basename,
 						this.leftContent,
-						this.rightContent,
+						this.rightContent
+						/*
 						undefined,
 						undefined,
 						{
@@ -275,6 +278,7 @@ export default class DiffView extends Modal {
 								this.plugin.settings.context
 							),
 						}
+						 */
 					);
 					const diff = html(uDiff, {
 						diffStyle: this.plugin.settings.diffStyle,

@@ -5,7 +5,7 @@ import DiffUtils from './diff_utils';
 import DiffView from './diff_view';
 
 const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
-	context: '3',
+	//context: '3',
 	diffStyle: 'word',
 };
 
