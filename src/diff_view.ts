@@ -12,7 +12,7 @@ export default class DiffView extends Modal {
 	rightContent: string;
 	leftContent: string;
 	syncHistoryContentContainer: HTMLElement;
-	more: boolean;
+	//more: boolean;
 	versions: gHResult;
 	leftHistory: HTMLElement[];
 	rightHistory: HTMLElement[];
@@ -33,7 +33,7 @@ export default class DiffView extends Modal {
 		this.leftActive = 1;
 		this.rightContent = '';
 		this.leftContent = '';
-		this.more = false;
+		//this.more = false;
 		//@ts-expect-error, it will be filled later
 		this.versions = [];
 		//@ts-expect-error
@@ -50,7 +50,7 @@ export default class DiffView extends Modal {
 	async createHtml() {
 		// get first thirty versions
 		this.versions = await this.plugin.diff_utils.getVersions(this.file);
-		this.more = this.versions.more;
+		//this.more = this.versions.more;
 		// for initial display, initialise variables
 		let [latestV, secondLatestV] = [0, 0];
 		// only display if at least two versions
@@ -98,28 +98,32 @@ export default class DiffView extends Modal {
 			cls: ['sync-history-load-more-button', 'diff'],
 			text: 'Load more',
 		});
-		this.more ? (leftMoreButton.style.display = 'block') : 'none';
+		this.setMoreButtonStyle(leftMoreButton, rightMoreButton);
+
 		for (const el of [leftMoreButton, rightMoreButton]) {
 			el.addEventListener('click', async () => {
 				const newVersions = await this.plugin.diff_utils.getVersions(
-					this.file
+					this.file,
+					this.versions.items.last()?.uid
 				);
 				this.versions.more = newVersions.more;
-				this.versions.more
-					? (leftMoreButton.style.display = 'block')
-					: 'none';
+				this.setMoreButtonStyle(leftMoreButton, rightMoreButton);
 
 				// append new versions to sync list
-				this.leftVList.push(...this.appendVersions(
-					this.leftHistory[1],
-					this.versions,
-					true
-				));
-				this.rightVList.push(...this.appendVersions(
-					this.rightHistory[1],
-					this.versions,
-					false
-				));
+				this.leftVList.push(
+					...this.appendVersions(
+						this.leftHistory[1],
+						newVersions,
+						true
+					)
+				);
+				this.rightVList.push(
+					...this.appendVersions(
+						this.rightHistory[1],
+						newVersions,
+						false
+					)
+				);
 				// add new versions to version list
 				this.versions.items.push(...newVersions.items);
 			});
@@ -148,6 +152,19 @@ export default class DiffView extends Modal {
 		// keep track of highlighted versions
 		this.rightActive = 0;
 		this.leftActive = 1;
+	}
+
+	private setMoreButtonStyle(
+		leftMoreButton: HTMLDivElement,
+		rightMoreButton: HTMLDivElement
+	) {
+		if (this.versions.more) {
+			leftMoreButton.style.display = 'block';
+			rightMoreButton.style.display = 'block';
+		} else {
+			leftMoreButton.style.display = 'none';
+			rightMoreButton.style.display = 'none';
+		}
 	}
 
 	createHistory(el: HTMLElement): HTMLElement[] {
