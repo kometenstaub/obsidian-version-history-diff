@@ -33,7 +33,6 @@ export default class DiffView extends Modal {
 		this.leftActive = 1;
 		this.rightContent = '';
 		this.leftContent = '';
-		//this.more = false;
 		//@ts-expect-error, it will be filled later
 		this.versions = [];
 		//@ts-expect-error
@@ -50,7 +49,6 @@ export default class DiffView extends Modal {
 	async createHtml() {
 		// get first thirty versions
 		this.versions = await this.plugin.diff_utils.getVersions(this.file);
-		//this.more = this.versions.more;
 		// for initial display, initialise variables
 		let [latestV, secondLatestV] = [0, 0];
 		// only display if at least two versions
@@ -58,8 +56,8 @@ export default class DiffView extends Modal {
 			latestV = this.versions.items[0].uid;
 			secondLatestV = this.versions.items[1].uid;
 		} else {
-			new Notice('There are not at least two versions.');
 			this.close();
+			new Notice('There are not at least two versions.');
 		}
 
 		// set title
