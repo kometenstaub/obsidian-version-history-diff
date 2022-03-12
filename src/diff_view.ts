@@ -4,12 +4,6 @@ import type { gHResult, vList } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 
-function removeElements(element: HTMLCollection): void {
-	for (let i = element.length; i >= 0; i--) {
-		element.item(i)?.remove();
-	}
-}
-
 export default class DiffView extends Modal {
 	parser: DOMParser;
 	leftVList: vList[];
@@ -116,13 +110,6 @@ export default class DiffView extends Modal {
 				this.versions.more
 					? (leftMoreButton.style.display = 'block')
 					: 'none';
-
-				// should not be needed because we append the new elements and don't
-				// recreate everything
-				//const leftChildren = this.leftHistory[1].children
-				//removeElements(leftChildren)
-				//const rightChildren = this.rightHistory[1].children
-				//removeElements(rightChildren)
 
 				// append new versions to sync list
 				this.leftVList = this.appendVersions(
