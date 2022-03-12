@@ -58,6 +58,7 @@ export default class DiffView extends Modal {
 		} else {
 			this.close();
 			new Notice('There are not at least two versions.');
+			return
 		}
 
 		// set title
