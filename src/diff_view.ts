@@ -13,6 +13,7 @@ export default class DiffView extends Modal {
 	rightContent: string;
 	leftContent: string;
 	syncHistoryContentContainer: HTMLElement;
+	more: boolean;
 
 	constructor(
 		private plugin: OpenSyncHistoryPlugin,
@@ -31,6 +32,7 @@ export default class DiffView extends Modal {
 		this.leftActive = 1;
 		this.rightContent = '';
 		this.leftContent = '';
+		this.more = false;
 		// @ts-ignore
 		this.syncHistoryContentContainer = this.contentEl.createDiv({
 			cls: ['sync-history-content-container', 'diff'],
@@ -41,6 +43,7 @@ export default class DiffView extends Modal {
 	async createHtml() {
 		// get first thirty versions
 		const versions = await this.plugin.diff_utils.getVersions(this.file);
+		this.more = versions.more
 		// for initial display, initialise variables
 		let [latestV, secondLatestV] = [0, 0];
 		// only display if at least two versions
@@ -78,6 +81,20 @@ export default class DiffView extends Modal {
 		// create both history lists
 		const leftHistory = this.createHistory(this.contentEl);
 		const rightHistory = this.createHistory(this.contentEl);
+
+		// create more button
+		const leftMoreButton = leftHistory[0].createDiv({
+			cls: ['sync-history-load-more-button', 'diff'],
+			text: 'Load more'
+		})
+		const rightMoreButton = rightHistory[0].createDiv({
+			cls: ['sync-history-load-more-button', 'diff'],
+			text: 'Load more'
+		})
+		this.more ? leftMoreButton.style.display = 'block' : 'none'
+		leftMoreButton.addEventListener('click', async () => {
+			versions += await this.plugin.diff_utils.getVersions(this.file)
+		})
 
 		// add diff to container
 		this.syncHistoryContentContainer.innerHTML = diff;
