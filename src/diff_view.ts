@@ -110,16 +110,16 @@ export default class DiffView extends Modal {
 					: 'none';
 
 				// append new versions to sync list
-				this.leftVList = this.appendVersions(
+				this.leftVList.push(...this.appendVersions(
 					this.leftHistory[1],
 					this.versions,
 					true
-				);
-				this.rightVList = this.appendVersions(
+				));
+				this.rightVList.push(...this.appendVersions(
 					this.rightHistory[1],
 					this.versions,
 					false
-				);
+				));
 				// add new versions to version list
 				this.versions.items.push(...newVersions.items);
 			});
