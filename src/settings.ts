@@ -16,7 +16,7 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 		containerEl.empty();
 
 		containerEl.createEl('h2', {
-			text: 'Sync Version History Diff Settings',
+			text: 'Version History Diff (Sync & Publish)',
 		});
 
 		/*

@@ -17,6 +17,13 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	settings: OpenSyncHistorySettings;
 	diff_utils = new DiffUtils(this, this.app);
 
+	addCommand = (command: Command): Command => {
+		const commandName = command.name;
+		const newCommand = super.addCommand(command);
+		newCommand.name = 'Version history diff: ' + commandName;
+		return newCommand;
+	};
+
 	openRecoveryDiffModal(file: TFile): void {
 		new RecoveryDiffView(this, this.app, file).open();
 	}
@@ -49,15 +56,15 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	returnOpenCommand(): Command {
 		return {
 			id: 'open-sync-version-history',
-			name: 'Show history for active file',
+			name: 'Show Sync history for active file',
 			checkCallback: this.giveCallback(this.openSyncHistory.bind(this)),
 		};
 	}
 
 	returnDiffCommand(): Command {
 		return {
-			id: 'open-diff-view',
-			name: 'Show Sync diff view',
+			id: 'open-sync-diff-view',
+			name: 'Show Sync diff view for active file',
 			checkCallback: this.giveCallback(this.openDiffModal.bind(this)),
 		};
 	}
@@ -65,7 +72,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	returnRecoveryDiffCommand(): Command {
 		return {
 			id: 'open-recovery-diff-view',
-			name: 'Show Recovery diff view',
+			name: 'Show File Recovery diff view for active file',
 			checkCallback: this.giveCallback(
 				this.openRecoveryDiffModal.bind(this)
 			),
