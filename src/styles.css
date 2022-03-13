@@ -462,3 +462,39 @@ span.d2h-code-line-ctn {
 	border-color: var(--sync-insert);
 	border-width: 1px 2px;
 }
+
+/* fixes from pseudometa */
+.d2h-changed,
+.diff :is(.modal-title, .d2h-file-header),
+.d2h-file-list-title {
+	display: none;
+}
+
+.diff .d2h-code-linenumber {
+	width: 5.5em;
+	border: none;
+}
+
+.diff .d2h-code-line {
+	padding-left: 6em;
+	padding-right: 7px;
+}
+
+.diff .line-num2,
+.diff .line-num1 {
+	width: 2.5em;
+	padding-left: 0;
+}
+
+.diff .sync-history-list-container {
+	display: flex;
+	flex-direction: column-reverse;
+	max-height: unset;
+}
+
+.diff .d2h-file-name {
+	color: var(--text-normal);
+	font-size: var(--h4);
+	font-family: var(--heading-font);
+	letter-spacing: var(--heading-letter-spacing);
+}
