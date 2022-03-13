@@ -1,4 +1,4 @@
-import { html } from 'diff2html';
+import { Diff2HtmlConfig, html } from 'diff2html';
 import { App, Modal, Notice, TFile } from 'obsidian';
 import type { gHResult, vList } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
@@ -23,6 +23,7 @@ export default class DiffView extends Modal {
 	versions: gHResult;
 	leftHistory: HTMLElement[];
 	rightHistory: HTMLElement[];
+	htmlConfig: Diff2HtmlConfig;
 
 	constructor(
 		private plugin: OpenSyncHistoryPlugin,
@@ -46,6 +47,10 @@ export default class DiffView extends Modal {
 		this.leftHistory = [null];
 		//@ts-expect-error
 		this.rightHistory = [null];
+		this.htmlConfig = {
+			diffStyle: this.plugin.settings.diffStyle,
+			matchWordsThreshold: this.plugin.settings.matchWordsThreshold,
+		};
 		// @ts-ignore
 		this.syncHistoryContentContainer = this.contentEl.createDiv({
 			cls: ['sync-history-content-container', 'diff'],
@@ -92,9 +97,7 @@ export default class DiffView extends Modal {
 		);
 
 		// create HTML from diff
-		const diff = html(uDiff, {
-			diffStyle: this.plugin.settings.diffStyle,
-		});
+		const diff = html(uDiff, this.htmlConfig);
 
 		// create both history lists
 		this.leftHistory = this.createHistory(this.contentEl);
@@ -247,9 +250,7 @@ export default class DiffView extends Modal {
 						}
 						 */
 					);
-					const diff = html(uDiff, {
-						diffStyle: this.plugin.settings.diffStyle,
-					});
+					const diff = html(uDiff, this.htmlConfig);
 					this.syncHistoryContentContainer.innerHTML = diff;
 				} else {
 					// formerly active right version
@@ -289,9 +290,7 @@ export default class DiffView extends Modal {
 						}
 						 */
 					);
-					const diff = html(uDiff, {
-						diffStyle: this.plugin.settings.diffStyle,
-					});
+					const diff = html(uDiff, this.htmlConfig);
 					this.syncHistoryContentContainer.innerHTML = diff;
 				}
 			});

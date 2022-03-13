@@ -54,6 +54,25 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 			});
 
 		new Setting(containerEl)
+			.setName('Match words threshold')
+			.setDesc('Similarity threshold for word matching, default is 0.25')
+			.addText((text) => {
+				text.setPlaceholder('0.25')
+					.setValue(settings.matchWordsThreshold.toString())
+					.onChange(async (value) => {
+						const newValue = value.trim();
+						const num = Number.parseFloat(newValue);
+						if (Number.isNumber(num) && 0 <= num && num <= 1) {
+							settings.matchWordsThreshold =
+								Number.parseFloat(newValue);
+							await this.plugin.saveSettings();
+						} else {
+							new Notice('Please enter a float between 0 and 1.');
+						}
+					});
+			});
+
+		new Setting(containerEl)
 			.setName('Colour blindness')
 			.setDesc('Enable colour-blind mode')
 			.addToggle((toggle) => {

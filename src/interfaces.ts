@@ -1,6 +1,7 @@
 export interface OpenSyncHistorySettings {
 	//context: string;
 	diffStyle: 'word' | 'char';
+	matchWordsThreshold: number;
 	colorBlind: boolean;
 }
 
