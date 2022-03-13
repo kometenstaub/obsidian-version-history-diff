@@ -241,22 +241,34 @@ export default class DiffView extends Modal {
 			});
 			div.addEventListener('click', async () => {
 				if (left) {
-					const clickedEl = await this.generateVersionListener(div, this.leftVList, this.leftActive, left);
+					const clickedEl = await this.generateVersionListener(
+						div,
+						this.leftVList,
+						this.leftActive,
+						left
+					);
 					await this.getSyncContent(clickedEl, left);
 					this.diffAndDiffHtml();
 				} else {
-					const clickedEl = await this.generateVersionListener(div, this.rightVList, this.rightActive);
-					await this.getSyncContent(clickedEl)
-					this.diffAndDiffHtml()
-
+					const clickedEl = await this.generateVersionListener(
+						div,
+						this.rightVList,
+						this.rightActive
+					);
+					await this.getSyncContent(clickedEl);
+					this.diffAndDiffHtml();
 				}
 			});
 		}
 		return versionList;
 	}
 
-	public async generateVersionListener(div: HTMLDivElement, currentVList: vList[],
-										  currentActive: number, left: boolean = false){
+	public async generateVersionListener(
+		div: HTMLDivElement,
+		currentVList: vList[],
+		currentActive: number,
+		left: boolean = false
+	) {
 		// formerly active left/right version
 		const currentSideOldVersion = currentVList[currentActive];
 		// get the HTML of the new version to set it active
@@ -275,7 +287,7 @@ export default class DiffView extends Modal {
 		currentActive = idx;
 		// make old not active
 		currentSideOldVersion.html.classList.remove('is-active');
-		return clickedEl
+		return clickedEl;
 	}
 
 	public diffAndDiffHtml() {
@@ -300,8 +312,7 @@ export default class DiffView extends Modal {
 
 	private async getSyncContent(clickedEl: vList, left: boolean = false) {
 		// get the content for the clicked HTML element
-		const getContent =
-			this.plugin.diff_utils.getContent.bind(this);
+		const getContent = this.plugin.diff_utils.getContent.bind(this);
 		if (left) {
 			this.leftContent = await getContent(clickedEl.v.uid);
 		} else {
