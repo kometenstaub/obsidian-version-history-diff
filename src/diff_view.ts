@@ -14,6 +14,9 @@ function getSize(size: number): string {
 }
 
 export default class DiffView extends Modal {
+	plugin: OpenSyncHistoryPlugin;
+	app: App;
+	file: TFile;
 	leftVList: vList[]; // needs to be more general
 	rightVList: vList[]; // needs to be more general
 	leftActive: number;
@@ -27,9 +30,9 @@ export default class DiffView extends Modal {
 	htmlConfig: Diff2HtmlConfig;
 
 	constructor(
-		private plugin: OpenSyncHistoryPlugin,
-		public app: App,
-		private file: TFile
+		plugin: OpenSyncHistoryPlugin,
+		app: App,
+		file: TFile
 	) {
 		super(app);
 		this.plugin = plugin;
