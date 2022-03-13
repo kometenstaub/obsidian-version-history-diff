@@ -241,88 +241,71 @@ export default class DiffView extends Modal {
 			});
 			div.addEventListener('click', async () => {
 				if (left) {
-					// formerly active left version
-					const leftOldVersion = this.leftVList[this.leftActive];
-					// get the HTML of the new version to set it active
-					// @ts-ignore
-					const clickedEl: vList = this.leftVList.find((el) => {
-						if (el.html === div) {
-							return true;
-						}
-					});
-					const idx = this.leftVList.findIndex((el) => {
-						if (el.html === div) {
-							return true;
-						}
-					});
-					clickedEl.html.addClass('is-active');
-					this.leftActive = idx;
-					// make old not active
-					leftOldVersion.html.classList.remove('is-active');
-					// get the content for the clicked HTML element
-					const getContent =
-						this.plugin.diff_utils.getContent.bind(this);
-					this.leftContent = await getContent(clickedEl.v.uid);
-					const uDiff = createTwoFilesPatch(
-						this.file.basename,
-						this.file.basename,
-						this.leftContent,
-						this.rightContent
-						/*
-						undefined,
-						undefined,
-						{
-							context: Number.parseInt(
-								this.plugin.settings.context
-							),
-						}
-						 */
-					);
-					const diff = html(uDiff, this.htmlConfig);
-					this.syncHistoryContentContainer.innerHTML = diff;
+					const clickedEl = await this.generateVersionListener(div, this.leftVList, this.leftActive, left);
+					await this.getSyncContent(clickedEl, left);
+					this.diffAndDiffHtml();
 				} else {
-					// formerly active right version
-					const rightOldVersion = this.rightVList[this.rightActive];
-					// get the HTML of the new version to set it active
-					// @ts-ignore
-					const clickedEl: vList = this.rightVList.find((el) => {
-						if (el.html === div) {
-							return true;
-						}
-					});
-					const idx = this.rightVList.findIndex((el) => {
-						if (el.html === div) {
-							return true;
-						}
-					});
-					clickedEl.html.addClass('is-active');
-					this.rightActive = idx;
-					// make old not active
-					rightOldVersion.html.classList.remove('is-active');
-					// get the content for the clicked HTML element
-					const getContent =
-						this.plugin.diff_utils.getContent.bind(this);
-					this.rightContent = await getContent(clickedEl.v.uid);
-					const uDiff = createTwoFilesPatch(
-						this.file.basename,
-						this.file.basename,
-						this.leftContent,
-						this.rightContent
-						/*
-						undefined,
-						undefined,
-						{
-							context: Number.parseInt(
-								this.plugin.settings.context
-							),
-						}
-						 */
-					);
-					const diff = html(uDiff, this.htmlConfig);
-					this.syncHistoryContentContainer.innerHTML = diff;
+					const clickedEl = await this.generateVersionListener(div, this.rightVList, this.rightActive);
+					await this.getSyncContent(clickedEl)
+					this.diffAndDiffHtml()
+
 				}
 			});
 		}
 		return versionList;
+	}
+
+	public async generateVersionListener(div: HTMLDivElement, currentVList: vList[],
+										  currentActive: number, left: boolean = false){
+		// formerly active left/right version
+		const currentSideOldVersion = currentVList[currentActive];
+		// get the HTML of the new version to set it active
+		// @ts-ignore
+		const clickedEl: vList = currentVList.find((el) => {
+			if (el.html === div) {
+				return true;
+			}
+		});
+		const idx = currentVList.findIndex((el) => {
+			if (el.html === div) {
+				return true;
+			}
+		});
+		clickedEl.html.addClass('is-active');
+		currentActive = idx;
+		// make old not active
+		currentSideOldVersion.html.classList.remove('is-active');
+		return clickedEl
+	}
+
+	public diffAndDiffHtml() {
+		const uDiff = createTwoFilesPatch(
+			this.file.basename,
+			this.file.basename,
+			this.leftContent,
+			this.rightContent
+			/*
+			undefined,
+			undefined,
+			{
+				context: Number.parseInt(
+					this.plugin.settings.context
+				),
+			}
+			 */
+		);
+		const diff = html(uDiff, this.htmlConfig);
+		this.syncHistoryContentContainer.innerHTML = diff;
+	}
+
+	private async getSyncContent(clickedEl: vList, left: boolean = false) {
+		// get the content for the clicked HTML element
+		const getContent =
+			this.plugin.diff_utils.getContent.bind(this);
+		if (left) {
+			this.leftContent = await getContent(clickedEl.v.uid);
+		} else {
+			this.rightContent = await getContent(clickedEl.v.uid);
+		}
 	}
 }
