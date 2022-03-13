@@ -28,6 +28,11 @@ export default class FileModal extends Modal {
 	async onOpen() {
 		super.onOpen();
 
+		const warning = this.contentEl.createDiv({
+			text: 'Keep in mind that the latest Sync version shown in the diff modal is not necessarily the latest version on disk. Only replace it if you are sure that you want to overwrite this file with the displayed version.',
+		});
+		this.contentEl.createEl('br')
+
 		const restoreButton = this.contentEl.createEl('button', {
 			cls: ['mod-cta', 'restore'],
 			text: `Replace ${this.file.basename} content with this version`,
