@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.1.1...1.1.2) (2022-03-13)
+
+
+### Bug Fixes
+
+* sanitize HTML for plain text view ([2195412](https://github.com/kometenstaub/obsidian-sync-version-history/commit/219541247ef9c1b0260ce39e11e4a683e2f0f224))
+
 ### [1.1.1](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.1.0...1.1.1) (2022-03-13)
 
 
