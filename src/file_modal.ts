@@ -64,6 +64,7 @@ export default class FileModal extends Modal {
 						this.syncFile,
 						el,
 						this.file.path,
+						//@ts-ignore
 						null
 					);
 				})();
@@ -81,6 +82,7 @@ export default class FileModal extends Modal {
 			this.close();
 		});
 
+		//@ts-ignore
 		await MarkdownRenderer.renderMarkdown(this.syncFile, el, null, null);
 	}
 }
