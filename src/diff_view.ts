@@ -62,8 +62,8 @@ export default class DiffView extends Modal {
 	}
 
 	async onOpen() {
-		super.onOpen()
-		await this.getInitialVersions()
+		super.onOpen();
+		await this.getInitialVersions();
 		const diff = this.getDiff();
 		this.makeButtons();
 		this.makeMoreHtml(diff);
@@ -92,10 +92,9 @@ export default class DiffView extends Modal {
 			await getContent(secondLatestV),
 			await getContent(latestV),
 		];
-
 	}
 
-	makeMoreHtml(diff:string) {
+	makeMoreHtml(diff: string) {
 		// set title
 		this.titleEl.setText(this.file.basename);
 		// add diff to container
