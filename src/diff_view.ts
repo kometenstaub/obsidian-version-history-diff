@@ -3,6 +3,7 @@ import { App, Modal, Notice, TFile } from 'obsidian';
 import type { gHResult, vList } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
+import FileModal from './file_modal';
 
 function getSize(size: number): string {
 	if (size === 0) {
@@ -100,8 +101,8 @@ export default class DiffView extends Modal {
 		const diff = html(uDiff, this.htmlConfig);
 
 		// create both history lists
-		this.leftHistory = this.createHistory(this.contentEl);
-		this.rightHistory = this.createHistory(this.contentEl);
+		this.leftHistory = this.createHistory(this.contentEl, true);
+		this.rightHistory = this.createHistory(this.contentEl, false);
 
 		// create more button
 		const leftMoreButton = this.leftHistory[0].createDiv({
@@ -181,10 +182,19 @@ export default class DiffView extends Modal {
 		}
 	}
 
-	createHistory(el: HTMLElement): HTMLElement[] {
+	createHistory(el: HTMLElement, left: boolean): HTMLElement[] {
 		const syncHistoryListContainer = el.createDiv({
 			cls: 'sync-history-list-container',
 		});
+		if (left) {
+			const showFile = syncHistoryListContainer.createEl('button', {
+				cls: 'mod-cta',
+				text: 'Render this version'
+			})
+			showFile.addEventListener('click', () => {
+				new FileModal(this.plugin, this.app, this.leftContent, this.file).open()
+			})
+		}
 		const syncHistoryList = syncHistoryListContainer.createDiv({
 			cls: 'sync-history-list',
 		});
