@@ -76,7 +76,7 @@ export default class FileModal extends Modal {
 				await this.app.vault.modify(this.file, this.syncFile);
 			})();
 			new Notice(
-				`The file ${this.file.basename} file has been overwritten with the selected version.`
+				`The ${this.file.basename} file has been overwritten with the selected version.`
 			);
 			this.close();
 		});
