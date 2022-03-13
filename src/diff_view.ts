@@ -50,6 +50,9 @@ export default class DiffView extends Modal {
 		this.syncHistoryContentContainer = this.contentEl.createDiv({
 			cls: ['sync-history-content-container', 'diff'],
 		});
+		if (this.plugin.settings.colorBlind) {
+			this.syncHistoryContentContainer.addClass('colorblind');
+		}
 		this.createHtml();
 	}
 

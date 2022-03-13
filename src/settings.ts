@@ -52,5 +52,17 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			});
+
+		new Setting(containerEl)
+			.setName('Colour-blindness')
+			.setDesc('Enable colour-blind mode')
+			.addToggle((toggle) => {
+				toggle
+					.setValue(this.plugin.settings.colorBlind)
+					.onChange(async (state) => {
+						this.plugin.settings.colorBlind = state;
+						await this.plugin.saveSettings();
+					});
+			});
 	}
 }

@@ -7,6 +7,7 @@ import DiffView from './diff_view';
 const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
 	//context: '3',
 	diffStyle: 'word',
+	colorBlind: false,
 };
 
 export default class OpenSyncHistoryPlugin extends Plugin {
