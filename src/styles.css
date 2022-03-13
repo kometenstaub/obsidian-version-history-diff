@@ -418,24 +418,43 @@ span.d2h-code-line-ctn {
 	white-space: pre-wrap;
 }
 
-
 /*Color-Blind Mode*/
 
 .theme-dark .colorblind .d2h-code-line del {
-	background: repeating-linear-gradient( -45deg, var(--background-primary), var(--sync-delete-hl) 2px, var(--sync-delete-hl) 2px, var(--sync-delete-hl) 19px );
+	background: repeating-linear-gradient(
+		-45deg,
+		var(--background-primary),
+		var(--sync-delete-hl) 2px,
+		var(--sync-delete-hl) 2px,
+		var(--sync-delete-hl) 19px
+	);
 }
 .colorblind .d2h-code-line del,
 .colorblind .d2h-del:not(.d2h-change):not(.d2h-code-linenumber) {
-	background: repeating-linear-gradient( -45deg, transparent, var(--sync-delete-bg) 2px, var(--sync-delete-bg) 2px, var(--sync-delete-bg) 19px );
+	background: repeating-linear-gradient(
+		-45deg,
+		transparent,
+		var(--sync-delete-bg) 2px,
+		var(--sync-delete-bg) 2px,
+		var(--sync-delete-bg) 19px
+	);
 }
 
 .colorblind .d2h-ins:not(.d2h-code-linenumber) {
-	background-image:  radial-gradient(var(--background-primary) 2px, transparent 1px), radial-gradient(var(--background-primary) 2px, transparent 1px);
+	background-image: radial-gradient(
+			var(--background-primary) 2px,
+			transparent 1px
+		),
+		radial-gradient(var(--background-primary) 2px, transparent 1px);
 	background-size: 40px 40px;
 	background-position: 0 0, 25px 28px;
 }
 .theme-dark .colorblind .d2h-ins:not(.d2h-code-linenumber) {
-	background-image:  radial-gradient(var(--sync-insert-hl) 2px, transparent 1px), radial-gradient(var(--sync-insert-hl) 2px, transparent 1px);
+	background-image: radial-gradient(
+			var(--sync-insert-hl) 2px,
+			transparent 1px
+		),
+		radial-gradient(var(--sync-insert-hl) 2px, transparent 1px);
 }
 .colorblind .d2h-code-linenumber.d2h-ins,
 .colorblind .d2h-code-line ins {
