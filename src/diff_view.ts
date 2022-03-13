@@ -189,11 +189,16 @@ export default class DiffView extends Modal {
 		if (left) {
 			const showFile = syncHistoryListContainer.createEl('button', {
 				cls: 'mod-cta',
-				text: 'Render this version'
-			})
+				text: 'Render this version',
+			});
 			showFile.addEventListener('click', () => {
-				new FileModal(this.plugin, this.app, this.leftContent, this.file).open()
-			})
+				new FileModal(
+					this.plugin,
+					this.app,
+					this.leftContent,
+					this.file
+				).open();
+			});
 		}
 		const syncHistoryList = syncHistoryListContainer.createDiv({
 			cls: 'sync-history-list',
