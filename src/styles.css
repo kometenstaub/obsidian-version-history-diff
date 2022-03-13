@@ -23,8 +23,8 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 
 */
 
-.theme-dark.theme-dark,
-.theme-light.theme-light {
+.theme-dark,
+.theme-light {
 	--sync-delete-bg: #ff475040;
 	--sync-delete-hl: #96050a75;
 	--sync-insert-bg: #68d36840;
