@@ -1,5 +1,10 @@
-/* unminified CSS, MIT-licensed from diff2html
-https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
+/* unminified CSS, MIT-licensed from diff2html, with additions from @kometenstaub for the modal
+and adaptation to Obsidian variables and colour changes in addition to the colour-blind
+mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub and contributors)
+
+	Original license:
+
+	https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 
 	Copyright 2014-2016 Rodrigo Fernandes https://rtfpessoa.github.io/
 
@@ -17,15 +22,31 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
+
+.theme-dark.theme-dark,
+.theme-light.theme-light {
+	--sync-delete-bg: #ff475040;
+	--sync-delete-hl: #96050a75;
+	--sync-insert-bg: #68d36840;
+	--sync-insert-hl: #23c02350;
+	--sync-change-bg: #ffd55840;
+	--sync-selected: #3572b0;
+
+	--sync-delete: #c33;
+	--sync-insert: #399839;
+	--sync-change: #d0b44c;
+	--sync-move: #3572b0;
+}
+
 .d2h-d-none {
 	display: none;
 }
 .d2h-wrapper {
 	text-align: left;
 }
-.d2h-file-header {
-	background-color: #f7f7f7;
-	border-bottom: 1px solid #d8d8d8;
+.d2h-file-header.d2h-file-header {
+	background-color: var(--background-secondary);
+	border-bottom: 1px solid var(--background-modifier-border);
 	font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
 	height: 35px;
 	padding: 5px 10px;
@@ -41,17 +62,17 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	margin-left: auto;
 }
 .d2h-lines-added {
-	border: 1px solid #b4e2b4;
+	border: 1px solid var(--interactive-success);
 	border-radius: 5px 0 0 5px;
-	color: #399839;
+	color: var(--interactive-success);
 	padding: 2px;
 	text-align: right;
 	vertical-align: middle;
 }
 .d2h-lines-deleted {
-	border: 1px solid #e9aeae;
+	border: 1px solid var(--text-error);
 	border-radius: 0 5px 5px 0;
-	color: #c33;
+	color: var(--text-error);
 	margin-left: 1px;
 	padding: 2px;
 	text-align: left;
@@ -72,8 +93,8 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.d2h-file-wrapper {
-	border: 1px solid #ddd;
+.d2h-file-wrapper.d2h-file-wrapper {
+	border: 1px solid var(--background-secondary-alt);
 	border-radius: 3px;
 	margin-bottom: 1em;
 }
@@ -83,7 +104,7 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	border: 1px solid #ddd;
+	border: 1px solid var(--background-secondary-alt);
 	border-radius: 3px;
 	cursor: pointer;
 	display: none;
@@ -92,7 +113,7 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	padding: 4px 8px;
 }
 .d2h-file-collapse.d2h-selected {
-	background-color: #c8e1ff;
+	background-color: var(--sync-selected);
 }
 .d2h-file-collapse-input {
 	margin: 0 4px 0 0;
@@ -148,7 +169,8 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 }
 .d2h-code-line del,
 .d2h-code-side-line del {
-	background-color: #ffb6ba;
+	background-color: var(--sync-delete-hl);
+	color: var(--text-normal);
 }
 .d2h-code-line del,
 .d2h-code-line ins,
@@ -162,7 +184,7 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 }
 .d2h-code-line ins,
 .d2h-code-side-line ins {
-	background-color: #97f295;
+	background-color: var(--sync-insert-hl);
 	text-align: left;
 }
 .d2h-code-line-prefix {
@@ -188,12 +210,12 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	float: right;
 }
 .d2h-code-linenumber {
-	background-color: #fff;
-	border: solid #eee;
+	background-color: var(--background-primary);
+	border: solid var(--background-modifier-border);
 	border-width: 0 1px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	color: rgba(0, 0, 0, 0.3);
+	color: var(--text-faint);
 	cursor: pointer;
 	display: inline-block;
 	position: absolute;
@@ -204,12 +226,12 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	content: '\200b';
 }
 .d2h-code-side-linenumber {
-	background-color: #fff;
-	border: solid #eee;
+	background-color: var(--background-primary);
+	border: solid var(--background-modifier-border);
 	border-width: 0 1px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	color: rgba(0, 0, 0, 0.3);
+	color: var(--text-faint);
 	cursor: pointer;
 	display: inline-block;
 	overflow: hidden;
@@ -224,8 +246,8 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 }
 .d2h-code-side-emptyplaceholder,
 .d2h-emptyplaceholder {
-	background-color: #f1f1f1;
-	border-color: #e1e1e1;
+	background-color: var(--background-primary);
+	border-color: var(--background-modifier-border);
 }
 .d2h-code-line-prefix,
 .d2h-code-linenumber,
@@ -241,33 +263,38 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	direction: rtl;
 }
 .d2h-del {
-	background-color: #fee8e9;
-	border-color: #e9aeae;
+	background-color: var(--sync-delete-bg);
+	border-color: var(--sync-delete-hl);
 }
 .d2h-ins {
-	background-color: #dfd;
-	border-color: #b4e2b4;
+	background-color: var(--sync-insert-bg);
+	border-color: var(--sync-insert-hl);
 }
 .d2h-info {
-	background-color: #f8fafd;
-	border-color: #d5e4f2;
-	color: rgba(0, 0, 0, 0.3);
+	background-color: var(--background-primary);
+	border-color: var(--background-modifier-border);
+	color: var(--text-faint);
+}
+.d2h-del,
+.d2h-ins,
+.d2h-file-diff .d2h-change {
+	color: var(--text-normal);
 }
 .d2h-file-diff .d2h-del.d2h-change {
-	background-color: #fdf2d0;
+	background-color: var(--sync-change-bg);
 }
 .d2h-file-diff .d2h-ins.d2h-change {
-	background-color: #ded;
+	background-color: var(--sync-insert-bg);
 }
 .d2h-file-list-wrapper {
 	margin-bottom: 10px;
 }
 .d2h-file-list-wrapper a {
-	color: #3572b0;
+	color: var(--text-accent);
 	text-decoration: none;
 }
 .d2h-file-list-wrapper a:visited {
-	color: #3572b0;
+	color: var(--text-accent);
 }
 .d2h-file-list-header {
 	text-align: left;
@@ -288,7 +315,7 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	padding: 0;
 }
 .d2h-file-list > li {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid var(--background-modifier-border);
 	margin: 0;
 	padding: 5px 10px;
 }
@@ -306,19 +333,19 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	vertical-align: middle;
 }
 .d2h-deleted {
-	color: #c33;
+	color: var(--sync-delete);
 }
 .d2h-added {
-	color: #399839;
+	color: var(--sync-insert);
 }
 .d2h-changed {
-	color: #d0b44c;
+	color: var(--sync-change);
 }
 .d2h-moved {
-	color: #3572b0;
+	color: var(--sync-move);
 }
 .d2h-tag {
-	background-color: #fff;
+	background-color: var(--background-secondary);
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -327,19 +354,19 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 	padding: 0 2px;
 }
 .d2h-deleted-tag {
-	border: 1px solid #c33;
+	border: 1px solid var(--sync-delete);
 }
 .d2h-added-tag {
-	border: 1px solid #399839;
+	border: 1px solid var(--sync-insert);
 }
 .d2h-changed-tag {
-	border: 1px solid #d0b44c;
+	border: 1px solid var(--sync-change);
 }
 .d2h-moved-tag {
-	border: 1px solid #3572b0;
+	border: 1px solid var(--sync-move);
 }
 
-/* CSS by @kometenstaub, MIT-licensed */
+/* CSS settings needed for modal */
 
 .modal.mod-sync-history.diff {
 	min-width: 95vw;
@@ -370,8 +397,8 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 }
 
 .d2h-code-side-linenumber {
-	display: table-cell; /*changed*/
-	position: relative; /*changed */
+	display: table-cell;
+	position: relative;
 }
 
 .d2h-code-side-line {
@@ -389,4 +416,30 @@ https://github.com/rtfpessoa/diff2html/blob/master/LICENSE.md
 
 span.d2h-code-line-ctn {
 	white-space: pre-wrap;
+}
+
+
+/*Color-Blind Mode*/
+
+.theme-dark .colorblind .d2h-code-line del {
+	background: repeating-linear-gradient( -45deg, var(--background-primary), var(--sync-delete-hl) 2px, var(--sync-delete-hl) 2px, var(--sync-delete-hl) 19px );
+}
+.colorblind .d2h-code-line del,
+.colorblind .d2h-del:not(.d2h-change):not(.d2h-code-linenumber) {
+	background: repeating-linear-gradient( -45deg, transparent, var(--sync-delete-bg) 2px, var(--sync-delete-bg) 2px, var(--sync-delete-bg) 19px );
+}
+
+.colorblind .d2h-ins:not(.d2h-code-linenumber) {
+	background-image:  radial-gradient(var(--background-primary) 2px, transparent 1px), radial-gradient(var(--background-primary) 2px, transparent 1px);
+	background-size: 40px 40px;
+	background-position: 0 0, 25px 28px;
+}
+.theme-dark .colorblind .d2h-ins:not(.d2h-code-linenumber) {
+	background-image:  radial-gradient(var(--sync-insert-hl) 2px, transparent 1px), radial-gradient(var(--sync-insert-hl) 2px, transparent 1px);
+}
+.colorblind .d2h-code-linenumber.d2h-ins,
+.colorblind .d2h-code-line ins {
+	border-style: solid;
+	border-color: var(--sync-insert);
+	border-width: 1px 2px;
 }
