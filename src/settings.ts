@@ -45,7 +45,7 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 			.setDesc('What difference level shall be shown')
 			.addDropdown((el) => {
 				el.addOption('word', 'Word difference level')
-					.addOption('char', 'Char difference level')
+					.addOption('char', 'Character difference level')
 					.setValue(settings.diffStyle)
 					.onChange(async (value) => {
 						settings.diffStyle = value as 'word' | 'char';
@@ -54,7 +54,7 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 			});
 
 		new Setting(containerEl)
-			.setName('Colour-blindness')
+			.setName('Colour blindness')
 			.setDesc('Enable colour-blind mode')
 			.addToggle((toggle) => {
 				toggle
