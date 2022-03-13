@@ -69,7 +69,7 @@ export default class DiffView extends Modal {
 		this.makeMoreHtml(diff);
 	}
 
-	async getInitialVersions() {
+	private async getInitialVersions() {
 		// get first thirty versions
 		this.versions = await this.plugin.diff_utils.getVersions(this.file);
 		// for initial display, initialise variables
@@ -94,7 +94,7 @@ export default class DiffView extends Modal {
 		];
 	}
 
-	makeMoreHtml(diff: string) {
+	public makeMoreHtml(diff: string) {
 		// set title
 		this.titleEl.setText(this.file.basename);
 		// add diff to container
@@ -122,7 +122,7 @@ export default class DiffView extends Modal {
 		this.leftActive = 1;
 	}
 
-	makeButtons() {
+	private makeButtons() {
 		// create more button
 		const leftMoreButton = this.leftHistory[0].createDiv({
 			cls: ['sync-history-load-more-button', 'diff'],
@@ -164,7 +164,7 @@ export default class DiffView extends Modal {
 		}
 	}
 
-	getDiff() {
+	public getDiff() {
 		// get diff
 		const uDiff = createTwoFilesPatch(
 			this.file.basename,
@@ -182,7 +182,7 @@ export default class DiffView extends Modal {
 		return diff;
 	}
 
-	setMoreButtonStyle(
+	private setMoreButtonStyle(
 		leftMoreButton: HTMLDivElement,
 		rightMoreButton: HTMLDivElement
 	) {
@@ -195,7 +195,7 @@ export default class DiffView extends Modal {
 		}
 	}
 
-	createHistory(el: HTMLElement, left: boolean): HTMLElement[] {
+	public createHistory(el: HTMLElement, left: boolean): HTMLElement[] {
 		const syncHistoryListContainer = el.createDiv({
 			cls: 'sync-history-list-container',
 		});
