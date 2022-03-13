@@ -6,6 +6,8 @@ This plugin shows you a diff view of your sync version history to compare the re
 
 It also has a colour-blind mode.
 
+> Technically, mobile should be supported, but something with the CSS doesn't work properly there, so for now this feature is only usable on desktop.
+
 Additionally, this plugin adds a command to access the standard version history of the Sync plugin for the currently active file, which normally is only accessible over the file menu.
 
 ## Credits
