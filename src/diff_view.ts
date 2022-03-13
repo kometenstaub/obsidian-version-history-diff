@@ -14,14 +14,14 @@ function getSize(size: number): string {
 }
 
 export default class DiffView extends Modal {
-	leftVList: vList[];
-	rightVList: vList[];
+	leftVList: vList[]; // needs to be more general
+	rightVList: vList[]; // needs to be more general
 	leftActive: number;
 	rightActive: number;
 	rightContent: string;
 	leftContent: string;
 	syncHistoryContentContainer: HTMLElement;
-	versions: gHResult; //make it more general for file recovery
+	versions: gHResult;
 	leftHistory: HTMLElement[];
 	rightHistory: HTMLElement[];
 	htmlConfig: Diff2HtmlConfig;
@@ -219,7 +219,7 @@ export default class DiffView extends Modal {
 		return [syncHistoryListContainer, syncHistoryList];
 	}
 
-	appendVersions(
+	private appendVersions(
 		el: HTMLElement,
 		versions: gHResult,
 		left: boolean
@@ -265,7 +265,7 @@ export default class DiffView extends Modal {
 
 	public async generateVersionListener(
 		div: HTMLDivElement,
-		currentVList: vList[],
+		currentVList: vList[], // needs to be more general, it only needs an html property
 		currentActive: number,
 		left: boolean = false
 	) {
@@ -284,7 +284,11 @@ export default class DiffView extends Modal {
 			}
 		});
 		clickedEl.html.addClass('is-active');
-		currentActive = idx;
+		if (left) {
+			this.leftActive = idx;
+		} else {
+			this.rightActive = idx
+		}
 		// make old not active
 		currentSideOldVersion.html.classList.remove('is-active');
 		return clickedEl;
