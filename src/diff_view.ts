@@ -21,7 +21,7 @@ export default class DiffView extends Modal {
 	rightContent: string;
 	leftContent: string;
 	syncHistoryContentContainer: HTMLElement;
-	versions: gHResult;
+	versions: gHResult; //make it more general for file recovery
 	leftHistory: HTMLElement[];
 	rightHistory: HTMLElement[];
 	htmlConfig: Diff2HtmlConfig;
@@ -59,10 +59,17 @@ export default class DiffView extends Modal {
 		if (this.plugin.settings.colorBlind) {
 			this.syncHistoryContentContainer.addClass('colorblind');
 		}
-		this.createHtml();
 	}
 
-	async createHtml() {
+	async onOpen() {
+		super.onOpen()
+		await this.getInitialVersions()
+		const diff = this.getDiff();
+		this.makeButtons();
+		this.makeMoreHtml(diff);
+	}
+
+	async getInitialVersions() {
 		// get first thirty versions
 		this.versions = await this.plugin.diff_utils.getVersions(this.file);
 		// for initial display, initialise variables
@@ -77,9 +84,6 @@ export default class DiffView extends Modal {
 			return;
 		}
 
-		// set title
-		this.titleEl.setText(this.file.basename);
-
 		// get functions
 		const getContent = this.plugin.diff_utils.getContent.bind(this);
 
@@ -89,21 +93,37 @@ export default class DiffView extends Modal {
 			await getContent(latestV),
 		];
 
-		// get diff
-		const uDiff = createTwoFilesPatch(
-			this.file.basename,
-			this.file.basename,
-			this.leftContent,
-			this.rightContent
+	}
+
+	makeMoreHtml(diff:string) {
+		// set title
+		this.titleEl.setText(this.file.basename);
+		// add diff to container
+		this.syncHistoryContentContainer.innerHTML = diff;
+
+		// add history lists and diff to DOM
+		this.contentEl.appendChild(this.leftHistory[0]);
+		this.contentEl.appendChild(this.syncHistoryContentContainer);
+		this.contentEl.appendChild(this.rightHistory[0]);
+
+		// add the inner HTML element (the sync list) and keep a record
+		// of references to the elements
+		this.leftVList.push(
+			...this.appendVersions(this.leftHistory[1], this.versions, true)
+		);
+		this.rightVList.push(
+			...this.appendVersions(this.rightHistory[1], this.versions, false)
 		);
 
-		// create HTML from diff
-		const diff = html(uDiff, this.htmlConfig);
+		// highlight initial two versions
+		this.rightVList[0].html.addClass('is-active');
+		this.leftVList[1].html.addClass('is-active');
+		// keep track of highlighted versions
+		this.rightActive = 0;
+		this.leftActive = 1;
+	}
 
-		// create both history lists
-		this.leftHistory = this.createHistory(this.contentEl, true);
-		this.rightHistory = this.createHistory(this.contentEl, false);
-
+	makeButtons() {
 		// create more button
 		const leftMoreButton = this.leftHistory[0].createDiv({
 			cls: ['sync-history-load-more-button', 'diff'],
@@ -143,33 +163,27 @@ export default class DiffView extends Modal {
 				this.versions.items.push(...newVersions.items);
 			});
 		}
-
-		// add diff to container
-		this.syncHistoryContentContainer.innerHTML = diff;
-
-		// add history lists and diff to DOM
-		this.contentEl.appendChild(this.leftHistory[0]);
-		this.contentEl.appendChild(this.syncHistoryContentContainer);
-		this.contentEl.appendChild(this.rightHistory[0]);
-
-		// add the inner HTML element (the sync list) and keep a record
-		// of references to the elements
-		this.leftVList.push(
-			...this.appendVersions(this.leftHistory[1], this.versions, true)
-		);
-		this.rightVList.push(
-			...this.appendVersions(this.rightHistory[1], this.versions, false)
-		);
-
-		// highlight initial two versions
-		this.rightVList[0].html.addClass('is-active');
-		this.leftVList[1].html.addClass('is-active');
-		// keep track of highlighted versions
-		this.rightActive = 0;
-		this.leftActive = 1;
 	}
 
-	private setMoreButtonStyle(
+	getDiff() {
+		// get diff
+		const uDiff = createTwoFilesPatch(
+			this.file.basename,
+			this.file.basename,
+			this.leftContent,
+			this.rightContent
+		);
+
+		// create HTML from diff
+		const diff = html(uDiff, this.htmlConfig);
+
+		// create both history lists
+		this.leftHistory = this.createHistory(this.contentEl, true);
+		this.rightHistory = this.createHistory(this.contentEl, false);
+		return diff;
+	}
+
+	setMoreButtonStyle(
 		leftMoreButton: HTMLDivElement,
 		rightMoreButton: HTMLDivElement
 	) {
