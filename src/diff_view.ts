@@ -205,7 +205,11 @@ export default class DiffView extends Modal {
 		}
 	}
 
-	public createHistory(el: HTMLElement, left: boolean = false, warning = SYNC_WARNING): HTMLElement[] {
+	public createHistory(
+		el: HTMLElement,
+		left: boolean = false,
+		warning = SYNC_WARNING
+	): HTMLElement[] {
 		const syncHistoryListContainer = el.createDiv({
 			cls: 'sync-history-list-container',
 		});

@@ -63,13 +63,15 @@ export interface fileRInstance {
 		): {
 			store: {
 				index(key: 'path'): {
-					getAll(): Promise<
-						recResult[]
-					>;
+					getAll(): Promise<recResult[]>;
 				};
 			};
 		};
 	};
 }
 
-export interface recResult { path: string; ts: number; data: string }
+export interface recResult {
+	path: string;
+	ts: number;
+	data: string;
+}

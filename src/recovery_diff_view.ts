@@ -1,7 +1,7 @@
 import DiffView from './diff_view';
-import {Plugin, App, TFile, Notice } from 'obsidian';
+import { Plugin, App, TFile, Notice } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
-import type {recResult, rVList } from './interfaces';
+import type { recResult, rVList } from './interfaces';
 import { FILE_REC_WARNING } from './constants';
 
 export default class RecoveryDiffView extends DiffView {
@@ -19,37 +19,43 @@ export default class RecoveryDiffView extends DiffView {
 	}
 
 	async onOpen() {
-		await this.getVersions()
-		const diff = this.getDiff()
+		await this.getVersions();
+		const diff = this.getDiff();
 		this.makeHistoryLists(FILE_REC_WARNING);
 		this.basicHtml(diff);
-		this.appendRecVersions()
-		this.makeMoreGeneralHtml()
+		this.appendRecVersions();
+		this.makeMoreGeneralHtml();
 	}
 
 	async getVersions() {
 		const fileRecovery = await this.app.internalPlugins.plugins[
-			'file-recovery'].instance.db
+			'file-recovery'
+		].instance.db
 			.transaction('backups', 'readonly')
 			.store.index('path')
 			.getAll();
-		const fileContent = await this.app.vault.read(this.file)
+		const fileContent = await this.app.vault.read(this.file);
 		// correct date is calculated later
-		this.versions.push({path: this.file.path, ts: 0, data: fileContent})
-		const len = fileRecovery.length - 1
+		this.versions.push({ path: this.file.path, ts: 0, data: fileContent });
+		const len = fileRecovery.length - 1;
 		for (let i = len; i >= 0; i--) {
-			const version = fileRecovery[i]
+			const version = fileRecovery[i];
 			if (version.path === this.file.path) {
-				this.versions.push(version)
+				this.versions.push(version);
 			}
 		}
-		if (!(this.versions.length > 1)){
-			this.close()
-			new Notice('There is not at least on version in the file recovery.')
-			return
+		if (!(this.versions.length > 1)) {
+			this.close();
+			new Notice(
+				'There is not at least on version in the file recovery.'
+			);
+			return;
 		}
 
-		[this.leftContent, this.rightContent] = [this.versions[1].data, this.versions[0].data]
+		[this.leftContent, this.rightContent] = [
+			this.versions[1].data,
+			this.versions[0].data,
+		];
 	}
 
 	private appendRecVersions() {
@@ -63,22 +69,26 @@ export default class RecoveryDiffView extends DiffView {
 		);
 	}
 
-	private makeVersions(el: HTMLElement, versions: recResult[], left: boolean = false) {
+	private makeVersions(
+		el: HTMLElement,
+		versions: recResult[],
+		left: boolean = false
+	) {
 		const versionList: rVList[] = [];
 		for (let i = 0; i < versions.length; i++) {
-			const version = versions[i]
-			let date = new Date(version.ts)
+			const version = versions[i];
+			let date = new Date(version.ts);
 			if (i === 0) {
-				date = new Date()
+				date = new Date();
 			}
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
-				text: date.toDateString() + ', ' + date.toLocaleTimeString()
+				text: date.toDateString() + ', ' + date.toLocaleTimeString(),
 			});
 			versionList.push({
 				html: div,
-				data: version.data
-			})
+				data: version.data,
+			});
 			div.addEventListener('click', async () => {
 				if (left) {
 					const clickedEl = await this.generateVersionListener(
@@ -88,7 +98,7 @@ export default class RecoveryDiffView extends DiffView {
 						this.leftActive,
 						left
 					);
-					this.leftContent = version.data
+					this.leftContent = version.data;
 					this.diffAndDiffHtml();
 				} else {
 					const clickedEl = await this.generateVersionListener(
@@ -97,12 +107,11 @@ export default class RecoveryDiffView extends DiffView {
 						this.rightVList,
 						this.rightActive
 					);
-					this.rightContent = version.data
+					this.rightContent = version.data;
 					this.diffAndDiffHtml();
 				}
 			});
-
 		}
-		return versionList
+		return versionList;
 	}
 }

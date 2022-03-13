@@ -31,7 +31,7 @@ export default class FileModal extends Modal {
 		super.onOpen();
 
 		const warning = this.contentEl.createDiv({
-			text: this.warning
+			text: this.warning,
 		});
 		this.contentEl.createEl('br');
 
@@ -55,8 +55,8 @@ export default class FileModal extends Modal {
 					linesWithBrs += '<br />';
 				}
 				el.empty();
-				const frag = sanitizeHTMLToDom(linesWithBrs)
-				el.createDiv({text:frag})
+				const frag = sanitizeHTMLToDom(linesWithBrs);
+				el.createDiv({ text: frag });
 				this.raw = !this.raw;
 				switchButton.innerText = 'Show Reading view';
 			} else {
@@ -85,7 +85,12 @@ export default class FileModal extends Modal {
 			this.close();
 		});
 
-		//@ts-ignore
-		await MarkdownRenderer.renderMarkdown(this.syncFile, el, this.file.path, null);
+		await MarkdownRenderer.renderMarkdown(
+			this.syncFile,
+			el,
+			this.file.path,
+			//@ts-ignore
+			null
+		);
 	}
 }
