@@ -1,6 +1,6 @@
 import { Diff2HtmlConfig, html } from 'diff2html';
 import { App, Modal, Notice, TFile } from 'obsidian';
-import type { gHResult, vList } from './interfaces';
+import type { gHResult, rVList, vList, recResult } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 import FileModal from './file_modal';
@@ -17,23 +17,19 @@ export default class DiffView extends Modal {
 	plugin: OpenSyncHistoryPlugin;
 	app: App;
 	file: TFile;
-	leftVList: vList[]; // needs to be more general
-	rightVList: vList[]; // needs to be more general
+	leftVList: vList[] | rVList[]; // needs to be more general
+	rightVList: vList[] | rVList[]; // needs to be more general
 	leftActive: number;
 	rightActive: number;
 	rightContent: string;
 	leftContent: string;
 	syncHistoryContentContainer: HTMLElement;
-	versions: gHResult;
+	versions: gHResult | recResult[];
 	leftHistory: HTMLElement[];
 	rightHistory: HTMLElement[];
 	htmlConfig: Diff2HtmlConfig;
 
-	constructor(
-		plugin: OpenSyncHistoryPlugin,
-		app: App,
-		file: TFile
-	) {
+	constructor(plugin: OpenSyncHistoryPlugin, app: App, file: TFile) {
 		super(app);
 		this.plugin = plugin;
 		this.app = app;
@@ -45,11 +41,11 @@ export default class DiffView extends Modal {
 		this.leftActive = 1;
 		this.rightContent = '';
 		this.leftContent = '';
-		//@ts-expect-error, it will be filled later
-		this.versions = [];
-		//@ts-expect-error
+		//@ts-expect-error, will be filled with the correct data later
+		this.versions = {};
+		//@ts-expect-error, will be filled with the correct data later
 		this.leftHistory = [null];
-		//@ts-expect-error
+		//@ts-expect-error, will be filled with the correct data later
 		this.rightHistory = [null];
 		this.htmlConfig = {
 			diffStyle: this.plugin.settings.diffStyle,
@@ -69,7 +65,9 @@ export default class DiffView extends Modal {
 		await this.getInitialVersions();
 		const diff = this.getDiff();
 		this.makeButtons();
-		this.makeMoreHtml(diff);
+		this.basicHtml(diff);
+		this.appendSyncVersions();
+		this.makeMoreGeneralHtml();
 	}
 
 	private async getInitialVersions() {
@@ -97,7 +95,20 @@ export default class DiffView extends Modal {
 		];
 	}
 
-	public makeMoreHtml(diff: string) {
+	public appendSyncVersions() {
+		// add the inner HTML element (the sync list) and keep a record
+		// of references to the elements
+		this.leftVList.push(
+			// @ts-expect-error, the types I declared don't work together
+			...this.appendVersions(this.leftHistory[1], this.versions, true)
+		);
+		this.rightVList.push(
+			// @ts-expect-error, the types I declared don't work together
+			...this.appendVersions(this.rightHistory[1], this.versions, false)
+		);
+	}
+
+	public basicHtml(diff: string) {
 		// set title
 		this.titleEl.setText(this.file.basename);
 		// add diff to container
@@ -107,16 +118,9 @@ export default class DiffView extends Modal {
 		this.contentEl.appendChild(this.leftHistory[0]);
 		this.contentEl.appendChild(this.syncHistoryContentContainer);
 		this.contentEl.appendChild(this.rightHistory[0]);
+	}
 
-		// add the inner HTML element (the sync list) and keep a record
-		// of references to the elements
-		this.leftVList.push(
-			...this.appendVersions(this.leftHistory[1], this.versions, true)
-		);
-		this.rightVList.push(
-			...this.appendVersions(this.rightHistory[1], this.versions, false)
-		);
-
+	public makeMoreGeneralHtml() {
 		// highlight initial two versions
 		this.rightVList[0].html.addClass('is-active');
 		this.leftVList[1].html.addClass('is-active');
@@ -141,13 +145,18 @@ export default class DiffView extends Modal {
 			el.addEventListener('click', async () => {
 				const newVersions = await this.plugin.diff_utils.getVersions(
 					this.file,
+					//@ts-expect-error, there are two types, but this method is private and only
+					// gets one type of data
 					this.versions.items.last()?.uid
 				);
+				//@ts-expect-error, there are two types, but this method is private and only
+				// gets one type of data
 				this.versions.more = newVersions.more;
 				this.setMoreButtonStyle(leftMoreButton, rightMoreButton);
 
 				// append new versions to sync list
 				this.leftVList.push(
+					// @ts-expect-error, the types I declared don't work together
 					...this.appendVersions(
 						this.leftHistory[1],
 						newVersions,
@@ -155,6 +164,7 @@ export default class DiffView extends Modal {
 					)
 				);
 				this.rightVList.push(
+					// @ts-expect-error, the types I declared don't work together
 					...this.appendVersions(
 						this.rightHistory[1],
 						newVersions,
@@ -162,6 +172,8 @@ export default class DiffView extends Modal {
 					)
 				);
 				// add new versions to version list
+				//@ts-expect-error, there are two types, but this method is private and only
+				// gets one type of data
 				this.versions.items.push(...newVersions.items);
 			});
 		}
@@ -189,6 +201,8 @@ export default class DiffView extends Modal {
 		leftMoreButton: HTMLDivElement,
 		rightMoreButton: HTMLDivElement
 	) {
+		//@ts-expect-error, there are two types, but this method is private and only
+		// gets one type of data
 		if (this.versions.more) {
 			leftMoreButton.style.display = 'block';
 			rightMoreButton.style.display = 'block';
@@ -246,7 +260,7 @@ export default class DiffView extends Modal {
 				if (left) {
 					const clickedEl = await this.generateVersionListener(
 						div,
-						this.leftVList,
+						this.leftVList as vList[],
 						this.leftActive,
 						left
 					);
@@ -255,7 +269,7 @@ export default class DiffView extends Modal {
 				} else {
 					const clickedEl = await this.generateVersionListener(
 						div,
-						this.rightVList,
+						this.rightVList as vList[],
 						this.rightActive
 					);
 					await this.getSyncContent(clickedEl);
@@ -290,7 +304,7 @@ export default class DiffView extends Modal {
 		if (left) {
 			this.leftActive = idx;
 		} else {
-			this.rightActive = idx
+			this.rightActive = idx;
 		}
 		// make old not active
 		currentSideOldVersion.html.classList.remove('is-active');
