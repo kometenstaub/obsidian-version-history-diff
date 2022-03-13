@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.1.0...1.1.1) (2022-03-13)
+
+
+### Bug Fixes
+
+* add source path for links to be clickable ([f151206](https://github.com/kometenstaub/obsidian-sync-version-history/commit/f151206080c7f56529cbe033f5958b4efbaa91ba))
+
 ## [1.1.0](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.0.2...1.1.0) (2022-03-13)
 
 
