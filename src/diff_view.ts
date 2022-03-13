@@ -4,6 +4,7 @@ import type { gHResult, rVList, vList, recResult } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 import FileModal from './file_modal';
+import { SYNC_WARNING } from './constants';
 
 function getSize(size: number): string {
 	if (size === 0) {
@@ -185,10 +186,10 @@ export default class DiffView extends Modal {
 		return diff;
 	}
 
-	public makeHistoryLists() {
+	public makeHistoryLists(warning = SYNC_WARNING) {
 		// create both history lists
-		this.leftHistory = this.createHistory(this.contentEl, true);
-		this.rightHistory = this.createHistory(this.contentEl, false);
+		this.leftHistory = this.createHistory(this.contentEl, true, warning);
+		this.rightHistory = this.createHistory(this.contentEl);
 	}
 
 	private setMoreButtonStyle(
@@ -204,7 +205,7 @@ export default class DiffView extends Modal {
 		}
 	}
 
-	public createHistory(el: HTMLElement, left: boolean): HTMLElement[] {
+	public createHistory(el: HTMLElement, left: boolean = false, warning = SYNC_WARNING): HTMLElement[] {
 		const syncHistoryListContainer = el.createDiv({
 			cls: 'sync-history-list-container',
 		});
@@ -218,7 +219,8 @@ export default class DiffView extends Modal {
 					this.plugin,
 					this.app,
 					this.leftContent,
-					this.file
+					this.file,
+					warning
 				).open();
 			});
 		}

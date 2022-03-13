@@ -2,6 +2,7 @@ import DiffView from './diff_view';
 import {Plugin, App, TFile, Notice } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type {recResult, rVList } from './interfaces';
+import { FILE_REC_WARNING } from './constants';
 
 export default class RecoveryDiffView extends DiffView {
 	//@ts-expect-error, this class uses them differently
@@ -20,7 +21,7 @@ export default class RecoveryDiffView extends DiffView {
 	async onOpen() {
 		await this.getVersions()
 		const diff = this.getDiff()
-		this.makeHistoryLists()
+		this.makeHistoryLists(FILE_REC_WARNING);
 		this.basicHtml(diff);
 		this.appendRecVersions()
 		this.makeMoreGeneralHtml()
@@ -28,15 +29,17 @@ export default class RecoveryDiffView extends DiffView {
 
 	async getVersions() {
 		const fileRecovery = await this.app.internalPlugins.plugins[
-			'file-recovery'
-		].instance.db
+			'file-recovery'].instance.db
 			.transaction('backups', 'readonly')
 			.store.index('path')
 			.getAll();
 		const fileContent = await this.app.vault.read(this.file)
 		// correct date is calculated later
 		this.versions.push({path: this.file.path, ts: 0, data: fileContent})
-		for (const version of fileRecovery) {
+		const len = fileRecovery.length - 1
+		for (let i = len; i >= 0; i--) {
+			const version = fileRecovery[i]
+			console.log(version)
 			if (version.path === this.file.path) {
 				this.versions.push(version)
 			}
@@ -71,7 +74,7 @@ export default class RecoveryDiffView extends DiffView {
 			}
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
-				text: date.toDateString() + ', ' + date.toLocaleTimeString(),
+				text: date.toDateString() + ', ' + date.toLocaleTimeString()
 			});
 			versionList.push({
 				html: div,
