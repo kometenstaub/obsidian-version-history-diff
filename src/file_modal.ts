@@ -55,7 +55,8 @@ export default class FileModal extends Modal {
 					linesWithBrs += '<br />';
 				}
 				el.empty();
-				el.innerHTML = linesWithBrs;
+				const frag = sanitizeHTMLToDom(linesWithBrs)
+				el.createDiv({text:frag})
 				this.raw = !this.raw;
 				switchButton.innerText = 'Show Reading view';
 			} else {
