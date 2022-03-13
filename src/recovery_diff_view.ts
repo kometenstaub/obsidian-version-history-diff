@@ -39,7 +39,6 @@ export default class RecoveryDiffView extends DiffView {
 		const len = fileRecovery.length - 1
 		for (let i = len; i >= 0; i--) {
 			const version = fileRecovery[i]
-			console.log(version)
 			if (version.path === this.file.path) {
 				this.versions.push(version)
 			}
