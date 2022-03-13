@@ -96,7 +96,7 @@ export default class DiffView extends Modal {
 		];
 	}
 
-	public appendSyncVersions() {
+	private appendSyncVersions() {
 		// add the inner HTML element (the sync list) and keep a record
 		// of references to the elements
 		this.leftVList.push(
@@ -252,7 +252,7 @@ export default class DiffView extends Modal {
 				if (left) {
 					const clickedEl = await this.generateVersionListener(
 						div,
-						this.leftVList as vList[],
+						this.leftVList,
 						this.leftActive,
 						left
 					);
@@ -261,7 +261,7 @@ export default class DiffView extends Modal {
 				} else {
 					const clickedEl = await this.generateVersionListener(
 						div,
-						this.rightVList as vList[],
+						this.rightVList,
 						this.rightActive
 					);
 					await this.getSyncContent(clickedEl);

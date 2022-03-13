@@ -12,6 +12,9 @@ declare module 'obsidian' {
 				sync: {
 					instance: syncInstance;
 				};
+				'file-recovery': {
+					instance: fileRInstance;
+				};
 			};
 		};
 	}
@@ -46,3 +49,27 @@ export interface vList {
 	html: HTMLElement;
 	v: item;
 }
+
+export interface rVList {
+	html: HTMLElement;
+	data: string;
+}
+
+export interface fileRInstance {
+	db: {
+		transaction(
+			type: 'backups',
+			access: 'readonly'
+		): {
+			store: {
+				index(key: 'path'): {
+					getAll(): Promise<
+						recResult[]
+					>;
+				};
+			};
+		};
+	};
+}
+
+export interface recResult { path: string; ts: number; data: string }

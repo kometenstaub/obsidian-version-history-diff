@@ -3,6 +3,7 @@ import type { OpenSyncHistorySettings } from './interfaces';
 import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';
 import DiffView from './diff_view';
+import RecoveryDiffView from './recovery_diff_view';
 
 const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
 	//context: '3',
@@ -15,6 +16,10 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	//@ts-ignore
 	settings: OpenSyncHistorySettings;
 	diff_utils = new DiffUtils(this, this.app);
+
+	openRecoveryDiffModal(file: TFile): void {
+		new RecoveryDiffView(this, this.app, file).open();
+	}
 
 	openDiffModal(file: TFile): void {
 		new DiffView(this, this.app, file).open();
@@ -52,17 +57,27 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	returnDiffCommand(): Command {
 		return {
 			id: 'open-diff-view',
-			name: 'Show diff view',
+			name: 'Show Sync diff view',
 			checkCallback: this.giveCallback(this.openDiffModal.bind(this)),
 		};
 	}
 
+	returnRecoveryDiffCommand(): Command {
+		return {
+			id: 'open-recovery-diff-view',
+			name: 'Show Recovery diff view',
+			checkCallback: this.giveCallback(
+				this.openRecoveryDiffModal.bind(this)
+			),
+		};
+	}
+
 	async onload() {
-		console.log('loading Sync Version History plugin');
+		console.log('loading Version History Diff plugin');
 
 		this.addCommand(this.returnOpenCommand());
-
 		this.addCommand(this.returnDiffCommand());
+		this.addCommand(this.returnRecoveryDiffCommand());
 
 		await this.loadSettings();
 
@@ -70,7 +85,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	}
 
 	onunload() {
-		console.log('unloading Sync Version History plugin');
+		console.log('unloading Version History Diff plugin');
 	}
 
 	async loadSettings() {
