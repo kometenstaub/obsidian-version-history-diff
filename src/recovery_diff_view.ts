@@ -34,7 +34,8 @@ export default class RecoveryDiffView extends DiffView {
 			.store.index('path')
 			.getAll();
 		const fileContent = await this.app.vault.read(this.file)
-		this.versions.push({path: this.file.path, ts: new Date().getMilliseconds(), data: fileContent})
+		// correct date is calculated later
+		this.versions.push({path: this.file.path, ts: 0, data: fileContent})
 		for (const version of fileRecovery) {
 			if (version.path === this.file.path) {
 				this.versions.push(version)
@@ -62,8 +63,12 @@ export default class RecoveryDiffView extends DiffView {
 
 	private makeVersions(el: HTMLElement, versions: recResult[], left: boolean = false) {
 		const versionList: rVList[] = [];
-		for (const version of versions) {
-			const date = new Date(version.ts)
+		for (let i = 0; i < versions.length; i++) {
+			const version = versions[i]
+			let date = new Date(version.ts)
+			if (i === 0) {
+				date = new Date()
+			}
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
 				text: date.toDateString() + ', ' + date.toLocaleTimeString(),
