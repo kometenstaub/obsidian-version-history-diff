@@ -38,6 +38,11 @@ If there is something that can be done on my end, feel free to reach out/make a 
 
 > This week I will work on refactoring the code base, so any additional features will have to wait after that.
 
+TO-DO:
+
+- [ ] create base type for `vList` and `rVList`
+- [ ] implement abstract class which sync and recovery view can inherit and only define their special methods (also in preparation for the Git view)
+
 ## Credits
 
 All licenses and attributions can be found in the `esbuild.mjs` file for the code (and therefore in the `main.js` release), the CSS license is in `src/styles.css`. Should any license/attribution be missing, please let me know, and I will look into it.
