@@ -32,6 +32,11 @@ For Sync, it only displays the Sync versions. For File Recovery, it also shows t
 Themes should mostly work. For one theme there was an issue which was similar to the issue the plugin has on mobile devices.
 If there is something that can be done on my end, feel free to reach out/make a PR.
 
+## Contributing
+
+**Please open an issue before you make a PR.**
+
+> This week I will work on refactoring the code base, so any additional features will have to wait after that.
 
 ## Credits
 
