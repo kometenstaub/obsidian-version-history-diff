@@ -42,6 +42,9 @@ TO-DO:
 
 - [ ] create base type for `vList`/`rVList` and `recResult`/`gHResult`
 - [ ] implement abstract class which sync and recovery view can inherit and only define their special methods (also in preparation for the Git view)
+- [ ] update diff modals UI
+  - [ ] indicate which view they are in the `titleEl` 
+  - [ ] remove 1 file changed statement
 
 ## Credits
 
