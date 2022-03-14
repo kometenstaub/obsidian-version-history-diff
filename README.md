@@ -40,7 +40,7 @@ If there is something that can be done on my end, feel free to reach out/make a 
 
 TO-DO:
 
-- [ ] create base type for `vList` and `rVList`
+- [ ] create base type for `vList`/`rVList` and `recResult`/`gHResult`
 - [ ] implement abstract class which sync and recovery view can inherit and only define their special methods (also in preparation for the Git view)
 
 ## Credits
