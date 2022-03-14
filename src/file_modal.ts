@@ -30,6 +30,8 @@ export default class FileModal extends Modal {
 	async onOpen() {
 		super.onOpen();
 
+		this.containerEl.addClass('version-display');
+
 		const warning = this.contentEl.createDiv({
 			text: this.warning,
 		});
@@ -38,6 +40,10 @@ export default class FileModal extends Modal {
 		const restoreButton = this.contentEl.createEl('button', {
 			cls: ['mod-cta', 'restore'],
 			text: `Replace ${this.file.basename} content with this version`,
+			attr: {
+				'aria-label': 'Click to replace with this version',
+				'aria-label-position': 'top',
+			},
 		});
 		const switchButton = this.contentEl.createEl('button', {
 			cls: ['mod-cta', 'switch'],
@@ -48,15 +54,12 @@ export default class FileModal extends Modal {
 
 		switchButton.addEventListener('click', () => {
 			if (!this.raw) {
-				const lines = this.syncFile.split('\n');
-				let linesWithBrs = '<br />';
-				for (const line of lines) {
-					linesWithBrs += line;
-					linesWithBrs += '<br />';
-				}
 				el.empty();
-				const frag = sanitizeHTMLToDom(linesWithBrs);
-				el.createDiv({ text: frag });
+				const textArea = el.createEl('textarea', {
+					text: this.syncFile,
+					attr: { spellcheck: false },
+					cls: 'plain-text-area',
+				});
 				this.raw = !this.raw;
 				switchButton.innerText = 'Show Reading view';
 			} else {

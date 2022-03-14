@@ -462,3 +462,13 @@ span.d2h-code-line-ctn {
 	border-color: var(--sync-insert);
 	border-width: 1px 2px;
 }
+
+/* for textarea that displays plain text version */
+
+textarea.plain-text-area {
+	max-width: 60vw;
+	min-width: 60vw;
+	height: 70vh;
+	margin-top: 1rem;
+	position: inherit;
+}
