@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.1.2...1.2.0) (2022-03-14)
+
+
+### Features
+
+* use textarea for plaintext view ([7748bef](https://github.com/kometenstaub/obsidian-sync-version-history/commit/7748beffe2639548811a6fdb1fdeaf58267f1529))
+
 ### [1.1.2](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.1.1...1.1.2) (2022-03-13)
 
 
