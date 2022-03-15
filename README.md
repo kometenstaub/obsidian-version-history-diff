@@ -36,7 +36,7 @@ If there is something that can be done on my end, feel free to reach out/make a 
 
 **Please open an issue before you make a PR.**
 
-> This week I will work on refactoring the code base, so any additional features will have to wait after that.
+> Before adding any new features, the code will need to be refactored.
 
 TO-DO:
 
