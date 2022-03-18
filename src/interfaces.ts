@@ -46,16 +46,14 @@ export interface item {
 }
 
 export interface vItem {
-
+	html: HTMLElement;
 }
 
-export interface vListItem {
-	html: HTMLElement;
+export interface vListItem extends vItem{
 	v: item;
 }
 
-export interface rVListItem {
-	html: HTMLElement;
+export interface rVListItem extends vItem {
 	data: string;
 }
 
