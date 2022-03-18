@@ -72,8 +72,14 @@ export default class GitDiffView extends DiffView {
 			const version = versions[i];
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
-				text: version.message,
 			});
+			const message = div.createDiv({
+				text: i !== 0 ? version.message : 'State on disk',
+				attr: {
+					'aria-label': version.body !== '' ? version.body : '',
+					'aria-label-position': 'top'
+				}
+			})
 			const infoDiv = div.createDiv({
 				cls: ['u-small', 'u-muted'],
 			});
@@ -84,8 +90,20 @@ export default class GitDiffView extends DiffView {
 				text: version.author_name,
 			});
 			const hash = infoDiv.createDiv({
-				text: version.hash.slice(0, 7),
+				text: version.hash.slice(0, 7)
+				/*attr: {
+					'aria-label': 'Copy hash',
+					'aria-label-position': 'bottom'
+				}*/
 			});
+			let refs;
+			const refsText = version.refs
+			if (refsText !== '') {
+				refs = infoDiv.createDiv({
+					text: refsText
+				})
+			}
+
 			hash.style.cursor = 'copy';
 			hash.addEventListener('click', async () => {
 				await navigator.clipboard.writeText(version.hash);
