@@ -21,7 +21,7 @@ export default class RecoveryDiffView extends DiffView {
 		await this.getInitialVersions();
 		const diff = this.getDiff();
 		this.makeHistoryLists(FILE_REC_WARNING);
-		this.basicHtml(diff, 'File Recovery Diff');
+		this.basicHtml(diff as string, 'File Recovery Diff');
 		this.appendVersions();
 		this.makeMoreGeneralHtml();
 	}
@@ -80,7 +80,7 @@ export default class RecoveryDiffView extends DiffView {
 		el: HTMLElement,
 		versions: recResult[],
 		left: boolean = false
-	) {
+	): vRecoveryItem[] {
 		const versionList: vRecoveryItem[] = [];
 		for (let i = 0; i < versions.length; i++) {
 			const version = versions[i];
@@ -105,7 +105,8 @@ export default class RecoveryDiffView extends DiffView {
 						left
 					)) as vRecoveryItem;
 					this.leftContent = version.data;
-					this.syncHistoryContentContainer.innerHTML = this.getDiff();
+					this.syncHistoryContentContainer.innerHTML =
+						this.getDiff() as string;
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -113,7 +114,8 @@ export default class RecoveryDiffView extends DiffView {
 						this.rightActive
 					)) as vRecoveryItem;
 					this.rightContent = version.data;
-					this.syncHistoryContentContainer.innerHTML = this.getDiff();
+					this.syncHistoryContentContainer.innerHTML =
+						this.getDiff() as string;
 				}
 			});
 		}

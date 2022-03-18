@@ -78,7 +78,8 @@ export default abstract class DiffView extends Modal {
 
 	abstract appendVersions(): void;
 
-	public getDiff(): string {
+	public getDiff(): string | Promise<string> {
+		// the second type is needed for the Git view, it reimplements getDiff
 		// get diff
 		const uDiff = createTwoFilesPatch(
 			this.file.basename,

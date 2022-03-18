@@ -36,7 +36,7 @@ export default class SyncDiffView extends DiffView {
 	async onOpen() {
 		super.onOpen();
 		await this.getInitialVersions();
-		const diff = this.getDiff();
+		const diff = this.getDiff() as string;
 		this.makeHistoryLists(SYNC_WARNING);
 		this.makeButtons();
 		this.basicHtml(diff, 'Sync Diff');
@@ -169,7 +169,8 @@ export default class SyncDiffView extends DiffView {
 						left
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl, left);
-					this.syncHistoryContentContainer.innerHTML = this.getDiff();
+					this.syncHistoryContentContainer.innerHTML =
+						this.getDiff() as string;
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -177,7 +178,8 @@ export default class SyncDiffView extends DiffView {
 						this.rightActive
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl);
-					this.syncHistoryContentContainer.innerHTML = this.getDiff();
+					this.syncHistoryContentContainer.innerHTML =
+						this.getDiff() as string;
 				}
 			});
 		}

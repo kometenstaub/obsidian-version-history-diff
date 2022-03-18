@@ -21,7 +21,10 @@ declare module 'obsidian' {
 			plugins: {
 				'obsidian-git': {
 					gitManager: {
-						show(commitHash: string, filePath: string): Promise<string>;
+						show(
+							commitHash: string,
+							filePath: string
+						): Promise<string>;
 						log(filePath: string): Promise<DefaultLogFields[]>;
 						diff(
 							filePath: string,
@@ -76,6 +79,10 @@ export interface vSyncItem extends vItem {
 
 export interface vRecoveryItem extends vItem {
 	data: string;
+}
+
+export interface vGitItem extends vItem {
+	v: DefaultLogFields;
 }
 
 export interface fileRInstance {
