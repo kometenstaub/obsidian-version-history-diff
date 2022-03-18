@@ -3,7 +3,7 @@ import { Diff2HtmlConfig, html } from 'diff2html';
 import { App, Modal, TFile } from 'obsidian';
 import { SYNC_WARNING } from './constants';
 import FileModal from './file_modal';
-import type { vItem } from './interfaces';
+import type { vItem, vRecoveryItem, vSyncItem } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 
 export default abstract class DiffView extends Modal {
@@ -78,7 +78,7 @@ export default abstract class DiffView extends Modal {
 
 	abstract appendVersions(): void;
 
-	public getDiff() {
+	public getDiff(): string {
 		// get diff
 		const uDiff = createTwoFilesPatch(
 			this.file.basename,
@@ -92,7 +92,7 @@ export default abstract class DiffView extends Modal {
 		return diff;
 	}
 
-	public makeHistoryLists(warning: string) {
+	public makeHistoryLists(warning: string): void {
 		// create both history lists
 		this.leftHistory = this.createHistory(this.contentEl, true, warning);
 		this.rightHistory = this.createHistory(this.contentEl, false, warning);
@@ -127,7 +127,7 @@ export default abstract class DiffView extends Modal {
 		return [syncHistoryListContainer, syncHistoryList];
 	}
 
-	public basicHtml(diff: string, diffType: string) {
+	public basicHtml(diff: string, diffType: string): void {
 		// set title
 		this.titleEl.setText(diffType);
 		// add diff to container
@@ -139,7 +139,7 @@ export default abstract class DiffView extends Modal {
 		this.contentEl.appendChild(this.rightHistory[0]);
 	}
 
-	public makeMoreGeneralHtml() {
+	public makeMoreGeneralHtml(): void {
 		// highlight initial two versions
 		this.rightVList[0].html.addClass('is-active');
 		this.leftVList[1].html.addClass('is-active');
@@ -150,15 +150,15 @@ export default abstract class DiffView extends Modal {
 
 	public async generateVersionListener(
 		div: HTMLDivElement,
-		currentVList: vItem[], // needs to be more general, it only needs an html property
+		currentVList: vItem[],
 		currentActive: number,
 		left: boolean = false
-	) {
+	): Promise<vItem> { // the exact return type depends on the type of currentVList, it is either vSyncItem or vRecoveryItem
 		// formerly active left/right version
 		const currentSideOldVersion = currentVList[currentActive];
 		// get the HTML of the new version to set it active
 		// @ts-ignore
-		const clickedEl: vSyncItem = currentVList.find((el) => {
+		const clickedEl: vItem = currentVList.find((el) => {
 			if (el.html === div) {
 				return true;
 			}

@@ -103,7 +103,7 @@ export default class RecoveryDiffView extends DiffView {
 						this.leftVList,
 						this.leftActive,
 						left
-					);
+					) as vRecoveryItem;
 					this.leftContent = version.data;
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				} else {
@@ -111,7 +111,7 @@ export default class RecoveryDiffView extends DiffView {
 						div,
 						this.rightVList,
 						this.rightActive
-					);
+					) as vRecoveryItem;
 					this.rightContent = version.data;
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				}

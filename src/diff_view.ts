@@ -167,7 +167,7 @@ export default class SyncDiffView extends DiffView {
 						this.leftVList,
 						this.leftActive,
 						left
-					);
+					) as vSyncItem;
 					await this.getSyncContent(clickedEl, left);
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				} else {
@@ -175,7 +175,7 @@ export default class SyncDiffView extends DiffView {
 						div,
 						this.rightVList,
 						this.rightActive
-					);
+					) as vSyncItem;
 					await this.getSyncContent(clickedEl);
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				}
