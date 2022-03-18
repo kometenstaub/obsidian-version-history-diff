@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.4.1...1.5.0) (2022-03-18)
+
+
+### Features
+
+* only show time of state on disk... ([961c9be](https://github.com/kometenstaub/obsidian-version-history-diff/commit/961c9befeada871aacd7446192f6540bf6caad8a))
+
 ### [1.4.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.4.0...1.4.1) (2022-03-18)
 
 
