@@ -14,7 +14,7 @@ function getSize(size: number): string {
 	}
 }
 
-export default class DiffView extends Modal {
+export default class SyncDiffView extends Modal {
 	plugin: OpenSyncHistoryPlugin;
 	app: App;
 	file: TFile;

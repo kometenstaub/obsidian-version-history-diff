@@ -2,7 +2,7 @@ import { Command, Plugin, TFile } from 'obsidian';
 import type { OpenSyncHistorySettings } from './interfaces';
 import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';
-import DiffView from './diff_view';
+import SyncDiffView from './diff_view';
 import RecoveryDiffView from './recovery_diff_view';
 
 const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
@@ -29,7 +29,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	}
 
 	openDiffModal(file: TFile): void {
-		new DiffView(this, this.app, file).open();
+		new SyncDiffView(this, this.app, file).open();
 	}
 
 	async openSyncHistory(file: TFile): Promise<void> {

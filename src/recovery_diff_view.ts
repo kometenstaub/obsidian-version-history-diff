@@ -1,10 +1,10 @@
-import DiffView from './diff_view';
+import SyncDiffView from './diff_view';
 import { Plugin, App, TFile, Notice } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type { recResult, rVList } from './interfaces';
 import { FILE_REC_WARNING } from './constants';
 
-export default class RecoveryDiffView extends DiffView {
+export default class RecoveryDiffView extends SyncDiffView {
 	//@ts-expect-error, this class uses them differently
 	versions: recResult[];
 	//@ts-expect-error, tthis class uses them differently
