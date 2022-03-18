@@ -300,7 +300,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	text-align: left;
 }
 .d2h-file-list-title {
-	font-weight: 700;
+	display: none;
 }
 .d2h-file-list-line {
 	display: -webkit-box;
@@ -309,10 +309,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	text-align: left;
 }
 .d2h-file-list {
-	display: block;
-	list-style: none;
-	margin: 0;
-	padding: 0;
+	display: none;
 }
 .d2h-file-list > li {
 	border-bottom: 1px solid var(--background-modifier-border);
@@ -384,16 +381,9 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	padding: 0.5rem;
 }
 
-/*
-.d2h-files-diff {
-    overflow: auto;
-    max-height: 70vh;
-}
-*/
-
 .d2h-file-wrapper {
 	overflow: auto;
-	max-height: 60vh;
+	max-height: 65vh;
 }
 
 .d2h-code-side-linenumber {
@@ -472,3 +462,5 @@ textarea.plain-text-area {
 	margin-top: 1rem;
 	position: inherit;
 }
+
+/*  */
