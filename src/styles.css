@@ -463,4 +463,30 @@ textarea.plain-text-area {
 	position: inherit;
 }
 
-/*  */
+/* fix modal height */
+
+.version-display .modal {
+	max-height: 90vh;
+}
+@media only screen and (max-width: 1000px) {
+	.version-display .modal {
+		min-width: 90vw;
+	}
+}
+
+@media only screen and (min-width: 1001px) {
+	.version-display .modal {
+		max-width: 80vw;
+	}
+}
+@media only screen and (min-width: 1200px) {
+	.version-display .modal {
+		max-width: 70vw;
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	.version-display .modal {
+		max-width: 65vw;
+	}
+}
