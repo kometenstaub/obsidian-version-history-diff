@@ -21,7 +21,7 @@ export default class RecoveryDiffView extends DiffView {
 		await this.getInitialVersions();
 		const diff = this.getDiff();
 		this.makeHistoryLists(FILE_REC_WARNING);
-		this.basicHtml(diff);
+		this.basicHtml(diff, 'File Recovery Diff');
 		this.appendVersions();
 		this.makeMoreGeneralHtml();
 	}

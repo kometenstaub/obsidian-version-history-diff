@@ -127,9 +127,9 @@ export default abstract class DiffView extends Modal {
 		return [syncHistoryListContainer, syncHistoryList];
 	}
 
-	public basicHtml(diff: string) {
+	public basicHtml(diff: string, diffType: string) {
 		// set title
-		this.titleEl.setText(this.file.basename);
+		this.titleEl.setText(diffType);
 		// add diff to container
 		this.syncHistoryContentContainer.innerHTML = diff;
 

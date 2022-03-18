@@ -39,7 +39,7 @@ export default class SyncDiffView extends DiffView {
 		const diff = this.getDiff();
 		this.makeHistoryLists(SYNC_WARNING);
 		this.makeButtons();
-		this.basicHtml(diff);
+		this.basicHtml(diff, 'Sync Diff');
 		this.appendVersions();
 		this.makeMoreGeneralHtml();
 	}
