@@ -299,7 +299,8 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	background-color: var(--sync-insert-bg);
 }
 .d2h-file-list-wrapper {
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
+	display: none;
 }
 .d2h-file-list-wrapper a {
 	color: var(--text-accent);
