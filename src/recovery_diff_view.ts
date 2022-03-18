@@ -1,16 +1,16 @@
 import SyncDiffView from './diff_view';
 import { Plugin, App, TFile, Notice } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
-import type { recResult, rVList } from './interfaces';
+import type { recResult, rVListItem } from './interfaces';
 import { FILE_REC_WARNING } from './constants';
 
 export default class RecoveryDiffView extends SyncDiffView {
 	//@ts-expect-error, this class uses them differently
 	versions: recResult[];
 	//@ts-expect-error, tthis class uses them differently
-	leftVList: rVList[];
+	leftVList: rVListItem[];
 	//@ts-expect-error, tthis class uses them differently
-	rightVList: rVList[];
+	rightVList: rVListItem[];
 	constructor(plugin: OpenSyncHistoryPlugin, app: App, file: TFile) {
 		super(plugin, app, file);
 		this.versions = [];
@@ -74,7 +74,7 @@ export default class RecoveryDiffView extends SyncDiffView {
 		versions: recResult[],
 		left: boolean = false
 	) {
-		const versionList: rVList[] = [];
+		const versionList: rVListItem[] = [];
 		for (let i = 0; i < versions.length; i++) {
 			const version = versions[i];
 			let date = new Date(version.ts);

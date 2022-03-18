@@ -45,12 +45,16 @@ export interface item {
 	uid: number; // unique UID for the whole vault
 }
 
-export interface vList {
+export interface vItem {
+
+}
+
+export interface vListItem {
 	html: HTMLElement;
 	v: item;
 }
 
-export interface rVList {
+export interface rVListItem {
 	html: HTMLElement;
 	data: string;
 }

@@ -1,6 +1,6 @@
 import { Diff2HtmlConfig, html } from 'diff2html';
 import { App, Modal, Notice, TFile } from 'obsidian';
-import type { gHResult, rVList, vList, recResult } from './interfaces';
+import type { gHResult, rVListItem, vListItem, recResult } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 import FileModal from './file_modal';
@@ -18,8 +18,8 @@ export default class SyncDiffView extends Modal {
 	plugin: OpenSyncHistoryPlugin;
 	app: App;
 	file: TFile;
-	leftVList: vList[]; // needs to be more general
-	rightVList: vList[]; // needs to be more general
+	leftVList: vListItem[]; // needs to be more general
+	rightVList: vListItem[]; // needs to be more general
 	leftActive: number;
 	rightActive: number;
 	rightContent: string;
@@ -238,8 +238,8 @@ export default class SyncDiffView extends Modal {
 		el: HTMLElement,
 		versions: gHResult,
 		left: boolean
-	): vList[] {
-		const versionList: vList[] = [];
+	): vListItem[] {
+		const versionList: vListItem[] = [];
 		for (let version of versions.items) {
 			const date = new Date(version.ts);
 			const div = el.createDiv({
@@ -280,7 +280,7 @@ export default class SyncDiffView extends Modal {
 
 	public async generateVersionListener(
 		div: HTMLDivElement,
-		currentVList: vList[], // needs to be more general, it only needs an html property
+		currentVList: vListItem[], // needs to be more general, it only needs an html property
 		currentActive: number,
 		left: boolean = false
 	) {
@@ -288,7 +288,7 @@ export default class SyncDiffView extends Modal {
 		const currentSideOldVersion = currentVList[currentActive];
 		// get the HTML of the new version to set it active
 		// @ts-ignore
-		const clickedEl: vList = currentVList.find((el) => {
+		const clickedEl: vListItem = currentVList.find((el) => {
 			if (el.html === div) {
 				return true;
 			}
@@ -329,7 +329,7 @@ export default class SyncDiffView extends Modal {
 		this.syncHistoryContentContainer.innerHTML = diff;
 	}
 
-	private async getSyncContent(clickedEl: vList, left: boolean = false) {
+	private async getSyncContent(clickedEl: vListItem, left: boolean = false) {
 		// get the content for the clicked HTML element
 		const getContent = this.plugin.diff_utils.getContent.bind(this);
 		if (left) {
