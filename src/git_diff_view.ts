@@ -84,8 +84,11 @@ export default class GitDiffView extends DiffView {
 				cls: ['u-small', 'u-muted'],
 			});
 			const date = infoDiv.createDiv({
-				text: version.date,
+				text: version.date.split('T')[0]
 			});
+			const time = infoDiv.createDiv({
+				text: version.date.split('T')[1]
+			})
 			const author = infoDiv.createDiv({
 				text: version.author_name,
 			});
