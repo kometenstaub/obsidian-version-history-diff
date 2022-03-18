@@ -158,7 +158,7 @@ export default abstract class DiffView extends Modal  {
 		const currentSideOldVersion = currentVList[currentActive];
 		// get the HTML of the new version to set it active
 		// @ts-ignore
-		const clickedEl: vListItem = currentVList.find((el) => {
+		const clickedEl: vSyncItem = currentVList.find((el) => {
 			if (el.html === div) {
 				return true;
 			}

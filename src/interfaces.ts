@@ -58,11 +58,11 @@ export interface vItem {
 	html: HTMLElement;
 }
 
-export interface vListItem extends vItem{
+export interface vSyncItem extends vItem{
 	v: item;
 }
 
-export interface rVListItem extends vItem {
+export interface vRecoveryItem extends vItem {
 	data: string;
 }
 

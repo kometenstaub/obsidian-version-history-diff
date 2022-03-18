@@ -1,6 +1,6 @@
 import { Diff2HtmlConfig, html } from 'diff2html';
 import { App, Modal, Notice, TFile } from 'obsidian';
-import type { gHResult, rVListItem, vListItem, recResult } from './interfaces';
+import type { gHResult, vRecoveryItem, vSyncItem, recResult } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 import FileModal from './file_modal';
@@ -17,8 +17,8 @@ function getSize(size: number): string {
 
 export default class SyncDiffView extends DiffView {
 	versions: gHResult; // only thing that will be different
-	leftVList: vListItem[];
-	rightVList: vListItem[];
+	leftVList: vSyncItem[];
+	rightVList: vSyncItem[];
 
 	constructor(plugin: OpenSyncHistoryPlugin, app: App, file: TFile) {
 		super(plugin, app, file);
@@ -139,8 +139,8 @@ export default class SyncDiffView extends DiffView {
 		el: HTMLElement,
 		versions: gHResult,
 		left: boolean
-	): vListItem[] {
-		const versionList: vListItem[] = [];
+	): vSyncItem[] {
+		const versionList: vSyncItem[] = [];
 		for (let version of versions.items) {
 			const date = new Date(version.ts);
 			const div = el.createDiv({
@@ -181,7 +181,7 @@ export default class SyncDiffView extends DiffView {
 
 
 
-	private async getSyncContent(clickedEl: vListItem, left: boolean = false) {
+	private async getSyncContent(clickedEl: vSyncItem, left: boolean = false) {
 		// get the content for the clicked HTML element
 		const getContent = this.plugin.diff_utils.getContent.bind(this);
 		if (left) {
