@@ -93,10 +93,22 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.d2h-file-wrapper.d2h-file-wrapper {
+.d2h-file-wrapper {
 	border: 1px solid var(--background-secondary-alt);
 	border-radius: 3px;
 	margin-bottom: 1em;
+	overflow: auto;
+	max-height: 67vh;
+}
+@media only screen and (max-height: 500px) {
+	.d2h-file-wrapper {
+		max-height: 60vh;
+	}
+}
+@media only screen and (max-height: 750px) {
+	.d2h-file-wrapper {
+		max-height: 65vh;
+	}
 }
 .d2h-file-collapse {
 	-webkit-box-pack: end;
@@ -379,11 +391,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 
 .sync-history-content-container.diff {
 	padding: 0.5rem;
-}
-
-.d2h-file-wrapper {
-	overflow: auto;
-	max-height: 65vh;
 }
 
 .d2h-code-side-linenumber {
