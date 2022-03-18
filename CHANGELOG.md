@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.3.0...1.3.1) (2022-03-18)
+
+
+### Bug Fixes
+
+* improve diff container height ([8609e7e](https://github.com/kometenstaub/obsidian-version-history-diff/commit/8609e7e32ecfe3535979cebb6a7a2caf21939597))
+
 ## [1.3.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.2.0...1.3.0) (2022-03-18)
 
 
