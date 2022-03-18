@@ -12,8 +12,8 @@ It can
 
 1. display diffs of the **Sync** 
 2. and the **File Recovery** 
-3. and Git version history for the currently active file, 
-   1. For this to work, the Obsidian Git plugin needs to be installed.
+3. and **Git** version history for the currently active file, 
+   1. For this to work, the [Obsidian Git](https://obsidian.md/plugins?id=obsidian-git) plugin needs to be installed.
 4. open a selected version in a modal and 
 5. render it as either markdown or 
 6. plain text and 
@@ -43,4 +43,4 @@ If there is something that can be done on my end, feel free to reach out/make a 
 All licenses and attributions can be found in the `esbuild.mjs` file for the code (and therefore in the `main.js` release), the CSS license is in `src/styles.css`. Should any license/attribution be missing, please let me know, and I will look into it.
 
 
-Special thanks to @SlRvb for adapting the CSS to Obsidian and making the colour-blind mode.
+Special thanks to @SlRvb for adapting the CSS to Obsidian and making the colour-blind mode and to @Vinzent03 for creating the necessary APIs in the Obsidian Git plugin.
