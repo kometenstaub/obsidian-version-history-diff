@@ -77,7 +77,7 @@ export default class SyncDiffView extends DiffView {
 
 
 
-	makeButtons() {
+	private makeButtons() {
 		// create more button
 		const leftMoreButton = this.leftHistory[0].createDiv({
 			cls: ['sync-history-load-more-button', 'diff'],
@@ -121,7 +121,7 @@ export default class SyncDiffView extends DiffView {
 	}
 
 
-	setMoreButtonStyle(
+	private setMoreButtonStyle(
 		leftMoreButton: HTMLDivElement,
 		rightMoreButton: HTMLDivElement
 	) {
@@ -135,7 +135,7 @@ export default class SyncDiffView extends DiffView {
 	}
 
 
-	appendSyncVersions(
+	private appendSyncVersions(
 		el: HTMLElement,
 		versions: gHResult,
 		left: boolean
