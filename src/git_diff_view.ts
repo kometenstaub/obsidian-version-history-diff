@@ -35,7 +35,7 @@ export default class GitDiffView extends DiffView {
 			author_email: '',
 			author_name: '',
 			body: '',
-			date: new Date().toISOString(),
+			date: new Date().toLocaleTimeString(),
 			hash: '',
 			message: '',
 			refs: '',

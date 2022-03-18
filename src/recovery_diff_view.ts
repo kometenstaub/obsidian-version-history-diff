@@ -88,10 +88,18 @@ export default class RecoveryDiffView extends DiffView {
 			if (i === 0) {
 				date = new Date();
 			}
-			const div = el.createDiv({
+			let div = el.createDiv({
 				cls: 'sync-history-list-item',
-				text: date.toDateString() + ', ' + date.toLocaleTimeString(),
 			});
+			if (i === 0) {
+				div.createDiv({ text: 'State on disk' });
+				div.createDiv({ text: date.toLocaleTimeString() });
+			} else {
+				div.createDiv({
+					text:
+						date.toDateString() + ', ' + date.toLocaleTimeString(),
+				});
+			}
 			versionList.push({
 				html: div,
 				data: version.data,
