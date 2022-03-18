@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.2.0...1.3.0) (2022-03-18)
+
+
+### Features
+
+* better modal sizing ([cd23dd6](https://github.com/kometenstaub/obsidian-version-history-diff/commit/cd23dd6a19e042b56b772db04a77694d0e94e0be))
+* more space for diff ([1bc1b7f](https://github.com/kometenstaub/obsidian-version-history-diff/commit/1bc1b7fa027d8cd390a0d0ba7bbd4931b262d011))
+* show diff name in title instead of file name ([1c8fda1](https://github.com/kometenstaub/obsidian-version-history-diff/commit/1c8fda190a932e6159f5c47b2b6df0485485a24d))
+
 ## [1.2.0](https://github.com/kometenstaub/obsidian-sync-version-history/compare/1.1.2...1.2.0) (2022-03-14)
 
 
