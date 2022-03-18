@@ -33,7 +33,7 @@ declare module 'obsidian' {
 						): Promise<string>;
 						git: {
 							diff(options: string[]): Promise<string>;
-						}
+						};
 					};
 				};
 			};

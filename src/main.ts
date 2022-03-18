@@ -88,7 +88,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		return {
 			id: 'open-git-diff-view',
 			name: 'Show Git Diff view for active file',
-			checkCallback: this.giveCallback(this.openGitDiffModal.bind(this))
+			checkCallback: this.giveCallback(this.openGitDiffModal.bind(this)),
 		};
 	}
 
@@ -99,7 +99,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		this.addCommand(this.returnDiffCommand());
 		this.addCommand(this.returnRecoveryDiffCommand());
 		//if (this.app.plugins.plugins['obsidian-git']) {
-			this.addCommand(this.returnGitDiffCommand());
+		this.addCommand(this.returnGitDiffCommand());
 		//}
 
 		await this.loadSettings();
