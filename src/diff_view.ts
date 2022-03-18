@@ -1,6 +1,11 @@
 import { Diff2HtmlConfig, html } from 'diff2html';
 import { App, Modal, Notice, TFile } from 'obsidian';
-import type { gHResult, vRecoveryItem, vSyncItem, recResult } from './interfaces';
+import type {
+	gHResult,
+	vRecoveryItem,
+	vSyncItem,
+	recResult,
+} from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 import FileModal from './file_modal';
@@ -71,11 +76,13 @@ export default class SyncDiffView extends DiffView {
 			...this.appendSyncVersions(this.leftHistory[1], this.versions, true)
 		);
 		this.rightVList.push(
-			...this.appendSyncVersions(this.rightHistory[1], this.versions, false)
+			...this.appendSyncVersions(
+				this.rightHistory[1],
+				this.versions,
+				false
+			)
 		);
 	}
-
-
 
 	private makeButtons() {
 		// create more button
@@ -120,7 +127,6 @@ export default class SyncDiffView extends DiffView {
 		}
 	}
 
-
 	private setMoreButtonStyle(
 		leftMoreButton: HTMLDivElement,
 		rightMoreButton: HTMLDivElement
@@ -133,7 +139,6 @@ export default class SyncDiffView extends DiffView {
 			rightMoreButton.style.display = 'none';
 		}
 	}
-
 
 	private appendSyncVersions(
 		el: HTMLElement,
@@ -178,8 +183,6 @@ export default class SyncDiffView extends DiffView {
 		}
 		return versionList;
 	}
-
-
 
 	private async getSyncContent(clickedEl: vSyncItem, left: boolean = false) {
 		// get the content for the clicked HTML element

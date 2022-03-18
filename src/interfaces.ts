@@ -30,7 +30,6 @@ export interface syncInstance {
 	getContentForVersion(uid: number): Promise<ArrayBuffer>;
 }
 
-
 export interface gHResult {
 	items: item[];
 	more: boolean; // whether there are more versions
@@ -52,13 +51,11 @@ export interface recResult {
 	data: string;
 }
 
-
-
 export interface vItem {
 	html: HTMLElement;
 }
 
-export interface vSyncItem extends vItem{
+export interface vSyncItem extends vItem {
 	v: item;
 }
 
@@ -80,5 +77,3 @@ export interface fileRInstance {
 		};
 	};
 }
-
-

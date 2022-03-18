@@ -1,12 +1,12 @@
-import { createTwoFilesPatch } from "diff";
-import {Diff2HtmlConfig, html } from "diff2html";
-import {App, Modal, TFile } from "obsidian";
-import { SYNC_WARNING } from "./constants";
-import FileModal from "./file_modal";
-import type { vItem } from "./interfaces";
-import type OpenSyncHistoryPlugin from "./main";
+import { createTwoFilesPatch } from 'diff';
+import { Diff2HtmlConfig, html } from 'diff2html';
+import { App, Modal, TFile } from 'obsidian';
+import { SYNC_WARNING } from './constants';
+import FileModal from './file_modal';
+import type { vItem } from './interfaces';
+import type OpenSyncHistoryPlugin from './main';
 
-export default abstract class DiffView extends Modal  {
+export default abstract class DiffView extends Modal {
 	plugin: OpenSyncHistoryPlugin;
 	app: App;
 	file: TFile;
@@ -25,7 +25,7 @@ export default abstract class DiffView extends Modal  {
 		super(app);
 		this.plugin = plugin;
 		this.app = app;
-		this.file = file
+		this.file = file;
 		this.modalEl.addClasses(['mod-sync-history', 'diff']);
 		this.leftVList = [];
 		this.rightVList = [];
@@ -51,7 +51,7 @@ export default abstract class DiffView extends Modal  {
 	}
 
 	onOpen() {
-		super.onOpen()
+		super.onOpen();
 		// in onOpen() of the child classes these calls need to be implemented
 
 		// initial versions are different

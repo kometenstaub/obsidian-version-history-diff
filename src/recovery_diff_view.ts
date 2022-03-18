@@ -17,7 +17,7 @@ export default class RecoveryDiffView extends DiffView {
 	}
 
 	async onOpen() {
-		super.onOpen()
+		super.onOpen();
 		await this.getInitialVersions();
 		const diff = this.getDiff();
 		this.makeHistoryLists(FILE_REC_WARNING);
@@ -61,10 +61,18 @@ export default class RecoveryDiffView extends DiffView {
 		// add the inner HTML element (the sync list) and keep a record
 		// of references to the elements
 		this.leftVList.push(
-			...this.appendRecoveryVersions(this.leftHistory[1], this.versions, true)
+			...this.appendRecoveryVersions(
+				this.leftHistory[1],
+				this.versions,
+				true
+			)
 		);
 		this.rightVList.push(
-			...this.appendRecoveryVersions(this.rightHistory[1], this.versions, false)
+			...this.appendRecoveryVersions(
+				this.rightHistory[1],
+				this.versions,
+				false
+			)
 		);
 	}
 
