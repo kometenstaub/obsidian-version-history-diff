@@ -153,7 +153,8 @@ export default abstract class DiffView extends Modal {
 		currentVList: vItem[],
 		currentActive: number,
 		left: boolean = false
-	): Promise<vItem> { // the exact return type depends on the type of currentVList, it is either vSyncItem or vRecoveryItem
+	): Promise<vItem> {
+		// the exact return type depends on the type of currentVList, it is either vSyncItem or vRecoveryItem
 		// formerly active left/right version
 		const currentSideOldVersion = currentVList[currentActive];
 		// get the HTML of the new version to set it active

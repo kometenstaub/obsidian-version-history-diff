@@ -17,6 +17,21 @@ declare module 'obsidian' {
 				};
 			};
 		};
+		plugins: {
+			plugins: {
+				'obsidian-git': {
+					gitManager: {
+						show(commitHash: string, filePath: string): Promise<string>;
+						log(filePath: string): Promise<DefaultLogFields[]>;
+						diff(
+							filePath: string,
+							commitHash1: string,
+							commitHash2: string
+						): Promise<string>;
+					};
+				};
+			};
+		};
 	}
 }
 
@@ -76,4 +91,14 @@ export interface fileRInstance {
 			};
 		};
 	};
+}
+
+export interface DefaultLogFields {
+	hash: string;
+	date: string;
+	message: string;
+	refs: string;
+	body: string;
+	author_name: string;
+	author_email: string;
 }

@@ -162,20 +162,20 @@ export default class SyncDiffView extends DiffView {
 			});
 			div.addEventListener('click', async () => {
 				if (left) {
-					const clickedEl = await this.generateVersionListener(
+					const clickedEl = (await this.generateVersionListener(
 						div,
 						this.leftVList,
 						this.leftActive,
 						left
-					) as vSyncItem;
+					)) as vSyncItem;
 					await this.getSyncContent(clickedEl, left);
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				} else {
-					const clickedEl = await this.generateVersionListener(
+					const clickedEl = (await this.generateVersionListener(
 						div,
 						this.rightVList,
 						this.rightActive
-					) as vSyncItem;
+					)) as vSyncItem;
 					await this.getSyncContent(clickedEl);
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				}

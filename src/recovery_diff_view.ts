@@ -98,20 +98,20 @@ export default class RecoveryDiffView extends DiffView {
 			});
 			div.addEventListener('click', async () => {
 				if (left) {
-					const clickedEl = await this.generateVersionListener(
+					const clickedEl = (await this.generateVersionListener(
 						div,
 						this.leftVList,
 						this.leftActive,
 						left
-					) as vRecoveryItem;
+					)) as vRecoveryItem;
 					this.leftContent = version.data;
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				} else {
-					const clickedEl = await this.generateVersionListener(
+					const clickedEl = (await this.generateVersionListener(
 						div,
 						this.rightVList,
 						this.rightActive
-					) as vRecoveryItem;
+					)) as vRecoveryItem;
 					this.rightContent = version.data;
 					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				}
