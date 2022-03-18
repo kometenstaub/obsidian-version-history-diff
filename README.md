@@ -36,16 +36,6 @@ If there is something that can be done on my end, feel free to reach out/make a 
 
 **Please open an issue before you make a PR.**
 
-> Before adding any new features, the code will need to be refactored.
-
-TO-DO:
-
-- [ ] create base type for `vList`/`rVList` and `recResult`/`gHResult`
-- [ ] implement abstract class which sync and recovery view can inherit and only define their special methods (also in preparation for the Git view)
-- [ ] update diff modals UI
-  - [ ] indicate which view they are in the `titleEl` 
-  - [ ] remove 1 file changed statement
-
 ## Credits
 
 All licenses and attributions can be found in the `esbuild.mjs` file for the code (and therefore in the `main.js` release), the CSS license is in `src/styles.css`. Should any license/attribution be missing, please let me know, and I will look into it.
