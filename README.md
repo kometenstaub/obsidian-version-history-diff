@@ -1,4 +1,4 @@
-# Version History Diff (for Sync and File Recovery Core plugins)
+# Version History Diff (for Sync and File Recovery Core plugins and Git)
 
 ## Note
 
@@ -10,14 +10,15 @@ At the moment, it doesn't properly work on mobile devices, probably because of a
 
 It can 
 
-1. display diffs of both the **Sync** 
-2. and the **File Recovery** version history for the currently active file, 
-3. open a selected version in a modal and 
-4. render it as either markdown or 
-5. plain text and 
-6. you can overwrite the file with this version as well. 
-7. There is a colour-blind mode
-8. It also adds a command to open Obsidian's native Sync history view, which is otherwise only accessible via the file menu.
+1. display diffs of the **Sync** 
+2. and the **File Recovery** 
+3. and Git version history for the currently active file, 
+4. open a selected version in a modal and 
+5. render it as either markdown or 
+6. plain text and 
+7. you can overwrite the file with this version as well. 
+8. There is a colour-blind mode
+9. It also adds a command to open Obsidian's native Sync history view, which is otherwise only accessible via the file menu.
 
 The reason for showing you the note before you revert to this state is that the diffs can be misleading.
 
