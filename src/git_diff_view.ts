@@ -77,34 +77,34 @@ export default class GitDiffView extends DiffView {
 				text: i !== 0 ? version.message : 'State on disk',
 				attr: {
 					'aria-label': version.body !== '' ? version.body : '',
-					'aria-label-position': 'top'
-				}
-			})
+					'aria-label-position': 'top',
+				},
+			});
 			const infoDiv = div.createDiv({
 				cls: ['u-small', 'u-muted'],
 			});
 			const date = infoDiv.createDiv({
-				text: version.date.split('T')[0]
+				text: version.date.split('T')[0],
 			});
 			const time = infoDiv.createDiv({
-				text: version.date.split('T')[1]
-			})
+				text: version.date.split('T')[1],
+			});
 			const author = infoDiv.createDiv({
 				text: version.author_name,
 			});
 			const hash = infoDiv.createDiv({
-				text: version.hash.slice(0, 7)
+				text: version.hash.slice(0, 7),
 				/*attr: {
 					'aria-label': 'Copy hash',
 					'aria-label-position': 'bottom'
 				}*/
 			});
 			let refs;
-			const refsText = version.refs
+			const refsText = version.refs;
 			if (refsText !== '') {
 				refs = infoDiv.createDiv({
-					text: refsText
-				})
+					text: refsText,
+				});
 			}
 
 			hash.style.cursor = 'copy';
