@@ -1,3 +1,4 @@
+import { html } from 'diff2html';
 import type { App, TFile } from 'obsidian';
 import DiffView from './abstract_diff_view';
 import { GIT_WARNING } from './constants';
@@ -19,7 +20,10 @@ export default class GitDiffView extends DiffView {
 	async onOpen() {
 		super.onOpen();
 		await this.getInitialVersions();
-		const diff = await this.getDiff();
+		const gitDiff = await this.app.plugins.plugins[
+			'obsidian-git'
+		].gitManager.git.diff([this.versions[1].hash, '--', this.file.path])
+		const diff = html(gitDiff)
 		this.makeHistoryLists(GIT_WARNING);
 		this.basicHtml(diff, 'Git Diff');
 		this.appendVersions();
@@ -27,11 +31,12 @@ export default class GitDiffView extends DiffView {
 	}
 
 	async getDiff(): Promise<string> {
-		return await this.app.plugins.plugins['obsidian-git'].gitManager.diff(
+		const gitDiff = await this.app.plugins.plugins['obsidian-git'].gitManager.diff(
 			this.file.path,
 			this.versions[this.leftActive].hash,
 			this.versions[this.rightActive].hash
 		);
+		return html(gitDiff)
 	}
 
 	async getInitialVersions(): Promise<void> {
@@ -47,7 +52,8 @@ export default class GitDiffView extends DiffView {
 			message: '',
 			refs: '',
 		});
-		this.versions.concat(gitVersions);
+		this.versions.push(...gitVersions);
+		console.log(this.versions)
 		const diskContent = await this.app.vault.read(this.file);
 		const latestCommit = await gitManager.show(
 			this.versions[1].hash,
@@ -55,16 +61,16 @@ export default class GitDiffView extends DiffView {
 		);
 		[this.leftContent, this.rightContent] = [latestCommit, diskContent];
 		// normally done by .makeMoreGeneralHTML, but needed in .getDiff because the diffs
-		// are generated differently
+		// are generated from the hashes which need the active file already
 		this.rightActive = 0;
 		this.leftActive = 1;
 	}
 
 	appendVersions(): void {
-		this.leftVList.concat(
+		this.leftVList.push(...
 			this.appendGitVersions(this.leftHistory[1], this.versions, true)
 		);
-		this.rightVList.concat(
+		this.rightVList.push(...
 			this.appendGitVersions(this.rightHistory[1], this.versions, false)
 		);
 	}
@@ -79,7 +85,23 @@ export default class GitDiffView extends DiffView {
 			const version = versions[i];
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
-				text: version.date,
+				text: version.message,
+			});
+			const infoDiv = div.createDiv({
+				cls: ['u-small', 'u-muted'],
+			});
+			const date = infoDiv.createDiv({
+				text: version.date
+			});
+			const author = infoDiv.createDiv({
+				text: version.author_name,
+			});
+			const hash = infoDiv.createDiv({
+				text: version.hash.slice(0, 7),
+			});
+			hash.style.cursor = 'copy';
+			hash.addEventListener('click', async () => {
+				await navigator.clipboard.writeText(version.hash);
 			});
 			versionList.push({
 				html: div,
@@ -97,8 +119,15 @@ export default class GitDiffView extends DiffView {
 					this.leftContent = await this.app.plugins.plugins[
 						'obsidian-git'
 					].gitManager.show(clickedEl.v.hash, this.file.path);
-					this.syncHistoryContentContainer.innerHTML =
-						await this.getDiff();
+					if (this.leftActive === 1 && this.rightActive === 0) {
+						const gitDiff = await this.app.plugins.plugins[
+							'obsidian-git'
+							].gitManager.git.diff([this.versions[1].hash, '--', this.file.path])
+						this.syncHistoryContentContainer.innerHTML = html(gitDiff)
+					} else {
+						this.syncHistoryContentContainer.innerHTML =
+							await this.getDiff();
+					}
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,

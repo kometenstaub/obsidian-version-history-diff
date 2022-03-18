@@ -31,6 +31,9 @@ declare module 'obsidian' {
 							commitHash1: string,
 							commitHash2: string
 						): Promise<string>;
+						git: {
+							diff(options: string[]): Promise<string>;
+						}
 					};
 				};
 			};

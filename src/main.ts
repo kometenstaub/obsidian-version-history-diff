@@ -4,6 +4,7 @@ import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';
 import SyncDiffView from './diff_view';
 import RecoveryDiffView from './recovery_diff_view';
+import GitDiffView from './git_diff_view';
 
 const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
 	//context: '3',
@@ -23,6 +24,10 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		newCommand.name = 'Version history diff: ' + commandName;
 		return newCommand;
 	};
+
+	openGitDiffModal(file: TFile): void {
+		new GitDiffView(this, this.app, file).open();
+	}
 
 	openRecoveryDiffModal(file: TFile): void {
 		new RecoveryDiffView(this, this.app, file).open();
@@ -79,12 +84,23 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		};
 	}
 
+	returnGitDiffCommand(): Command {
+		return {
+			id: 'open-git-diff-view',
+			name: 'Show Git Diff view for active file',
+			checkCallback: this.giveCallback(this.openGitDiffModal.bind(this))
+		};
+	}
+
 	async onload() {
 		console.log('loading Version History Diff plugin');
 
 		this.addCommand(this.returnOpenCommand());
 		this.addCommand(this.returnDiffCommand());
 		this.addCommand(this.returnRecoveryDiffCommand());
+		//if (this.app.plugins.plugins['obsidian-git']) {
+			this.addCommand(this.returnGitDiffCommand());
+		//}
 
 		await this.loadSettings();
 
