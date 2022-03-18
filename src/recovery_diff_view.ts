@@ -3,13 +3,11 @@ import { Plugin, App, TFile, Notice } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type { recResult, rVListItem } from './interfaces';
 import { FILE_REC_WARNING } from './constants';
+import DiffView from './abstract_diff_view';
 
-export default class RecoveryDiffView extends SyncDiffView {
-	//@ts-expect-error, this class uses them differently
+export default class RecoveryDiffView extends DiffView {
 	versions: recResult[];
-	//@ts-expect-error, tthis class uses them differently
 	leftVList: rVListItem[];
-	//@ts-expect-error, tthis class uses them differently
 	rightVList: rVListItem[];
 	constructor(plugin: OpenSyncHistoryPlugin, app: App, file: TFile) {
 		super(plugin, app, file);
@@ -19,15 +17,16 @@ export default class RecoveryDiffView extends SyncDiffView {
 	}
 
 	async onOpen() {
-		await this.getVersions();
+		super.onOpen()
+		await this.getInitialVersions();
 		const diff = this.getDiff();
 		this.makeHistoryLists(FILE_REC_WARNING);
 		this.basicHtml(diff);
-		this.appendRecVersions();
+		this.appendVersions();
 		this.makeMoreGeneralHtml();
 	}
 
-	async getVersions() {
+	async getInitialVersions() {
 		const fileRecovery = await this.app.internalPlugins.plugins[
 			'file-recovery'
 		].instance.db
@@ -58,7 +57,7 @@ export default class RecoveryDiffView extends SyncDiffView {
 		];
 	}
 
-	private appendRecVersions() {
+	appendVersions() {
 		// add the inner HTML element (the sync list) and keep a record
 		// of references to the elements
 		this.leftVList.push(
@@ -93,22 +92,20 @@ export default class RecoveryDiffView extends SyncDiffView {
 				if (left) {
 					const clickedEl = await this.generateVersionListener(
 						div,
-						//@ts-expect-error, the object has an html property, the other one is different
 						this.leftVList,
 						this.leftActive,
 						left
 					);
 					this.leftContent = version.data;
-					this.diffAndDiffHtml();
+					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				} else {
 					const clickedEl = await this.generateVersionListener(
 						div,
-						//@ts-expect-error, the object has an html property, the other one is different
 						this.rightVList,
 						this.rightActive
 					);
 					this.rightContent = version.data;
-					this.diffAndDiffHtml();
+					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				}
 			});
 		}

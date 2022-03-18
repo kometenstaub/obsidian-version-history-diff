@@ -5,6 +5,7 @@ import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 import FileModal from './file_modal';
 import { SYNC_WARNING } from './constants';
+import DiffView from './abstract_diff_view';
 
 function getSize(size: number): string {
 	if (size === 0) {
@@ -14,65 +15,31 @@ function getSize(size: number): string {
 	}
 }
 
-export default class SyncDiffView extends Modal {
-	plugin: OpenSyncHistoryPlugin;
-	app: App;
-	file: TFile;
-	leftVList: vListItem[]; // needs to be more general
-	rightVList: vListItem[]; // needs to be more general
-	leftActive: number;
-	rightActive: number;
-	rightContent: string;
-	leftContent: string;
-	syncHistoryContentContainer: HTMLElement;
-	versions: gHResult;
-	leftHistory: HTMLElement[];
-	rightHistory: HTMLElement[];
-	htmlConfig: Diff2HtmlConfig;
+export default class SyncDiffView extends DiffView {
+	versions: gHResult; // only thing that will be different
+	leftVList: vListItem[];
+	rightVList: vListItem[];
 
 	constructor(plugin: OpenSyncHistoryPlugin, app: App, file: TFile) {
-		super(app);
-		this.plugin = plugin;
-		this.app = app;
-		this.file = file;
-		this.modalEl.addClasses(['mod-sync-history', 'diff']);
-		this.leftVList = [];
-		this.rightVList = [];
-		this.rightActive = 0;
-		this.leftActive = 1;
-		this.rightContent = '';
-		this.leftContent = '';
+		super(plugin, app, file);
 		//@ts-expect-error, will be filled with the correct data later
 		this.versions = {};
-		//@ts-expect-error, will be filled with the correct data later
-		this.leftHistory = [null];
-		//@ts-expect-error, will be filled with the correct data later
-		this.rightHistory = [null];
-		this.htmlConfig = {
-			diffStyle: this.plugin.settings.diffStyle,
-			matchWordsThreshold: this.plugin.settings.matchWordsThreshold,
-		};
-		// @ts-ignore
-		this.syncHistoryContentContainer = this.contentEl.createDiv({
-			cls: ['sync-history-content-container', 'diff'],
-		});
-		if (this.plugin.settings.colorBlind) {
-			this.syncHistoryContentContainer.addClass('colorblind');
-		}
+		this.leftVList = [];
+		this.rightVList = [];
 	}
 
 	async onOpen() {
 		super.onOpen();
 		await this.getInitialVersions();
 		const diff = this.getDiff();
-		this.makeHistoryLists();
+		this.makeHistoryLists(SYNC_WARNING);
 		this.makeButtons();
 		this.basicHtml(diff);
-		this.appendSyncVersions();
+		this.appendVersions();
 		this.makeMoreGeneralHtml();
 	}
 
-	private async getInitialVersions() {
+	async getInitialVersions() {
 		// get first thirty versions
 		this.versions = await this.plugin.diff_utils.getVersions(this.file);
 		// for initial display, initialise variables
@@ -97,39 +64,20 @@ export default class SyncDiffView extends Modal {
 		];
 	}
 
-	private appendSyncVersions() {
+	appendVersions() {
 		// add the inner HTML element (the sync list) and keep a record
 		// of references to the elements
 		this.leftVList.push(
-			...this.appendVersions(this.leftHistory[1], this.versions, true)
+			...this.appendSyncVersions(this.leftHistory[1], this.versions, true)
 		);
 		this.rightVList.push(
-			...this.appendVersions(this.rightHistory[1], this.versions, false)
+			...this.appendSyncVersions(this.rightHistory[1], this.versions, false)
 		);
 	}
 
-	public basicHtml(diff: string) {
-		// set title
-		this.titleEl.setText(this.file.basename);
-		// add diff to container
-		this.syncHistoryContentContainer.innerHTML = diff;
 
-		// add history lists and diff to DOM
-		this.contentEl.appendChild(this.leftHistory[0]);
-		this.contentEl.appendChild(this.syncHistoryContentContainer);
-		this.contentEl.appendChild(this.rightHistory[0]);
-	}
 
-	public makeMoreGeneralHtml() {
-		// highlight initial two versions
-		this.rightVList[0].html.addClass('is-active');
-		this.leftVList[1].html.addClass('is-active');
-		// keep track of highlighted versions
-		this.rightActive = 0;
-		this.leftActive = 1;
-	}
-
-	private makeButtons() {
+	makeButtons() {
 		// create more button
 		const leftMoreButton = this.leftHistory[0].createDiv({
 			cls: ['sync-history-load-more-button', 'diff'],
@@ -152,14 +100,14 @@ export default class SyncDiffView extends Modal {
 
 				// append new versions to sync list
 				this.leftVList.push(
-					...this.appendVersions(
+					...this.appendSyncVersions(
 						this.leftHistory[1],
 						newVersions,
 						true
 					)
 				);
 				this.rightVList.push(
-					...this.appendVersions(
+					...this.appendSyncVersions(
 						this.rightHistory[1],
 						newVersions,
 						false
@@ -172,27 +120,8 @@ export default class SyncDiffView extends Modal {
 		}
 	}
 
-	public getDiff() {
-		// get diff
-		const uDiff = createTwoFilesPatch(
-			this.file.basename,
-			this.file.basename,
-			this.leftContent,
-			this.rightContent
-		);
 
-		// create HTML from diff
-		const diff = html(uDiff, this.htmlConfig);
-		return diff;
-	}
-
-	public makeHistoryLists(warning = SYNC_WARNING) {
-		// create both history lists
-		this.leftHistory = this.createHistory(this.contentEl, true, warning);
-		this.rightHistory = this.createHistory(this.contentEl);
-	}
-
-	private setMoreButtonStyle(
+	setMoreButtonStyle(
 		leftMoreButton: HTMLDivElement,
 		rightMoreButton: HTMLDivElement
 	) {
@@ -205,36 +134,8 @@ export default class SyncDiffView extends Modal {
 		}
 	}
 
-	public createHistory(
-		el: HTMLElement,
-		left: boolean = false,
-		warning = SYNC_WARNING
-	): HTMLElement[] {
-		const syncHistoryListContainer = el.createDiv({
-			cls: 'sync-history-list-container',
-		});
-		if (left) {
-			const showFile = syncHistoryListContainer.createEl('button', {
-				cls: 'mod-cta',
-				text: 'Render this version',
-			});
-			showFile.addEventListener('click', () => {
-				new FileModal(
-					this.plugin,
-					this.app,
-					this.leftContent,
-					this.file,
-					warning
-				).open();
-			});
-		}
-		const syncHistoryList = syncHistoryListContainer.createDiv({
-			cls: 'sync-history-list',
-		});
-		return [syncHistoryListContainer, syncHistoryList];
-	}
 
-	private appendVersions(
+	appendSyncVersions(
 		el: HTMLElement,
 		versions: gHResult,
 		left: boolean
@@ -263,7 +164,7 @@ export default class SyncDiffView extends Modal {
 						left
 					);
 					await this.getSyncContent(clickedEl, left);
-					this.diffAndDiffHtml();
+					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				} else {
 					const clickedEl = await this.generateVersionListener(
 						div,
@@ -271,63 +172,14 @@ export default class SyncDiffView extends Modal {
 						this.rightActive
 					);
 					await this.getSyncContent(clickedEl);
-					this.diffAndDiffHtml();
+					this.syncHistoryContentContainer.innerHTML = this.getDiff();
 				}
 			});
 		}
 		return versionList;
 	}
 
-	public async generateVersionListener(
-		div: HTMLDivElement,
-		currentVList: vListItem[], // needs to be more general, it only needs an html property
-		currentActive: number,
-		left: boolean = false
-	) {
-		// formerly active left/right version
-		const currentSideOldVersion = currentVList[currentActive];
-		// get the HTML of the new version to set it active
-		// @ts-ignore
-		const clickedEl: vListItem = currentVList.find((el) => {
-			if (el.html === div) {
-				return true;
-			}
-		});
-		const idx = currentVList.findIndex((el) => {
-			if (el.html === div) {
-				return true;
-			}
-		});
-		clickedEl.html.addClass('is-active');
-		if (left) {
-			this.leftActive = idx;
-		} else {
-			this.rightActive = idx;
-		}
-		// make old not active
-		currentSideOldVersion.html.classList.remove('is-active');
-		return clickedEl;
-	}
 
-	public diffAndDiffHtml() {
-		const uDiff = createTwoFilesPatch(
-			this.file.basename,
-			this.file.basename,
-			this.leftContent,
-			this.rightContent
-			/*
-			undefined,
-			undefined,
-			{
-				context: Number.parseInt(
-					this.plugin.settings.context
-				),
-			}
-			 */
-		);
-		const diff = html(uDiff, this.htmlConfig);
-		this.syncHistoryContentContainer.innerHTML = diff;
-	}
 
 	private async getSyncContent(clickedEl: vListItem, left: boolean = false) {
 		// get the content for the clicked HTML element

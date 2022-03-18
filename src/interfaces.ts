@@ -30,6 +30,7 @@ export interface syncInstance {
 	getContentForVersion(uid: number): Promise<ArrayBuffer>;
 }
 
+
 export interface gHResult {
 	items: item[];
 	more: boolean; // whether there are more versions
@@ -44,6 +45,14 @@ export interface item {
 	ts: number; // `new Date(ts)` outputs the date
 	uid: number; // unique UID for the whole vault
 }
+
+export interface recResult {
+	path: string;
+	ts: number;
+	data: string;
+}
+
+
 
 export interface vItem {
 	html: HTMLElement;
@@ -72,8 +81,4 @@ export interface fileRInstance {
 	};
 }
 
-export interface recResult {
-	path: string;
-	ts: number;
-	data: string;
-}
+
