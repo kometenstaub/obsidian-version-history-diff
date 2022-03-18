@@ -1,4 +1,4 @@
-import { Command, Plugin, TFile } from 'obsidian';
+import { Command, Notice, Plugin, TFile } from 'obsidian';
 import type { OpenSyncHistorySettings } from './interfaces';
 import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';
@@ -26,7 +26,11 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	};
 
 	openGitDiffModal(file: TFile): void {
-		new GitDiffView(this, this.app, file).open();
+		if (this.app.plugins.plugins['obsidian-git']) {
+			new GitDiffView(this, this.app, file).open();
+		} else {
+			new Notice('Obsidian Git is not enabled');
+		}
 	}
 
 	openRecoveryDiffModal(file: TFile): void {
