@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.3.1...1.4.0) (2022-03-18)
+
+
+### Features
+
+* add interface to Git API, formatting ([10a2ec9](https://github.com/kometenstaub/obsidian-version-history-diff/commit/10a2ec9ed142cf33485cd93bb8a1219f09a74d00))
+* initial version of git view ([9c3d718](https://github.com/kometenstaub/obsidian-version-history-diff/commit/9c3d718c384403741d9fd7ddf0930d4c0bc42849))
+* split date in date and time ([88e9663](https://github.com/kometenstaub/obsidian-version-history-diff/commit/88e96636bb1a6fa199a8e4ed8a7f2a4ce9a0d77b))
+* use git diff, doesn't play well with... ([fa0da96](https://github.com/kometenstaub/obsidian-version-history-diff/commit/fa0da9679f3d9bc3cd143972ab37bda0870423bd))
+* use jsdiff for generating diffs ([c38ec38](https://github.com/kometenstaub/obsidian-version-history-diff/commit/c38ec383a802997bbba943f3fc461b4689826976))
+
+
+### Bug Fixes
+
+* CSS, should have been fixed already ([f7f4030](https://github.com/kometenstaub/obsidian-version-history-diff/commit/f7f4030a911d1ffed50158e3ffc06a14f828e94f))
+
 ### [1.3.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.3.0...1.3.1) (2022-03-18)
 
 
