@@ -39,7 +39,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 }
 
 .diff {
-
 	.d2h-d-none {
 		display: none;
 	}
@@ -49,7 +48,8 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	.d2h-file-header.d2h-file-header {
 		background-color: var(--background-secondary);
 		border-bottom: 1px solid var(--background-modifier-border);
-		font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+		font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial,
+			sans-serif;
 		height: 35px;
 		padding: 5px 10px;
 	}
@@ -395,7 +395,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	}
 }
 
-
 /* CSS settings needed for modal */
 
 .modal.mod-sync-history.diff {
@@ -407,57 +406,48 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	}
 }
 
-
-
-
-
 /*Color-Blind Mode*/
 
-
 .theme-dark {
-
-	.colorblind  {
-
+	.colorblind {
 		.d2h-code-line del {
 			background: repeating-linear-gradient(
-											-45deg,
-											var(--background-primary),
-											var(--sync-delete-hl) 2px,
-											var(--sync-delete-hl) 2px,
-											var(--sync-delete-hl) 19px
+				-45deg,
+				var(--background-primary),
+				var(--sync-delete-hl) 2px,
+				var(--sync-delete-hl) 2px,
+				var(--sync-delete-hl) 19px
 			);
 		}
 
 		.d2h-ins:not(.d2h-code-linenumber) {
 			background-image: radial-gradient(
-											var(--sync-insert-hl) 2px,
-											transparent 1px
-			),
-			radial-gradient(var(--sync-insert-hl) 2px, transparent 1px);
+					var(--sync-insert-hl) 2px,
+					transparent 1px
+				),
+				radial-gradient(var(--sync-insert-hl) 2px, transparent 1px);
 		}
 	}
-
 }
 
 .colorblind {
-
 	.d2h-code-line del,
 	.d2h-del:not(.d2h-change):not(.d2h-code-linenumber) {
 		background: repeating-linear-gradient(
-										-45deg,
-										transparent,
-										var(--sync-delete-bg) 2px,
-										var(--sync-delete-bg) 2px,
-										var(--sync-delete-bg) 19px
+			-45deg,
+			transparent,
+			var(--sync-delete-bg) 2px,
+			var(--sync-delete-bg) 2px,
+			var(--sync-delete-bg) 19px
 		);
 	}
 
 	.d2h-ins:not(.d2h-code-linenumber) {
 		background-image: radial-gradient(
-										var(--background-primary) 2px,
-										transparent 1px
-		),
-		radial-gradient(var(--background-primary) 2px, transparent 1px);
+				var(--background-primary) 2px,
+				transparent 1px
+			),
+			radial-gradient(var(--background-primary) 2px, transparent 1px);
 		background-size: 40px 40px;
 		background-position: 0 0, 25px 28px;
 	}
@@ -468,15 +458,11 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		border-color: var(--sync-insert);
 		border-width: 1px 2px;
 	}
-
 }
-
-
 
 /* fix modal height */
 
 .version-display {
-
 	.modal {
 		max-height: 90vh;
 
@@ -491,7 +477,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			margin-top: 1rem;
 			position: inherit;
 		}
-
 	}
 
 	/*
@@ -535,6 +520,4 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			min-width: 52vw;
 		}
 	}
-
 }
-
