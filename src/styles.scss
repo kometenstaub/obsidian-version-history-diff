@@ -153,7 +153,8 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		width: 50%;
 	}
 	.d2h-code-line {
-		padding: 0 8em;
+		padding-left: 6.5rem;
+		padding-right: 1.5rem;
 	}
 	.d2h-code-line,
 	.d2h-code-side-line {
@@ -166,7 +167,9 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		width: 100%;
 	}
 	.d2h-code-side-line {
-		padding: 0 4.5em;
+		/* needed to be changed */
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
 	}
 	.d2h-code-line-ctn {
 		word-wrap: normal;
@@ -178,8 +181,9 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		-ms-user-select: text;
 		user-select: text;
 		vertical-align: middle;
-		white-space: pre;
 		width: 100%;
+		/* only works for line-by-line */
+		white-space: pre-wrap;
 	}
 	.d2h-code-line del,
 	.d2h-code-side-line del {
@@ -247,13 +251,14 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		box-sizing: border-box;
 		color: var(--text-faint);
 		cursor: pointer;
-		display: inline-block;
 		overflow: hidden;
 		padding: 0 0.5em;
-		position: absolute;
 		text-align: right;
 		text-overflow: ellipsis;
 		width: 4em;
+		/* needed to be changed */
+		display: table-cell;
+		position: relative;
 	}
 	.d2h-code-side-linenumber:after {
 		content: '\200b';
@@ -377,6 +382,17 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	.d2h-moved-tag {
 		border: 1px solid var(--sync-move);
 	}
+
+	/* needed for line-by-line*/
+
+	.d2h-diff-tbody {
+		position: relative;
+	}
+
+	.sync-history-content-container {
+		/*max-width: 11vw;*/
+		padding: 0.5rem;
+	}
 }
 
 
@@ -391,32 +407,9 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	}
 }
 
-.sync-history-content-container.diff {
-	max-width: 11vw;
-	padding: 0.5rem;
-}
 
-.d2h-code-side-linenumber {
-	display: table-cell;
-	position: relative;
-}
 
-.d2h-code-side-line {
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-}
 
-/* needed for line-by-line*/
-
-.d2h-diff-tbody {
-	position: relative;
-}
-
-/* only works for line-by-line */
-
-span.d2h-code-line-ctn {
-	white-space: pre-wrap;
-}
 
 /*Color-Blind Mode*/
 
