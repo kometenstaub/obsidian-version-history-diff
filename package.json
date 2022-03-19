@@ -1,7 +1,7 @@
 {
 	"name": "sync-version-history",
 	"version": "1.6.0",
-	"description": "Add a hotkey to access Sync version history.",
+	"description": "Display diffs of the version history from the core Sync and File Recovery plugins and Git.",
 	"main": "src/main.ts",
 	"scripts": {
 		"dev": "cross-env BUILD=dev node esbuild.mjs",
@@ -30,7 +30,7 @@
 				"section": "Bug Fixes"
 			}
 		],
-		"releaseCommitMessageFormat": "Sync version history: {{currentTag}}"
+		"releaseCommitMessageFormat": "Version history diff: {{currentTag}}"
 	},
 	"keywords": [],
 	"author": "kometenstaub",
