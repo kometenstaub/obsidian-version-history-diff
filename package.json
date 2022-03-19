@@ -1,6 +1,6 @@
 {
 	"name": "sync-version-history",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"description": "Add a hotkey to access Sync version history.",
 	"main": "src/main.ts",
 	"scripts": {
@@ -50,7 +50,7 @@
 		"obsidian": "^0.13.30",
 		"prettier": "2.5.0",
 		"process": "^0.11.10",
-	  	"sass": "^1.49.9",
+		"sass": "^1.49.9",
 		"standard-version": "^9.3.1",
 		"ts-jest": "^27.0.7",
 		"tslib": "^2.2.0",

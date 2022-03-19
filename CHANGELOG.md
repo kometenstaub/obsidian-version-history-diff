@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.5.0...1.6.0) (2022-03-19)
+
+
+### Features
+
+* add .diff class to top element ([c206a2c](https://github.com/kometenstaub/obsidian-version-history-diff/commit/c206a2c9c74446986a4357f4868e9fbd77b62fa9))
+* improve styling ([7d39f72](https://github.com/kometenstaub/obsidian-version-history-diff/commit/7d39f72241b7380d1ef7e6d50ccd824896880562))
+
 ## [1.5.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.4.1...1.5.0) (2022-03-18)
 
 
