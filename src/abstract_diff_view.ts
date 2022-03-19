@@ -41,6 +41,7 @@ export default abstract class DiffView extends Modal {
 			diffStyle: this.plugin.settings.diffStyle,
 			matchWordsThreshold: this.plugin.settings.matchWordsThreshold,
 		};
+		this.containerEl.addClass('diff')
 		// @ts-ignore
 		this.syncHistoryContentContainer = this.contentEl.createDiv({
 			cls: ['sync-history-content-container', 'diff'],
