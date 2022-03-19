@@ -50,6 +50,7 @@
 		"obsidian": "^0.13.30",
 		"prettier": "2.5.0",
 		"process": "^0.11.10",
+	  	"sass": "^1.49.9",
 		"standard-version": "^9.3.1",
 		"ts-jest": "^27.0.7",
 		"tslib": "^2.2.0",
@@ -57,7 +58,6 @@
 	},
 	"dependencies": {
 		"diff": "^5.0.0",
-		"diff2html": "^3.4.16",
-		"sass": "^1.49.9"
+		"diff2html": "^3.4.16"
 	}
 }
