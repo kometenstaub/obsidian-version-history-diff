@@ -91,9 +91,11 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		width: 100%;
 	}
 	.d2h-file-name {
-		overflow-x: hidden;
+		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		color: var(--text-normal);
+		font-size: var(--h5);
 	}
 	.d2h-file-wrapper {
 		border: 1px solid var(--background-secondary-alt);
