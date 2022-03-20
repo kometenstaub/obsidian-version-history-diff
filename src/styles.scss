@@ -402,6 +402,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	}
 
 	.sync-history-list-container {
+		flex-shrink: unset;
 
 		button.mod-cta {
 			margin-left: 0.5em;
