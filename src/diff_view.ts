@@ -146,17 +146,17 @@ export default class SyncDiffView extends DiffView {
 		left: boolean
 	): vSyncItem[] {
 		const versionList: vSyncItem[] = [];
-		for (let i = 0; i <= versions.items.length -1; i++) {
-			let version = versions.items[i]
+		for (let i = 0; i <= versions.items.length - 1; i++) {
+			let version = versions.items[i];
 			const date = new Date(version.ts);
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
 				text: date.toDateString() + ', ' + date.toLocaleTimeString(),
 				attr: {
-					id: left? this.ids.left : this.ids.right
-				}
+					id: left ? this.ids.left : this.ids.right,
+				},
 			});
-			left ? this.ids.left += 1 : this.ids.right += 1;
+			left ? (this.ids.left += 1) : (this.ids.right += 1);
 			const infoDiv = div.createDiv({
 				cls: ['u-small', 'u-muted'],
 				text: getSize(version.size) + ' KB [' + version.device + ']',

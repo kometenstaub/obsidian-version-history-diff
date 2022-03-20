@@ -20,7 +20,7 @@ export default abstract class DiffView extends Modal {
 	leftHistory: HTMLElement[];
 	rightHistory: HTMLElement[];
 	htmlConfig: Diff2HtmlConfig;
-	ids: {left: number, right: number};
+	ids: { left: number; right: number };
 
 	constructor(plugin: OpenSyncHistoryPlugin, app: App, file: TFile) {
 		super(app);
@@ -34,7 +34,7 @@ export default abstract class DiffView extends Modal {
 		this.leftActive = 1;
 		this.rightContent = '';
 		this.leftContent = '';
-		this.ids = {left: 0, right: 0};
+		this.ids = { left: 0, right: 0 };
 		//@ts-expect-error, will be filled with the correct data later
 		this.leftHistory = [null];
 		//@ts-expect-error, will be filled with the correct data later
@@ -162,8 +162,8 @@ export default abstract class DiffView extends Modal {
 		// formerly active left/right version
 		const currentSideOldVersion = currentVList[currentActive];
 		// get the HTML of the new version to set it active
-		const idx = Number(div.id)
-		const clickedEl: vItem = currentVList[idx]
+		const idx = Number(div.id);
+		const clickedEl: vItem = currentVList[idx];
 		div.addClass('is-active');
 		if (left) {
 			this.leftActive = idx;

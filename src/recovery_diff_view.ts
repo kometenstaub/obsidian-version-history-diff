@@ -91,10 +91,10 @@ export default class RecoveryDiffView extends DiffView {
 			let div = el.createDiv({
 				cls: 'sync-history-list-item',
 				attr: {
-					id: left? this.ids.left : this.ids.right
-				}
+					id: left ? this.ids.left : this.ids.right,
+				},
 			});
-			left ? this.ids.left += 1 : this.ids.right += 1;
+			left ? (this.ids.left += 1) : (this.ids.right += 1);
 			if (i === 0) {
 				div.createDiv({ text: 'State on disk' });
 				div.createDiv({ text: date.toLocaleTimeString() });
