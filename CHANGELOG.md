@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.2](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.7.1...1.7.2) (2022-03-20)
+
+
+### Bug Fixes
+
+* CSS for iOS ([3839966](https://github.com/kometenstaub/obsidian-version-history-diff/commit/38399669e7def76554144e3dd4473f531f7348fe))
+* only show Git command on desktop ([5cfc98c](https://github.com/kometenstaub/obsidian-version-history-diff/commit/5cfc98c44cf6b4f3fa42277f2ee892296dc88d58))
+
 ### [1.7.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.7.0...1.7.1) (2022-03-20)
 
 
