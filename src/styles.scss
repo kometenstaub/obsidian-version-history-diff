@@ -73,11 +73,26 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			background-color: var(--background-primary-alt);
 		}
 
+		}
 		.sync-history-content-container.diff {
 			width: 70vw !important;
+
 		}
 	}
-}
+
+/* needed for iOS */
+.is-ios.is-mobile {
+		.diff {
+			.sync-history-content-container.diff {
+				.d2h-code-linenumber {
+					position: relative;
+				}
+				.d2h-code-line {
+					padding-left: 0.5em;
+				}
+			}
+		}
+	}
 
 .diff {
 	.d2h-d-none {
