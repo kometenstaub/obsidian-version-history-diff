@@ -72,7 +72,11 @@ export default class GitDiffView extends DiffView {
 			const version = versions[i];
 			const div = el.createDiv({
 				cls: 'sync-history-list-item',
+				attr: {
+					id: left? this.ids.left : this.ids.right
+				}
 			});
+			left ? this.ids.left += 1 : this.ids.right += 1;
 			const message = div.createDiv({
 				text: i !== 0 ? version.message : 'State on disk',
 				attr: {
