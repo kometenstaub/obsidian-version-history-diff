@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.6.0...1.7.0) (2022-03-20)
+
+
+### Features
+
+* border radius, less top padding for items ([528145e](https://github.com/kometenstaub/obsidian-version-history-diff/commit/528145ed2617ae0c9eec397521126c497d090eab))
+* button styling ([3c17aa9](https://github.com/kometenstaub/obsidian-version-history-diff/commit/3c17aa9e26c9d6be47e763fce50ef54678216111))
+* h5 font size for file name ([3211330](https://github.com/kometenstaub/obsidian-version-history-diff/commit/321133021c7515c4a353919570354b5da39918c5))
+* line numbers less wide ([35e62ee](https://github.com/kometenstaub/obsidian-version-history-diff/commit/35e62ee745cf50fe5659be6396ab1bb4ea021b57))
+* mobile support; fix: css in general ([93258d4](https://github.com/kometenstaub/obsidian-version-history-diff/commit/93258d4599eb8302e9aae2c5bd6aed402f61549d))
+* version list more space-efficient ([d545c14](https://github.com/kometenstaub/obsidian-version-history-diff/commit/d545c145c4cb5c4818573c21e58312bc333375bf))
+
+
+### Bug Fixes
+
+* button selector ([86ac966](https://github.com/kometenstaub/obsidian-version-history-diff/commit/86ac96617a1089b7239bf01a06d2848fb1512895))
+* move CSS, change left padding of diff ([70fdf22](https://github.com/kometenstaub/obsidian-version-history-diff/commit/70fdf2237ac485260937eac73c71c580dd1ca302))
+* plain textarea min-width ([249796f](https://github.com/kometenstaub/obsidian-version-history-diff/commit/249796fd7027b2ed2957d395e8aa6dfad536389c))
+
 ## [1.6.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.5.0...1.6.0) (2022-03-19)
 
 

@@ -1,7 +1,7 @@
 {
 	"id": "sync-version-history",
 	"name": "Version History Diff (Sync & File Recovery)",
-	"version": "1.6.0",
+	"version": "1.7.0",
 	"minAppVersion": "0.13.30",
 	"description": "Diff the version history of the core Sync and File Recovery plugins. Adds a command to open the core Sync version history as well.",
 	"author": "kometenstaub",
