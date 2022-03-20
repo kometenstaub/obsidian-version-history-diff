@@ -44,6 +44,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	}
 	.d2h-wrapper {
 		text-align: left;
+		border-radius: 0.25em;
 	}
 	.d2h-file-header.d2h-file-header {
 		background-color: var(--background-secondary);
@@ -397,12 +398,21 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	.sync-history-content-container {
 		/*max-width: 11vw;*/
 		padding: 0.5rem;
+		border-radius: 0.25em;
 	}
 
 	.sync-history-list-container {
 
 		button.mod-cta {
 			margin-left: 0.5em;
+		}
+
+		.sync-history-list {
+			padding-top: 0.5em;
+
+			.sync-history-list-item {
+				border-radius: 0.25em;
+			}
 		}
 	}
 }
