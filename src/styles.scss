@@ -536,22 +536,13 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			height: 67vh;
 			margin-top: 1rem;
 			position: inherit;
+			min-width: 100%;
 		}
 	}
 
-	/*
-	@media only screen and (max-width: 700px) {
-		textarea.plain-text-area {
-			min-width: 60vw;
-		}
-	}
-	*/
 	@media only screen and (max-width: 1000px) {
 		.modal {
 			min-width: 90vw;
-		}
-		textarea.plain-text-area {
-			min-width: 77vw;
 		}
 	}
 
@@ -559,16 +550,10 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		.modal {
 			max-width: 80vw;
 		}
-		textarea.plain-text-area {
-			min-width: 67vw;
-		}
 	}
 	@media only screen and (min-width: 1200px) {
 		.modal {
 			max-width: 70vw;
-		}
-		textarea.plain-text-area {
-			min-width: 57vw;
 		}
 	}
 
@@ -576,8 +561,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		.modal {
 			max-width: 65vw;
 		}
-		textarea.plain-text-area {
-			min-width: 52vw;
-		}
+
 	}
 }
