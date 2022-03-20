@@ -155,7 +155,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		width: 50%;
 	}
 	.d2h-code-line {
-		padding-left: 6.5em;
+		padding-left: 6em;
 		padding-right: 1.5em;
 	}
 	.d2h-code-line,
@@ -398,6 +398,13 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		/*max-width: 11vw;*/
 		padding: 0.5rem;
 	}
+
+	.sync-history-list-container {
+
+		.button.mod-cta {
+			margin-left: 0.5em;
+		}
+	}
 }
 
 /* CSS settings needed for modal */
@@ -464,12 +471,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		border-width: 1px 2px;
 	}
 
-	.sync-history-list-container {
-
-		.button.mod-cta {
-			margin-left: 0.5em;
-		}
-	}
 
 }
 
