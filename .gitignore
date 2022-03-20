@@ -17,3 +17,5 @@ build/
 
 *.zip
 .vscode/
+
+resources/

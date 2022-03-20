@@ -38,6 +38,63 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	--sync-move: #3572b0;
 }
 
+/*
+.is-mobile .modal.mod-sync-history .modal-content > * {
+	all: unset;
+}
+*/
+
+
+.is-mobile {
+
+	.modal.mod-sync-history.diff .modal-content > * {
+		width: unset;
+		height: unset;
+		position: unset;
+		max-height: 100%;
+		/*
+		all: unset;
+		*/
+		/*max-width: 70vw;*/
+	}
+
+	.diff {
+		/*
+		.sync-history-list-container {
+			width: 20%;
+		}
+		.sync-history-content-container {
+			width: 60%;
+		}
+		*/
+		.modal-content {
+			flex-direction: unset;
+		}
+		.sync-history-list-container {
+			flex-direction: column;
+
+			button.mod-cta {
+				margin-left: -0.25em;
+			}
+	}
+		.sync-history-list-item.is-active {
+			background-color: var(--background-primary-alt);
+		}
+
+		.sync-history-content-container.diff {
+			width: 70vw !important;
+		}
+
+		/*
+		.d2h-file-wrapper {
+			max-height: 75vh !important;
+		}
+		*/
+
+
+	}
+}
+
 .diff {
 	.d2h-d-none {
 		display: none;
@@ -45,6 +102,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	.d2h-wrapper {
 		text-align: left;
 		border-radius: 0.25em;
+		overflow: auto;
 	}
 	.d2h-file-header.d2h-file-header {
 		background-color: var(--background-secondary);
@@ -102,9 +160,12 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		border: 1px solid var(--background-secondary-alt);
 		border-radius: 3px;
 		margin-bottom: 1em;
+		/*
 		overflow: auto;
-		max-height: 67vh;
+		*/
+		max-height: 100%;
 	}
+	/*
 	@media only screen and (max-height: 500px) {
 		.d2h-file-wrapper {
 			max-height: 60vh;
@@ -115,6 +176,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			max-height: 65vh;
 		}
 	}
+	*/
 	.d2h-file-collapse {
 		-webkit-box-pack: end;
 		-ms-flex-pack: end;
@@ -144,9 +206,11 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	.d2h-files-diff {
 		width: 100%;
 	}
+	/*
 	.d2h-file-diff {
-		overflow-y: hidden;
+		overflow-y: scroll;
 	}
+	*/
 	.d2h-file-side-diff {
 		display: inline-block;
 		margin-bottom: -8px;
