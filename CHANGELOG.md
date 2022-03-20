@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.7.0...1.7.1) (2022-03-20)
+
+
+### Performance
+
+* use ID for getting index ([5a82984](https://github.com/kometenstaub/obsidian-version-history-diff/commit/5a829845bf67722c857fc1bad5518bf19a0b0f5b))
+
 ## [1.7.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/1.6.0...1.7.0) (2022-03-20)
 
 
