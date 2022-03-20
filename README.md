@@ -4,8 +4,6 @@
 
 This plugin uses private APIs, so it may break at any time. Use at your own risk.
 
-At the moment, it doesn't properly work on mobile devices, probably because of a CSS issue.
-
 ## Features
 
 It can 
@@ -29,10 +27,8 @@ There are two columns. The chosen version on the right side should be newer than
 
 I personally find the file recovery diffs better as they are less frequent, but the Sync diffs might be helpful as well.
 
-For Sync, it only displays the Sync versions. For File Recovery, it also shows the current state of the file from disk as latest version (it displays the current time).
+For *Sync*, it only displays the Sync versions. For *File Recovery* and *Git*, it also shows the current state of the file from disk as latest version.
 
-Themes should mostly work. For one theme there was an issue which was similar to the issue the plugin has on mobile devices.
-If there is something that can be done on my end, feel free to reach out/make a PR.
 
 ## Contributing
 
