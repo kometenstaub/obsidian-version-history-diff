@@ -463,6 +463,14 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		border-color: var(--sync-insert);
 		border-width: 1px 2px;
 	}
+
+	.sync-history-list-container {
+
+		.button.mod-cta {
+			margin-left: 0.5em;
+		}
+	}
+
 }
 
 /* fix modal height */
