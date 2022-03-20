@@ -39,7 +39,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 }
 
 .is-mobile {
-
 	.modal.mod-sync-history.diff .modal-content > * {
 		width: unset;
 		height: unset;
@@ -69,7 +68,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			button.mod-cta {
 				margin-left: -0.25em;
 			}
-	}
+		}
 		.sync-history-list-item.is-active {
 			background-color: var(--background-primary-alt);
 		}
@@ -77,7 +76,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		.sync-history-content-container.diff {
 			width: 70vw !important;
 		}
-
 	}
 }
 
@@ -516,8 +514,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		border-color: var(--sync-insert);
 		border-width: 1px 2px;
 	}
-
-
 }
 
 /* fix modal height */
@@ -561,6 +557,5 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		.modal {
 			max-width: 65vw;
 		}
-
 	}
 }
