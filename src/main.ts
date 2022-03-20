@@ -1,4 +1,4 @@
-import { Command, Notice, Plugin, TFile } from 'obsidian';
+import { Command, Notice, Platform, Plugin, TFile } from 'obsidian';
 import type { OpenSyncHistorySettings } from './interfaces';
 import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';
@@ -103,7 +103,9 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		this.addCommand(this.returnDiffCommand());
 		this.addCommand(this.returnRecoveryDiffCommand());
 		//if (this.app.plugins.plugins['obsidian-git']) {
-		this.addCommand(this.returnGitDiffCommand());
+		if (Platform.isDesktopApp) {
+			this.addCommand(this.returnGitDiffCommand());
+		}
 		//}
 
 		await this.loadSettings();
