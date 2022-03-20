@@ -38,13 +38,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	--sync-move: #3572b0;
 }
 
-/*
-.is-mobile .modal.mod-sync-history .modal-content > * {
-	all: unset;
-}
-*/
-
-
 .is-mobile {
 
 	.modal.mod-sync-history.diff .modal-content > * {
@@ -84,13 +77,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		.sync-history-content-container.diff {
 			width: 70vw !important;
 		}
-
-		/*
-		.d2h-file-wrapper {
-			max-height: 75vh !important;
-		}
-		*/
-
 
 	}
 }
@@ -160,23 +146,8 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		border: 1px solid var(--background-secondary-alt);
 		border-radius: 3px;
 		margin-bottom: 1em;
-		/*
-		overflow: auto;
-		*/
 		max-height: 100%;
 	}
-	/*
-	@media only screen and (max-height: 500px) {
-		.d2h-file-wrapper {
-			max-height: 60vh;
-		}
-	}
-	@media only screen and (max-height: 750px) {
-		.d2h-file-wrapper {
-			max-height: 65vh;
-		}
-	}
-	*/
 	.d2h-file-collapse {
 		-webkit-box-pack: end;
 		-ms-flex-pack: end;
