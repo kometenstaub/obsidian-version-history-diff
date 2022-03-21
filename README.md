@@ -36,7 +36,7 @@ For *Sync*, it only displays the Sync versions. For *File Recovery* and *Git*, i
 
 ## Credits
 
-All licenses and attributions can be found in the `esbuild.mjs` file for the code (and therefore in the `main.js` release), the CSS license is in `src/styles.css`. Should any license/attribution be missing, please let me know, and I will look into it.
+All licenses and attributions can be found in the `esbuild.mjs` file for the code (and therefore in the `main.js` release), the CSS license is in `src/styles.scss`. Should any license/attribution be missing, please let me know, and I will look into it.
 
 
 Special thanks to @SlRvb for adapting the CSS to Obsidian and making the colour-blind mode and to @Vinzent03 for creating the necessary APIs in the Obsidian Git plugin.
