@@ -23,17 +23,17 @@ The reason for showing you the note before you revert to this state is that the 
 
 ### Sync Diff example
 
-![Sync Diff changes modal](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/sync-diff.png)
+![Sync Diff changes modal](./demo/sync-diff.png)
 
-![Sync Diff rendered version](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/sync-diff-2.png)
+![Sync Diff rendered version](./demo/sync-diff-2.png)
 
-![Sync Diff plain text version](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/sync-diff-3.png)
+![Sync Diff plain text version](./demo/sync-diff-3.png)
 
 ### Git Diff example with colour-blind mode
 
-![Git Diff dark mode colourblind mode deletion](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/git-diff-colorblind.png)
+![Git Diff dark mode colourblind mode deletion](./demo/git-diff-colorblind.png)
 
-![Git Diff light mode colourblind mode addition](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/git-diff-colorblind-light.png)
+![Git Diff light mode colourblind mode addition](./demo/git-diff-colorblind-light.png)
 
 ## Usage
 
