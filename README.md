@@ -21,6 +21,20 @@ It can
 
 The reason for showing you the note before you revert to this state is that the diffs can be misleading.
 
+### Sync Diff example
+
+![Sync Diff changes modal](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/sync-diff.png)
+
+![Sync Diff rendered version](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/sync-diff-2.png)
+
+![Sync Diff plain text version](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/sync-diff-3.png)
+
+### Git Diff example with colour-blind mode
+
+![Git Diff dark mode colourblind mode deletion](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/git-diff-colorblind.png)
+
+![Git Diff light mode colourblind mode addition](https://github.com/kometenstaub/obsidian-version-history-diff/blob/main/demo/git-diff-colorblind-light.png)
+
 ## Usage
 
 There are two columns. The chosen version on the right side should be newer than the one on the left side for the diffs to make sense.
