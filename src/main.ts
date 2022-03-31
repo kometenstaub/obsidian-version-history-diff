@@ -51,7 +51,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	): Command['checkCallback'] {
 		return (checking: boolean): boolean => {
 			const tfile: TFile | null = this.app.workspace.getActiveFile();
-			if (tfile !== null) {
+			if (tfile) {
 				if (!checking) {
 					fn(tfile);
 				}
