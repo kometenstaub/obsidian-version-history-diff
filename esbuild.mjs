@@ -397,7 +397,7 @@ const isProd = process.env.BUILD === 'production';
 (async () => {
 	try {
 		await esbuild.build({
-			entryPoints: ['src/main.ts'],
+			entryPoints: ['src/main.ts', 'src/styles.scss'],
 			bundle: true,
 			watch: !isProd,
 			//platform: 'browser',
@@ -412,8 +412,9 @@ const isProd = process.env.BUILD === 'production';
 			define: {
 				'process.env.NODE_ENV': JSON.stringify(process.env.BUILD),
 			},
-			outfile: 'build/main.js',
+			outdir: 'build/',
 			plugins: [copyManifest, copyMinifiedCSS],
+			loader: { '.scss': 'text' }
 		});
 	} catch (err) {
 		console.error(err);
