@@ -103,6 +103,9 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		display: -ms-flexbox;
 		display: flex;
 	}
+	.d2h-file-header {
+		display: none;
+	}
 	.d2h-file-stats {
 		font-size: 14px;
 		margin-left: auto;
@@ -176,11 +179,12 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	.d2h-files-diff {
 		width: 100%;
 	}
-	/*
 	.d2h-file-diff {
+		/*
 		overflow-y: scroll;
+		*/
+		border-radius: 5px;
 	}
-	*/
 	.d2h-file-side-diff {
 		display: inline-block;
 		margin-bottom: -8px;
@@ -346,15 +350,15 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		background-color: var(--sync-insert-bg);
 	}
 	.d2h-file-list-wrapper {
-		/*margin-bottom: 10px;*/
-		display: none;
-	}
-	.d2h-file-list-wrapper a {
-		color: var(--text-accent);
-		text-decoration: none;
-	}
-	.d2h-file-list-wrapper a:visited {
-		color: var(--text-accent);
+		a {
+			text-decoration: none;
+			cursor: default;
+			-webkit-user-drag: none;
+		}
+
+		svg {
+			display: none;
+		}
 	}
 	.d2h-file-list-header {
 		text-align: left;
@@ -369,7 +373,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		text-align: left;
 	}
 	.d2h-file-list {
-		display: none;
 	}
 	.d2h-file-list > li {
 		border-bottom: 1px solid var(--background-modifier-border);
