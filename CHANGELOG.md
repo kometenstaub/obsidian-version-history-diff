@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.5](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.4...2.0.5) (2022-04-02)
+
+
+### Bug Fixes
+
+* close modal when no commits for file ([4fed2eb](https://github.com/kometenstaub/obsidian-version-history-diff/commit/4fed2eb58d180110432adfad8954e7c52b192179))
+
 ### [2.0.4](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.3...2.0.4) (2022-03-31)
 
 
