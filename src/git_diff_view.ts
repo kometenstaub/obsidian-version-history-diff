@@ -1,5 +1,5 @@
 import { html } from 'diff2html';
-import type { App, TFile } from 'obsidian';
+import { App, Notice, TFile } from 'obsidian';
 import DiffView from './abstract_diff_view';
 import { GIT_WARNING } from './constants';
 import type { DefaultLogFields, vGitItem } from './interfaces';
@@ -19,7 +19,10 @@ export default class GitDiffView extends DiffView {
 
 	async onOpen() {
 		super.onOpen();
-		await this.getInitialVersions();
+		const versions = await this.getInitialVersions();
+		if (versions === false) {
+			return;
+		}
 		const diff = this.getDiff();
 		this.makeHistoryLists(GIT_WARNING);
 		this.basicHtml(diff, 'Git Diff');
@@ -27,9 +30,14 @@ export default class GitDiffView extends DiffView {
 		this.makeMoreGeneralHtml();
 	}
 
-	async getInitialVersions(): Promise<void> {
+	async getInitialVersions(): Promise<void | boolean> {
 		const { gitManager } = this.app.plugins.plugins['obsidian-git'];
 		const gitVersions = await gitManager.log(this.file.path);
+		if (gitVersions.length === 0) {
+			this.close();
+			new Notice('There are no commits for this file.');
+			return false;
+		}
 		// version on disk
 		this.versions.push({
 			author_email: '',

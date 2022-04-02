@@ -77,7 +77,7 @@ export default abstract class DiffView extends Modal {
 		// this.makeMoreGeneralHtml();
 	}
 
-	abstract getInitialVersions(): Promise<void>;
+	abstract getInitialVersions(): Promise<void | boolean>;
 
 	abstract appendVersions(): void;
 
