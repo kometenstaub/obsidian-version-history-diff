@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.6](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.5...2.0.6) (2022-08-13)
+
+
+### Bug Fixes
+
+* Obsidian 0.16 ([c1bee00](https://github.com/kometenstaub/obsidian-version-history-diff/commit/c1bee0087bfaa922940dac25e9746b03c6697c99))
+
 ### [2.0.5](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.4...2.0.5) (2022-04-02)
 
 
