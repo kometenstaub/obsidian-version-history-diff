@@ -111,17 +111,17 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		margin-left: auto;
 	}
 	.d2h-lines-added {
-		border: 1px solid var(--interactive-success);
+		border: 1px solid var(--color-green);
 		border-radius: 5px 0 0 5px;
-		color: var(--interactive-success);
+		color: var(--color-green);
 		padding: 2px;
 		text-align: right;
 		vertical-align: middle;
 	}
 	.d2h-lines-deleted {
-		border: 1px solid var(--text-error);
+		border: 1px solid var(--color-red);
 		border-radius: 0 5px 5px 0;
-		color: var(--text-error);
+		color: var(--color-red);
 		margin-left: 1px;
 		padding: 2px;
 		text-align: left;
@@ -142,7 +142,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		color: var(--text-normal);
-		font-size: var(--h5);
+		font-size: var(--h5-size);
 	}
 	.d2h-file-wrapper {
 		border: 1px solid var(--background-secondary-alt);
@@ -443,10 +443,16 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 
 		button.mod-cta {
 			margin-left: 0.5em;
+			margin-right: 0.5em;
+			margin-top: 0.5em;
+
+            + .sync-history-list.sync-history-list {
+                margin-top: 0em;
+            }
 		}
 
 		.sync-history-list {
-			padding-top: 0.5em;
+			margin-top: 1.5em;
 
 			.sync-history-list-item {
 				border-radius: 0.25em;
