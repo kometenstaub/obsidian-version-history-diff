@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.7](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.5...2.0.7) (2022-08-15)
+
+
+### Bug Fixes
+
+* add hover CSS ([642e026](https://github.com/kometenstaub/obsidian-version-history-diff/commit/642e0264f0aeec9ad124b6d3ef3543778ac95a8f))
+* Obsidian 0.16 ([70a1530](https://github.com/kometenstaub/obsidian-version-history-diff/commit/70a1530e22dbf7c90ef8c7f3ebfbeb3fe231b902))
+
 ### [2.0.6](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.5...2.0.6) (2022-08-13)
 
 
