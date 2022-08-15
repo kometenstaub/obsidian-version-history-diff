@@ -56,10 +56,6 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			button.mod-cta {
 				margin-left: -0.25em;
 			}
-
-            .sync-history-list-item.is-active:hover {
-                background-color: var(--interactive-accent-hover);
-            }
 		}
 		.sync-history-list-item.is-active {
 			background-color: var(--background-primary-alt);
@@ -469,6 +465,10 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 
 .modal.mod-sync-history.diff {
 	min-width: 95vw;
+
+    .sync-history-list-item.is-active:hover {
+        background-color: var(--interactive-accent-hover);
+    }
 }
 @media only screen and (min-width: 1200px) {
 	.modal.mod-sync-history.diff {
