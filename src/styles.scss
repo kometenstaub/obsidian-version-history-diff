@@ -459,6 +459,12 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			}
 		}
 	}
+
+	.modal-content {
+		display: flex;
+		flex-direction: row;
+		height: 80vh;
+	}
 }
 
 /* CSS settings needed for modal */
