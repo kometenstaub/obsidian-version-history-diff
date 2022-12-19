@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.9](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.8...2.0.9) (2022-12-19)
+
+
+### Bug Fixes
+
+* CSS ([2695c89](https://github.com/kometenstaub/obsidian-version-history-diff/commit/2695c89033a421bd006ac1aecca42cd170ceda82))
+* remove class names ([3374e2e](https://github.com/kometenstaub/obsidian-version-history-diff/commit/3374e2e0075e501570ace15f1a09b6f5c0e81fc2))
+
 ### [2.0.8](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.7...2.0.8) (2022-08-15)
 
 
