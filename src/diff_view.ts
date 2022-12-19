@@ -158,7 +158,7 @@ export default class SyncDiffView extends DiffView {
 			});
 			left ? (this.ids.left += 1) : (this.ids.right += 1);
 			const infoDiv = div.createDiv({
-				cls: ['u-small', 'u-muted'],
+				cls: ['u-muted'],
 				text: getSize(version.size) + ' KB [' + version.device + ']',
 			});
 			versionList.push({
