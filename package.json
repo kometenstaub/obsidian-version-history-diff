@@ -44,7 +44,7 @@
 		"builtin-modules": "^3.3.0",
 		"cross-env": "^7.0.3",
 		"css-minify": "^2.0.0",
-		"esbuild": "^0.17.0",
+		"esbuild": "^0.17.10",
 		"eslint": "^8.34.0",
 		"obsidian": "^1.1.1",
 		"prettier": "2.5.0",
