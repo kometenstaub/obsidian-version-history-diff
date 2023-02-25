@@ -98,8 +98,8 @@ export default class GitDiffView extends DiffView {
 			});
 			if (version.fileName !== this.file.name) {
 				const changedName = infoDiv.createDiv({
-					text: "Old name: " + version.fileName.slice(0, -3),
-				})
+					text: 'Old name: ' + version.fileName.slice(0, -3),
+				});
 			}
 			const date = infoDiv.createDiv({
 				text: version.date.split('T')[0],
@@ -146,7 +146,10 @@ export default class GitDiffView extends DiffView {
 					} else {
 						this.leftContent = await this.app.plugins.plugins[
 							'obsidian-git'
-						].gitManager.show(clickedEl.v.hash, clickedEl.v.fileName);
+						].gitManager.show(
+							clickedEl.v.hash,
+							clickedEl.v.fileName
+						);
 					}
 					this.syncHistoryContentContainer.innerHTML =
 						await this.getDiff();
@@ -163,7 +166,10 @@ export default class GitDiffView extends DiffView {
 					} else {
 						this.rightContent = await this.app.plugins.plugins[
 							'obsidian-git'
-						].gitManager.show(clickedEl.v.hash, clickedEl.v.fileName);
+						].gitManager.show(
+							clickedEl.v.hash,
+							clickedEl.v.fileName
+						);
 					}
 					this.syncHistoryContentContainer.innerHTML =
 						await this.getDiff();
