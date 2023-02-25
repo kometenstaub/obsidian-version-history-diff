@@ -33,7 +33,10 @@ jobs:
         git config user.name "kometenstaub"
         git config user.email "83140328+kometenstaub@users.noreply.github.com"
         npx rexreplace "^.*?#(#+\s\[.*?\n.*?)(?=\s*#+\s\[)" "_" -s -M -G -m -o "CHANGELOG.md" > CHANGELOG-LATEST.md
-        echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
+#        echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
+    - name: Tag name
+      id: tag-name
+      run: echo "tag_name=$(git tag --sort version:refname | tail -n 1)" >> $GITHUB_OUTPUT
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -54,7 +57,7 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} 
         asset_path: ./${{ env.PLUGIN_NAME }}.zip 
-        asset_name: ${{ env.PLUGIN_NAME }}-${{ steps.build.outputs.tag_name }}.zip 
+        asset_name: ${{ env.PLUGIN_NAME }}-${{ steps.tag-name.outputs.tag_name }}.zip
         asset_content_type: application/zip
     - name: Upload main.js
       id: upload-main
