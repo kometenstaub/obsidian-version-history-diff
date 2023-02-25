@@ -47,6 +47,7 @@ export default class GitDiffView extends DiffView {
 			hash: '',
 			message: '',
 			refs: '',
+			fileName: this.file.name,
 		});
 		this.versions.push(...gitVersions);
 		const diskContent = await this.app.vault.read(this.file);
@@ -140,7 +141,7 @@ export default class GitDiffView extends DiffView {
 					} else {
 						this.leftContent = await this.app.plugins.plugins[
 							'obsidian-git'
-						].gitManager.show(clickedEl.v.hash, this.file.path);
+						].gitManager.show(clickedEl.v.hash, clickedEl.v.fileName);
 					}
 					this.syncHistoryContentContainer.innerHTML =
 						await this.getDiff();
@@ -157,7 +158,7 @@ export default class GitDiffView extends DiffView {
 					} else {
 						this.rightContent = await this.app.plugins.plugins[
 							'obsidian-git'
-						].gitManager.show(clickedEl.v.hash, this.file.path);
+						].gitManager.show(clickedEl.v.hash, clickedEl.v.fileName);
 					}
 					this.syncHistoryContentContainer.innerHTML =
 						await this.getDiff();

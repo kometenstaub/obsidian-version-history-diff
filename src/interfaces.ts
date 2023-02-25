@@ -111,4 +111,5 @@ export interface DefaultLogFields {
 	body: string;
 	author_name: string;
 	author_email: string;
+	fileName: string;
 }
