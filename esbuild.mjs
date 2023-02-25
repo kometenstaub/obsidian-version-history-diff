@@ -394,12 +394,9 @@ const copyMinifiedCSS = {
 
 const isProd = process.env.BUILD === 'production';
 
-(async () => {
-	try {
-		await esbuild.build({
+const context = await esbuild.context({
 			entryPoints: ['src/main.ts', 'src/styles.scss'],
 			bundle: true,
-			watch: !isProd,
 			//platform: 'browser',
 			external: ['obsidian', 'electron', ...builtins],
 			format: 'cjs',
@@ -415,9 +412,11 @@ const isProd = process.env.BUILD === 'production';
 			outdir: 'build/',
 			plugins: [copyManifest, copyMinifiedCSS],
 			loader: { '.scss': 'text' }
-		});
-	} catch (err) {
-		console.error(err);
-		process.exit(1);
-	}
-})();
+		})
+
+if (isProd) {
+	await context.rebuild();
+	process.exit(0);
+} else {
+	await context.watch();
+}
