@@ -38,7 +38,6 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@types/diff": "^5.0.2",
-		"@types/jest": "^27.5.2",
 		"@types/node": "^14.18.36",
 		"@typescript-eslint/eslint-plugin": "^5.53.0",
 		"@typescript-eslint/parser": "^5.53.0",
@@ -47,7 +46,6 @@
 		"css-minify": "^2.0.0",
 		"esbuild": "^0.17.0",
 		"eslint": "^8.34.0",
-		"jest": "^27.5.1",
 		"obsidian": "^0.13.30",
 		"prettier": "2.5.0",
 		"process": "^0.11.10",
