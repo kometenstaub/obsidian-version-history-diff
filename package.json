@@ -46,7 +46,7 @@
 		"css-minify": "^2.0.0",
 		"esbuild": "^0.17.0",
 		"eslint": "^8.34.0",
-		"obsidian": "^0.13.30",
+		"obsidian": "^1.1.1",
 		"prettier": "2.5.0",
 		"process": "^0.11.10",
 		"sass": "^1.58.3",
