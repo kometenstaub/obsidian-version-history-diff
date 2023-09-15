@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.2...2.1.3) (2023-09-15)
+
+
+### Bug Fixes
+
+* use Component; update to new API method ([8d8d71d](https://github.com/kometenstaub/obsidian-version-history-diff/commit/8d8d71df297a904ac03b632d536980624cdc5691))
+
 ### [2.1.2](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.1...2.1.2) (2023-09-15)
 
 
