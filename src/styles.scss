@@ -546,6 +546,9 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		.frontmatter.language-yaml {
 			display: block !important;
 		}
+		.language-yaml:after {
+			display: none;
+		}
 
 		/* for textarea that displays plain text version */
 
