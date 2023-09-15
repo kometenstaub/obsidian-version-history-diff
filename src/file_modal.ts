@@ -46,7 +46,7 @@ export default class FileModal extends Modal {
 
 		const restoreButton = this.contentEl.createEl('button', {
 			cls: ['mod-cta', 'restore'],
-			text: `Replace ${this.file.basename} content with this version`,
+			text: `Replace file content with the shown version`,
 		});
 		setTooltip(restoreButton, 'Click to replace with this version', {
 			placement: 'top',
