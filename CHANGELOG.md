@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.6](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.5...2.1.6) (2023-09-15)
+
+
+### Bug Fixes
+
+* remove button margins; add important ([86559c6](https://github.com/kometenstaub/obsidian-version-history-diff/commit/86559c687f1b193c3d29a8dd46a7447f24acb276))
+
 ### [2.1.5](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.4...2.1.5) (2023-09-15)
 
 
