@@ -542,6 +542,11 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	.modal {
 		max-height: 90vh;
 
+		/* show YAML which Obsidian Properties hides otherwise */
+		.frontmatter.language-yaml {
+			display: block;
+		}
+
 		/* for textarea that displays plain text version */
 
 		textarea.plain-text-area {
