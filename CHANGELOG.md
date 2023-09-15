@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.7](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.6...2.1.7) (2023-09-15)
+
+
+### Bug Fixes
+
+* hide YAML text indicator ([7948bac](https://github.com/kometenstaub/obsidian-version-history-diff/commit/7948bac92f93b24e9217fee1429ac4b7df42afdf))
+
 ### [2.1.6](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.5...2.1.6) (2023-09-15)
 
 
