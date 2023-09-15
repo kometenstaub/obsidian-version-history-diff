@@ -3,7 +3,8 @@ import {
 	MarkdownRenderer,
 	Modal,
 	Notice,
-	sanitizeHTMLToDom, setTooltip,
+	sanitizeHTMLToDom,
+	setTooltip,
 	TFile,
 } from 'obsidian';
 import { FILE_REC_WARNING } from './constants';
@@ -42,8 +43,8 @@ export default class FileModal extends Modal {
 			text: `Replace ${this.file.basename} content with this version`,
 		});
 		setTooltip(restoreButton, 'Click to replace with this version', {
-			placement: "top"
-		})
+			placement: 'top',
+		});
 		const switchButton = this.contentEl.createEl('button', {
 			cls: ['mod-cta', 'switch'],
 			text: 'Show raw text',
