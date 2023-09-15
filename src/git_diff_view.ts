@@ -95,7 +95,7 @@ export default class GitDiffView extends DiffView {
 			const infoDiv = div.createDiv({
 				cls: ['u-muted'],
 			});
-			if (version.fileName !== this.file.path) {
+			if (version.fileName !== this.file.path && i !== 0) {
 				const changedName = infoDiv.createDiv({
 					text: 'Old name: ' + version.fileName.slice(0, -3),
 				});
