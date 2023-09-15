@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.1...2.1.2) (2023-09-15)
+
+
+### Bug Fixes
+
+* use setTooltip (API update) ([1a70ff1](https://github.com/kometenstaub/obsidian-version-history-diff/commit/1a70ff12de195ca6a3fae78be74287fbad9997f2))
+
 ### [2.1.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.0...2.1.1) (2023-09-15)
 
 
