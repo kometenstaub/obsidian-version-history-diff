@@ -1,5 +1,6 @@
 import {
 	App,
+	Component,
 	MarkdownRenderer,
 	Modal,
 	Notice,
@@ -12,6 +13,7 @@ import type OpenSyncHistoryPlugin from './main';
 
 export default class FileModal extends Modal {
 	raw: boolean;
+	comp: Component;
 
 	constructor(
 		private plugin: OpenSyncHistoryPlugin,
@@ -26,11 +28,15 @@ export default class FileModal extends Modal {
 		this.file = file;
 		this.syncFile = syncFile;
 		this.raw = false;
+		this.comp = new Component();
+		this.comp.load();
+	}
+
+	async onClose() {
+		this.comp.unload();
 	}
 
 	async onOpen() {
-		super.onOpen();
-
 		this.containerEl.addClass('version-display');
 
 		const warning = this.contentEl.createDiv({
@@ -66,12 +72,12 @@ export default class FileModal extends Modal {
 				this.raw = !this.raw;
 				(async () => {
 					el.empty();
-					await MarkdownRenderer.renderMarkdown(
+					await MarkdownRenderer.render(
+						this.app,
 						this.syncFile,
 						el,
 						this.file.path,
-						//@ts-ignore
-						null
+						this.comp
 					);
 				})();
 				switchButton.innerText = 'Show raw text';
@@ -88,12 +94,12 @@ export default class FileModal extends Modal {
 			this.close();
 		});
 
-		await MarkdownRenderer.renderMarkdown(
+		await MarkdownRenderer.render(
+			this.app,
 			this.syncFile,
 			el,
 			this.file.path,
-			//@ts-ignore
-			null
+			this.comp
 		);
 	}
 }
