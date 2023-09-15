@@ -544,14 +544,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 
 		/* show YAML which Obsidian Properties hides otherwise */
 		.frontmatter.language-yaml {
-			display: block;
-		}
-
-		.restore {
-			margin-right: 0.5em;
-		}
-		.switch {
-			margin-left: 0.5em;
+			display: block !important;
 		}
 
 		/* for textarea that displays plain text version */
