@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.4](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.3...2.1.4) (2023-09-15)
+
+
+### Bug Fixes
+
+* button margins ([091f8f6](https://github.com/kometenstaub/obsidian-version-history-diff/commit/091f8f6c237cd4621523da5e5869e27a65ca3003))
+* reenable YAML ([37f5600](https://github.com/kometenstaub/obsidian-version-history-diff/commit/37f56000e0a7597087836ec599cb83f42b647155))
+
 ### [2.1.3](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.2...2.1.3) (2023-09-15)
 
 
