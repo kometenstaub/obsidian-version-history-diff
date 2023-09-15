@@ -1,5 +1,5 @@
 import { html } from 'diff2html';
-import { App, Notice, TFile } from 'obsidian';
+import {App, Notice, setTooltip, TFile} from 'obsidian';
 import DiffView from './abstract_diff_view';
 import { GIT_WARNING } from './constants';
 import type { DefaultLogFields, vGitItem } from './interfaces';
@@ -88,11 +88,10 @@ export default class GitDiffView extends DiffView {
 			left ? (this.ids.left += 1) : (this.ids.right += 1);
 			const message = div.createDiv({
 				text: i !== 0 ? version.message : 'State on disk',
-				attr: {
-					'aria-label': version.body !== '' ? version.body : '',
-					'aria-label-position': 'top',
-				},
 			});
+			setTooltip(message, version.body !== '' ? version.body : '', {
+				placement: "top"
+			})
 			const infoDiv = div.createDiv({
 				cls: ['u-muted'],
 			});
