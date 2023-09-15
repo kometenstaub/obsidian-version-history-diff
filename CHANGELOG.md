@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.0...2.1.1) (2023-09-15)
+
+
+### Bug Fixes
+
+* only show old name before rename ([795c84e](https://github.com/kometenstaub/obsidian-version-history-diff/commit/795c84ee00d7e09749bab0cde0172d6483a052c8))
+
 ## [2.1.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.0.9...2.1.0) (2023-02-25)
 
 

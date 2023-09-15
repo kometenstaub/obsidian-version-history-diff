@@ -1,6 +1,6 @@
 {
 	"name": "sync-version-history",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "Display diffs of the version history from the core Sync and File Recovery plugins and Git.",
 	"main": "src/main.ts",
 	"scripts": {
