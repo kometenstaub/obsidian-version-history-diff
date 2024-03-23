@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.10](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.9...2.1.10) (2024-03-23)
+
+
+### Bug Fixes
+
+* only show diff command when sync enabled ([5a3bd54](https://github.com/kometenstaub/obsidian-version-history-diff/commit/5a3bd545670b2d6b808167c9aed5d394b14b1e2f))
+* re-enable git diff on mobile ([7f46f23](https://github.com/kometenstaub/obsidian-version-history-diff/commit/7f46f23aa47ee92c9524962960cdb0992340dfab))
+
 ### [2.1.9](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.8...2.1.9) (2023-09-15)
 
 
