@@ -17,7 +17,6 @@ It can
 6. plain text and 
 7. you can overwrite the file with this version as well. 
 8. There is a colour-blind mode
-9. It also adds a command to open Obsidian's native Sync history view, which is otherwise only accessible via the file menu.
 
 The reason for showing you the note before you revert to this state is that the diffs can be misleading.
 
