@@ -41,10 +41,6 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		new SyncDiffView(this, this.app, file).open();
 	}
 
-	async openSyncHistory(file: TFile): Promise<void> {
-		const { instance } = this.app.internalPlugins.plugins['sync'];
-		await instance.showVersionHistory(file.path);
-	}
 
 	giveCallback(
 		fn: (file: TFile) => Promise<void> | void
@@ -59,14 +55,6 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 			} else {
 				return false;
 			}
-		};
-	}
-
-	returnOpenCommand(): Command {
-		return {
-			id: 'open-sync-version-history',
-			name: 'Show Sync history for active file',
-			checkCallback: this.giveCallback(this.openSyncHistory.bind(this)),
 		};
 	}
 
@@ -99,7 +87,6 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	async onload() {
 		console.log('loading Version History Diff plugin');
 
-		this.addCommand(this.returnOpenCommand());
 		this.addCommand(this.returnDiffCommand());
 		this.addCommand(this.returnRecoveryDiffCommand());
 		if (this.app.plugins.getPlugin('obsidian-git')) {
