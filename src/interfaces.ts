@@ -37,6 +37,7 @@ declare module 'obsidian' {
 					};
 				};
 			};
+			getPlugin(id: string): Plugin | null;
 		};
 	}
 }

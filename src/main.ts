@@ -102,11 +102,9 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		this.addCommand(this.returnOpenCommand());
 		this.addCommand(this.returnDiffCommand());
 		this.addCommand(this.returnRecoveryDiffCommand());
-		//if (this.app.plugins.plugins['obsidian-git']) {
-		if (Platform.isDesktopApp) {
+		if (this.app.plugins.getPlugin('obsidian-git')) {
 			this.addCommand(this.returnGitDiffCommand());
 		}
-		//}
 
 		await this.loadSettings();
 
