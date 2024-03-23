@@ -11,6 +11,7 @@ declare module 'obsidian' {
 			plugins: {
 				sync: {
 					instance: syncInstance;
+					enabled: boolean;
 				};
 				'file-recovery': {
 					instance: fileRInstance;
