@@ -57,7 +57,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 				margin-left: -0.25em;
 			}
 		}
-		.sync-history-list-item.is-active {
+		.sync-history-list-item-header.is-active {
 			background-color: var(--background-primary-alt);
 		}
 	}
@@ -454,7 +454,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		.sync-history-list {
 			margin-top: 1.5em;
 
-			.sync-history-list-item {
+			.sync-history-list-item-header {
 				border-radius: 0.25em;
 			}
 		}
@@ -472,7 +472,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 .modal.mod-sync-history.diff {
 	min-width: 95vw;
 
-	.sync-history-list-item.is-active:hover {
+	.sync-history-list-item-header.is-active:hover {
 		background-color: var(--interactive-accent-hover);
 	}
 }

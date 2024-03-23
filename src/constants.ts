@@ -5,3 +5,5 @@ export const FILE_REC_WARNING =
 	'The two versions at the top of each list in the diff modal were the file contents read from disk.';
 
 export const GIT_WARNING = FILE_REC_WARNING;
+
+export const ITEM_CLASS = 'sync-history-list-item-header';

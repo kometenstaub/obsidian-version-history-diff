@@ -2,7 +2,7 @@ import SyncDiffView from './diff_view';
 import { Plugin, App, TFile, Notice } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type { recResult, vRecoveryItem } from './interfaces';
-import { FILE_REC_WARNING } from './constants';
+import { FILE_REC_WARNING, ITEM_CLASS } from './constants';
 import DiffView from './abstract_diff_view';
 
 export default class RecoveryDiffView extends DiffView {
@@ -89,7 +89,7 @@ export default class RecoveryDiffView extends DiffView {
 				date = new Date();
 			}
 			let div = el.createDiv({
-				cls: 'sync-history-list-item',
+				cls: ITEM_CLASS,
 				attr: {
 					id: left ? this.ids.left : this.ids.right,
 				},

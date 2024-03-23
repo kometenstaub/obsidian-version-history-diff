@@ -9,7 +9,7 @@ import type {
 import type OpenSyncHistoryPlugin from './main';
 import { createTwoFilesPatch } from 'diff';
 import FileModal from './file_modal';
-import { SYNC_WARNING } from './constants';
+import { ITEM_CLASS, SYNC_WARNING } from './constants';
 import DiffView from './abstract_diff_view';
 
 function getSize(size: number): string {
@@ -150,7 +150,7 @@ export default class SyncDiffView extends DiffView {
 			let version = versions.items[i];
 			const date = new Date(version.ts);
 			const div = el.createDiv({
-				cls: 'sync-history-list-item',
+				cls: ITEM_CLASS,
 				text: date.toDateString() + ', ' + date.toLocaleTimeString(),
 				attr: {
 					id: left ? this.ids.left : this.ids.right,

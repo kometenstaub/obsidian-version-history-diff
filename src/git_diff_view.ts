@@ -1,7 +1,7 @@
 import { html } from 'diff2html';
 import { App, Notice, setTooltip, TFile } from 'obsidian';
 import DiffView from './abstract_diff_view';
-import { GIT_WARNING } from './constants';
+import { GIT_WARNING, ITEM_CLASS } from './constants';
 import type { DefaultLogFields, vGitItem } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 
@@ -80,7 +80,7 @@ export default class GitDiffView extends DiffView {
 		for (let i = 0; i < versions.length; i++) {
 			const version = versions[i];
 			const div = el.createDiv({
-				cls: 'sync-history-list-item',
+				cls: ITEM_CLASS,
 				attr: {
 					id: left ? this.ids.left : this.ids.right,
 				},
