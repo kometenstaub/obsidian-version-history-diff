@@ -171,7 +171,9 @@ export default abstract class DiffView extends Modal {
 			this.rightActive = idx;
 		}
 		// make old not active
-		currentSideOldVersion.html.classList.remove('is-active');
+		if (Number.parseInt(currentSideOldVersion.html.id) !== idx) {
+			currentSideOldVersion.html.classList.remove('is-active');
+		}
 		return clickedEl;
 	}
 }
