@@ -125,8 +125,14 @@ export default class GitDiffView extends DiffView {
 			}
 
 			hash.style.cursor = 'copy';
-			hash.addEventListener('click', async () => {
-				await navigator.clipboard.writeText(version.hash);
+			hash.addEventListener('click', async (mod) => {
+				if (mod.shiftKey) {
+					navigator.clipboard.writeText(version.hash);
+				} else {
+					await navigator.clipboard.writeText(
+						version.hash.slice(0, 7)
+					);
+				}
 			});
 			versionList.push({
 				html: div,
