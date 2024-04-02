@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.13...2.2.0) (2024-04-02)
+
+
+### Features
+
+* copy only 7 chars of hash ([1911629](https://github.com/kometenstaub/obsidian-version-history-diff/commit/1911629338c8c144835773c9900c1c9d0a29eda8))
+
+
+### Bug Fixes
+
+* remain active when clicked multiple times ([30429f6](https://github.com/kometenstaub/obsidian-version-history-diff/commit/30429f677a604dca549534bc7f54e92c133906ec))
+
 ### [2.1.13](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.12...2.1.13) (2024-04-02)
 
 
