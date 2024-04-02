@@ -42,6 +42,7 @@ I personally find the file recovery diffs better as they are less frequent, but 
 
 For *Sync*, it only displays the Sync versions. For *File Recovery* and *Git*, it also shows the current state of the file from disk as latest version.
 
+The Git diff lets you copy the hash by clicking on it. By default, only the first seven characters are copied. `Shift-click` to copy the full hash.
 
 ## Contributing
 
