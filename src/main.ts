@@ -86,13 +86,13 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 	async onload() {
 		console.log('loading Version History Diff plugin');
 
-		if (this.app.internalPlugins.plugins.sync.enabled) {
-			this.addCommand(this.returnDiffCommand());
-		}
+		// if (this.app.internalPlugins.plugins.sync.enabled) {
+		this.addCommand(this.returnDiffCommand());
+		// }
 		this.addCommand(this.returnRecoveryDiffCommand());
-		if (this.app.plugins.getPlugin('obsidian-git')) {
-			this.addCommand(this.returnGitDiffCommand());
-		}
+		// if (this.app.plugins.getPlugin('obsidian-git')) {
+		this.addCommand(this.returnGitDiffCommand());
+		// }
 
 		await this.loadSettings();
 
