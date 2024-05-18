@@ -472,6 +472,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 
 .modal.mod-sync-history.diff {
 	min-width: 95vw;
+	max-height: 90vh;
 
 	.sync-history-list-item-header.is-active:hover {
 		background-color: var(--interactive-accent-hover);
