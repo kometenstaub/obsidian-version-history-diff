@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.2.0...2.2.1) (2024-05-18)
+
+
+### Bug Fixes
+
+* css for v1.6.0 ([29edda7](https://github.com/kometenstaub/obsidian-version-history-diff/commit/29edda7008632f8c72a70c41e7a309b8c980b4ce))
+
 ## [2.2.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.1.13...2.2.0) (2024-04-02)
 
 
