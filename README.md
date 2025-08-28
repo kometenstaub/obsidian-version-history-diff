@@ -11,12 +11,13 @@ It can
 1. display diffs of the **Sync** 
 2. and the **File Recovery** 
 3. and **Git** version history for the currently active file, 
-   1. For this to work, the [Obsidian Git](https://obsidian.md/plugins?id=obsidian-git) plugin needs to be installed.
+   - For this to work, the [Obsidian Git](https://obsidian.md/plugins?id=obsidian-git) plugin needs to be installed.
 4. open a selected version in a modal and 
 5. render it as either markdown or 
 6. plain text and 
 7. you can overwrite the file with this version as well. 
 8. There is a colour-blind mode
+9. And you can switch between `line-by-line` and `side-by-side` view in the settings. The latter is only recommended on bigger screens.
 
 The reason for showing you the note before you revert to this state is that the diffs can be misleading.
 
