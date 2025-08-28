@@ -14,7 +14,7 @@ It is MIT-licensed:
 
 	MIT License
 	
-	Copyright (c) 2022 kometenstaub and contributors
+	Copyright (c) 2022-2025 kometenstaub and contributors
 	
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
