@@ -42,6 +42,7 @@ export default abstract class DiffView extends Modal {
 		this.htmlConfig = {
 			diffStyle: this.plugin.settings.diffStyle,
 			matchWordsThreshold: this.plugin.settings.matchWordsThreshold,
+			outputFormat: this.plugin.settings.outputFormat,
 		};
 		this.containerEl.addClass('diff');
 		// @ts-ignore

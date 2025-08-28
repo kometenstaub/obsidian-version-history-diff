@@ -54,6 +54,21 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 			});
 
 		new Setting(containerEl)
+			.setName('Output format')
+			.setDesc('Choose line-by-line or sidy-by-side (only recommended on bigger screens)')
+			.addDropdown((el) => {
+				el.addOption('line-by-line', 'line-by-line')
+					.addOption('side-by-side', 'side-by-side')
+					.setValue(settings.outputFormat)
+					.onChange(async (value) => {
+						settings.outputFormat = value as
+							| 'line-by-line'
+							| 'side-by-side';
+						await this.plugin.saveSettings();
+					});
+			});
+
+		new Setting(containerEl)
 			.setName('Match words threshold')
 			.setDesc('Similarity threshold for word matching, default is 0.25')
 			.addText((text) => {

@@ -3,6 +3,7 @@ export interface OpenSyncHistorySettings {
 	diffStyle: 'word' | 'char';
 	matchWordsThreshold: number;
 	colorBlind: boolean;
+	outputFormat: 'line-by-line' | 'side-by-side';
 }
 
 declare module 'obsidian' {

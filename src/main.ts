@@ -11,6 +11,7 @@ const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
 	diffStyle: 'word',
 	matchWordsThreshold: 0.25,
 	colorBlind: false,
+	outputFormat: 'line-by-line',
 };
 
 export default class OpenSyncHistoryPlugin extends Plugin {
