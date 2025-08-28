@@ -55,7 +55,7 @@ export default class OpenSyncHistorySettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Output format')
-			.setDesc('Choose line-by-line or sidy-by-side (only recommended on bigger screens)')
+			.setDesc('Choose line-by-line or side-by-side (only recommended on bigger screens)')
 			.addDropdown((el) => {
 				el.addOption('line-by-line', 'line-by-line')
 					.addOption('side-by-side', 'side-by-side')
