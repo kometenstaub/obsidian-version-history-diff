@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.0...2.3.1) (2025-08-28)
+
+
+### Bug Fixes
+
+* typo ([59edd7d](https://github.com/kometenstaub/obsidian-version-history-diff/commit/59edd7d409b626974de4ca54b66804902e2faba2))
+
 ## [2.3.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.2.1...2.3.0) (2025-08-28)
 
 
