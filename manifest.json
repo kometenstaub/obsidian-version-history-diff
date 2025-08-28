@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-version-history-diff",
 	"name": "Version History Diff",
-	"version": "2.3.2",
+	"version": "2.3.3",
 	"minAppVersion": "1.6.0",
 	"description": "Diff the version history of the core Sync and File Recovery plugins and Git.",
 	"author": "kometenstaub",
