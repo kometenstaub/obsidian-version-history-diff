@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.2.1...2.3.0) (2025-08-28)
+
+
+### Features
+
+* add side-by-side display option; closes [#30](https://github.com/kometenstaub/obsidian-version-history-diff/issues/30) ([314478e](https://github.com/kometenstaub/obsidian-version-history-diff/commit/314478eed7567214a52a8dc3d64b744ed0912f37))
+
 ### [2.2.1](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.2.0...2.2.1) (2024-05-18)
 
 
