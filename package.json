@@ -56,7 +56,7 @@
 		"typescript": "4.9.5"
 	},
 	"dependencies": {
-		"diff": "5.1.0",
+		"diff": "5.2.2",
 		"diff2html": "3.4.31"
 	}
 }
