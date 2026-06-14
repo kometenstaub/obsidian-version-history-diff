@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.5](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.4...2.3.5) (2026-06-14)
+
+
+### Bug Fixes
+
+* remove dependence on innerHTML ([01d824a](https://github.com/kometenstaub/obsidian-version-history-diff/commit/01d824affa6d2b291c6909490c11a8515d4ada17))
+
 ### [2.3.4](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.3...2.3.4) (2026-04-15)
 
 ### [2.3.3](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.2...2.3.3) (2025-08-28)
