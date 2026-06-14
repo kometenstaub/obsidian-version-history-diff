@@ -1,5 +1,5 @@
 import { Diff2HtmlConfig, html } from 'diff2html';
-import { App, Modal, Notice, TFile } from 'obsidian';
+import { App, Modal, Notice, sanitizeHTMLToDom, TFile } from 'obsidian';
 import type {
 	gHResult,
 	vRecoveryItem,
@@ -174,8 +174,8 @@ export default class SyncDiffView extends DiffView {
 						left
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl, left);
-					this.syncHistoryContentContainer.innerHTML =
-						this.getDiff() as string;
+					this.syncHistoryContentContainer.replaceChildren(
+						sanitizeHTMLToDom(this.getDiff() as string));
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -183,8 +183,8 @@ export default class SyncDiffView extends DiffView {
 						this.rightActive
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl);
-					this.syncHistoryContentContainer.innerHTML =
-						this.getDiff() as string;
+					this.syncHistoryContentContainer.replaceChildren(
+						sanitizeHTMLToDom(this.getDiff() as string));
 				}
 			});
 		}

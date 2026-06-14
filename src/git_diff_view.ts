@@ -1,5 +1,5 @@
 import { html } from 'diff2html';
-import { App, Notice, setTooltip, TFile } from 'obsidian';
+import { App, Notice, sanitizeHTMLToDom, setTooltip, TFile } from 'obsidian';
 import DiffView from './abstract_diff_view';
 import { GIT_WARNING, ITEM_CLASS } from './constants';
 import type { DefaultLogFields, vGitItem } from './interfaces';
@@ -156,8 +156,8 @@ export default class GitDiffView extends DiffView {
 							clickedEl.v.fileName
 						);
 					}
-					this.syncHistoryContentContainer.innerHTML =
-						await this.getDiff();
+					this.syncHistoryContentContainer.replaceChildren(
+						sanitizeHTMLToDom(await this.getDiff()));
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -176,8 +176,8 @@ export default class GitDiffView extends DiffView {
 							clickedEl.v.fileName
 						);
 					}
-					this.syncHistoryContentContainer.innerHTML =
-						await this.getDiff();
+					this.syncHistoryContentContainer.replaceChildren(
+						sanitizeHTMLToDom(await this.getDiff()));
 				}
 			});
 		}

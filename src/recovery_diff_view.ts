@@ -1,5 +1,5 @@
 import SyncDiffView from './diff_view';
-import { Plugin, App, TFile, Notice } from 'obsidian';
+import { Plugin, App, TFile, Notice, sanitizeHTMLToDom } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type { recResult, vRecoveryItem } from './interfaces';
 import { FILE_REC_WARNING, ITEM_CLASS } from './constants';
@@ -117,8 +117,8 @@ export default class RecoveryDiffView extends DiffView {
 						left
 					)) as vRecoveryItem;
 					this.leftContent = version.data;
-					this.syncHistoryContentContainer.innerHTML =
-						this.getDiff() as string;
+					this.syncHistoryContentContainer.replaceChildren(
+						sanitizeHTMLToDom(this.getDiff() as string));
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -126,8 +126,8 @@ export default class RecoveryDiffView extends DiffView {
 						this.rightActive
 					)) as vRecoveryItem;
 					this.rightContent = version.data;
-					this.syncHistoryContentContainer.innerHTML =
-						this.getDiff() as string;
+					this.syncHistoryContentContainer.replaceChildren(
+						sanitizeHTMLToDom(this.getDiff() as string));
 				}
 			});
 		}

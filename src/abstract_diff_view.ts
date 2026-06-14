@@ -1,6 +1,6 @@
 import { createTwoFilesPatch } from 'diff';
 import { Diff2HtmlConfig, html } from 'diff2html';
-import { App, Modal, TFile } from 'obsidian';
+import { App, Modal, sanitizeHTMLToDom, TFile } from 'obsidian';
 import { SYNC_WARNING } from './constants';
 import FileModal from './file_modal';
 import type { vItem, vRecoveryItem, vSyncItem } from './interfaces';
@@ -136,7 +136,8 @@ export default abstract class DiffView extends Modal {
 		// set title
 		this.titleEl.setText(diffType);
 		// add diff to container
-		this.syncHistoryContentContainer.innerHTML = diff;
+		const goodHTML = sanitizeHTMLToDom(diff)
+		this.syncHistoryContentContainer.replaceChildren(goodHTML);
 
 		// add history lists and diff to DOM
 		this.contentEl.appendChild(this.leftHistory[0]);
