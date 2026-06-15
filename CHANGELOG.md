@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.8](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.7...2.3.8) (2026-06-15)
+
+
+### Bug Fixes
+
+* remove unused imports ([f1ba5b3](https://github.com/kometenstaub/obsidian-version-history-diff/commit/f1ba5b3c8dfcf1972d5edc61e8dfa76b6efacd95))
+
 ### [2.3.7](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.6...2.3.7) (2026-06-14)
 
 ### [2.3.6](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.5...2.3.6) (2026-06-14)
