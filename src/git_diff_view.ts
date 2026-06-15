@@ -1,4 +1,3 @@
-import { html } from 'diff2html';
 import { App, Notice, sanitizeHTMLToDom, setTooltip, TFile } from 'obsidian';
 import DiffView from './abstract_diff_view';
 import { GIT_WARNING, ITEM_CLASS } from './constants';

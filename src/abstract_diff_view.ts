@@ -1,9 +1,8 @@
 import { createTwoFilesPatch } from 'diff';
 import { Diff2HtmlConfig, html } from 'diff2html';
 import { App, Modal, sanitizeHTMLToDom, TFile } from 'obsidian';
-import { SYNC_WARNING } from './constants';
 import FileModal from './file_modal';
-import type { vItem, vRecoveryItem, vSyncItem } from './interfaces';
+import type { vItem } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 
 export default abstract class DiffView extends Modal {

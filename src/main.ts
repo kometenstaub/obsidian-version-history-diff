@@ -1,4 +1,4 @@
-import { Command, Notice, Platform, Plugin, TFile } from 'obsidian';
+import { Command, Notice, Plugin, TFile } from 'obsidian';
 import type { OpenSyncHistorySettings } from './interfaces';
 import OpenSyncHistorySettingTab from './settings';
 import DiffUtils from './diff_utils';

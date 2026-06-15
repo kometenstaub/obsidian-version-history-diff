@@ -1,5 +1,4 @@
-import SyncDiffView from './diff_view';
-import { Plugin, App, TFile, Notice, sanitizeHTMLToDom } from 'obsidian';
+import { App, TFile, Notice, sanitizeHTMLToDom } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type { recResult, vRecoveryItem } from './interfaces';
 import { FILE_REC_WARNING, ITEM_CLASS } from './constants';

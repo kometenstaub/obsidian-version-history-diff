@@ -1,6 +1,6 @@
-import type { Plugin, App, TFile } from 'obsidian';
+import type { App, TFile } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
-import type { gHResult, item, syncInstance } from './interfaces';
+import type { gHResult, syncInstance } from './interfaces';
 
 export default class DiffUtils {
 	plugin: OpenSyncHistoryPlugin;

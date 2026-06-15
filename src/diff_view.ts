@@ -1,14 +1,9 @@
-import { Diff2HtmlConfig, html } from 'diff2html';
-import { App, Modal, Notice, sanitizeHTMLToDom, TFile } from 'obsidian';
+import { App, Notice, sanitizeHTMLToDom, TFile } from 'obsidian';
 import type {
 	gHResult,
-	vRecoveryItem,
 	vSyncItem,
-	recResult,
 } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
-import { createTwoFilesPatch } from 'diff';
-import FileModal from './file_modal';
 import { ITEM_CLASS, SYNC_WARNING } from './constants';
 import DiffView from './abstract_diff_view';
 
