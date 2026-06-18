@@ -1,4 +1,4 @@
-import { App, Notice, sanitizeHTMLToDom, TFile } from 'obsidian';
+import { App, Notice, TFile } from 'obsidian';
 import type {
 	gHResult,
 	vSyncItem,
@@ -31,10 +31,9 @@ export default class SyncDiffView extends DiffView {
 	async onOpen() {
 		super.onOpen();
 		await this.getInitialVersions();
-		const diff = this.getDiff() as string;
 		this.makeHistoryLists(SYNC_WARNING);
 		this.makeButtons();
-		this.basicHtml(diff, 'Sync Diff');
+		await this.basicHtml('Sync Diff');
 		this.appendVersions();
 		this.makeMoreGeneralHtml();
 	}
@@ -54,13 +53,10 @@ export default class SyncDiffView extends DiffView {
 			return;
 		}
 
-		// get function
-		const getContent = this.plugin.diff_utils.getContent.bind(this);
-
 		// choose two latest versions
 		[this.leftContent, this.rightContent] = [
-			await getContent(secondLatestV),
-			await getContent(latestV),
+			await this.plugin.diff_utils.getContent(secondLatestV),
+			await this.plugin.diff_utils.getContent(latestV),
 		];
 	}
 
@@ -142,7 +138,7 @@ export default class SyncDiffView extends DiffView {
 	): vSyncItem[] {
 		const versionList: vSyncItem[] = [];
 		for (let i = 0; i <= versions.items.length - 1; i++) {
-			let version = versions.items[i];
+			const version = versions.items[i];
 			const date = new Date(version.ts);
 			const div = el.createDiv({
 				cls: ITEM_CLASS,
@@ -152,7 +148,7 @@ export default class SyncDiffView extends DiffView {
 				},
 			});
 			left ? (this.ids.left += 1) : (this.ids.right += 1);
-			const infoDiv = div.createDiv({
+			div.createDiv({
 				cls: ['u-muted'],
 				text: getSize(version.size) + ' KB [' + version.device + ']',
 			});
@@ -169,8 +165,7 @@ export default class SyncDiffView extends DiffView {
 						left
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl, left);
-					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+					await this.updateDiffView();
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -178,21 +173,19 @@ export default class SyncDiffView extends DiffView {
 						this.rightActive
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl);
-					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+					await this.updateDiffView();
 				}
 			});
 		}
 		return versionList;
 	}
 
-	private async getSyncContent(clickedEl: vSyncItem, left: boolean = false) {
+	private async getSyncContent(clickedEl: vSyncItem, left = false) {
 		// get the content for the clicked HTML element
-		const getContent = this.plugin.diff_utils.getContent.bind(this);
 		if (left) {
-			this.leftContent = await getContent(clickedEl.v.uid);
+			this.leftContent = await this.plugin.diff_utils.getContent(clickedEl.v.uid);
 		} else {
-			this.rightContent = await getContent(clickedEl.v.uid);
+			this.rightContent = await this.plugin.diff_utils.getContent(clickedEl.v.uid);
 		}
 	}
 }

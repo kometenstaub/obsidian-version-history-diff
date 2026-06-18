@@ -19,3 +19,4 @@ build/
 .vscode/
 
 resources/
+**/.DS_Store

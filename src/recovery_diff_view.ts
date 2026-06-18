@@ -1,4 +1,4 @@
-import { App, TFile, Notice, sanitizeHTMLToDom } from 'obsidian';
+import { App, TFile, Notice } from 'obsidian';
 import type OpenSyncHistoryPlugin from './main';
 import type { recResult, vRecoveryItem } from './interfaces';
 import { FILE_REC_WARNING, ITEM_CLASS } from './constants';
@@ -18,9 +18,8 @@ export default class RecoveryDiffView extends DiffView {
 	async onOpen() {
 		super.onOpen();
 		await this.getInitialVersions();
-		const diff = this.getDiff();
 		this.makeHistoryLists(FILE_REC_WARNING);
-		this.basicHtml(diff as string, 'File Recovery Diff');
+		await this.basicHtml('File Recovery Diff');
 		this.appendVersions();
 		this.makeMoreGeneralHtml();
 	}
@@ -32,7 +31,12 @@ export default class RecoveryDiffView extends DiffView {
 			.transaction('backups', 'readonly')
 			.store.index('path')
 			.getAll();
-		const fileContent = await this.app.vault.read(this.file);
+		let fileContent: string | ArrayBuffer;
+		if (this.isBinaryFile()) {
+			fileContent = await this.app.vault.readBinary(this.file);
+		} else {
+			fileContent = await this.app.vault.read(this.file);
+		}
 		// correct date is calculated later
 		this.versions.push({ path: this.file.path, ts: 0, data: fileContent });
 		const len = fileRecovery.length - 1;
@@ -51,8 +55,12 @@ export default class RecoveryDiffView extends DiffView {
 		}
 
 		[this.leftContent, this.rightContent] = [
-			this.versions[1].data,
-			this.versions[0].data,
+			typeof this.versions[1].data === 'string'
+				? this.versions[1].data
+				: new Uint8Array(this.versions[1].data),
+			typeof this.versions[0].data === 'string'
+				? this.versions[0].data
+				: new Uint8Array(this.versions[0].data),
 		];
 	}
 
@@ -78,7 +86,7 @@ export default class RecoveryDiffView extends DiffView {
 	private appendRecoveryVersions(
 		el: HTMLElement,
 		versions: recResult[],
-		left: boolean = false
+		left = false
 	): vRecoveryItem[] {
 		const versionList: vRecoveryItem[] = [];
 		for (let i = 0; i < versions.length; i++) {
@@ -87,7 +95,7 @@ export default class RecoveryDiffView extends DiffView {
 			if (i === 0) {
 				date = new Date();
 			}
-			let div = el.createDiv({
+			const div = el.createDiv({
 				cls: ITEM_CLASS,
 				attr: {
 					id: left ? this.ids.left : this.ids.right,
@@ -115,18 +123,22 @@ export default class RecoveryDiffView extends DiffView {
 						this.leftActive,
 						left
 					)) as vRecoveryItem;
-					this.leftContent = version.data;
-					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+					this.leftContent =
+						typeof clickedEl.data === 'string'
+							? clickedEl.data
+							: new Uint8Array(clickedEl.data);
+					await this.updateDiffView();
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
 						this.rightVList,
 						this.rightActive
 					)) as vRecoveryItem;
-					this.rightContent = version.data;
-					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+					this.rightContent =
+						typeof clickedEl.data === 'string'
+							? clickedEl.data
+							: new Uint8Array(clickedEl.data);
+					await this.updateDiffView();
 				}
 			});
 		}
