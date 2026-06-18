@@ -15,7 +15,7 @@ const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
 };
 
 export default class OpenSyncHistoryPlugin extends Plugin {
-	//@ts-ignore
+	//@ts-expect-error, initialized in loadSettings
 	settings: OpenSyncHistorySettings;
 	diff_utils = new DiffUtils(this, this.app);
 
