@@ -46,6 +46,8 @@ export default abstract class DiffView extends Modal {
 			diffStyle: this.plugin.settings.diffStyle,
 			matchWordsThreshold: this.plugin.settings.matchWordsThreshold,
 			outputFormat: this.plugin.settings.outputFormat,
+			matching: 'none' as const,
+			drawFileList: false,
 		};
 		this.containerEl.addClass('diff');
 		this.syncHistoryContentContainer = this.contentEl.createDiv({
@@ -292,7 +294,10 @@ export default abstract class DiffView extends Modal {
 				});
 			}
 			const diffContainer = this.diffContentEl.createDiv();
-			diffContainer.innerHTML = this.getDiff();
+			// Defer heavy synchronous diff computation to yield to browser paint
+			setTimeout(() => {
+				diffContainer.innerHTML = this.getDiff();
+			}, 0);
 		} else {
 			const decoder = new TextDecoder('utf-8');
 			const leftStr =
