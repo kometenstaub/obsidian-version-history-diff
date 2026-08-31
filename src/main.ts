@@ -5,6 +5,7 @@ import DiffUtils from './diff_utils';
 import SyncDiffView from './diff_view';
 import RecoveryDiffView from './recovery_diff_view';
 import GitDiffView from './git_diff_view';
+import GitDiffPaneView, { VIEW_TYPE_GIT_DIFF_PANE } from './git_diff_pane_view';
 
 const DEFAULT_SETTINGS: OpenSyncHistorySettings = {
 	//context: '3',
@@ -84,8 +85,27 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		};
 	}
 
+	async activateGitDiffPane(): Promise<void> {
+		const { workspace } = this.app;
+		if (!this.app.plugins.plugins['obsidian-git']) {
+			new Notice('Obsidian Git is not enabled');
+			return;
+		}
+		let leaf = workspace.getLeavesOfType(VIEW_TYPE_GIT_DIFF_PANE)[0];
+		if (!leaf) {
+			leaf = workspace.getRightLeaf(false) ?? workspace.getLeaf(true);
+			await leaf.setViewState({ type: VIEW_TYPE_GIT_DIFF_PANE, active: true });
+		}
+		workspace.revealLeaf(leaf);
+	}
+
 	async onload() {
 		console.log('loading Version History Diff plugin');
+
+		this.registerView(
+			VIEW_TYPE_GIT_DIFF_PANE,
+			(leaf) => new GitDiffPaneView(leaf, this)
+		);
 
 		// if (this.app.internalPlugins.plugins.sync.enabled) {
 		this.addCommand(this.returnDiffCommand());
@@ -94,6 +114,11 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 		// if (this.app.plugins.getPlugin('obsidian-git')) {
 		this.addCommand(this.returnGitDiffCommand());
 		// }
+		this.addCommand({
+			id: 'open-git-diff-pane',
+			name: 'Open Git diff pane (follows active note)',
+			callback: () => this.activateGitDiffPane(),
+		});
 
 		await this.loadSettings();
 
@@ -102,6 +127,7 @@ export default class OpenSyncHistoryPlugin extends Plugin {
 
 	onunload() {
 		console.log('unloading Version History Diff plugin');
+		this.app.workspace.detachLeavesOfType(VIEW_TYPE_GIT_DIFF_PANE);
 	}
 
 	async loadSettings() {
