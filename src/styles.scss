@@ -447,7 +447,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			margin-top: 0.5em;
 
 			+ .sync-history-list.sync-history-list {
-				margin-top: 0em;
+				margin-top: 1em;
 			}
 		}
 
@@ -457,6 +457,7 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 			.sync-history-list-item-header {
 				border-radius: 0.25em;
 				display: block;
+				padding: 0.5em;
 			}
 		}
 	}
@@ -474,8 +475,17 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	min-width: 95vw;
 	max-height: 90vh;
 
-	.sync-history-list-item-header.is-active:hover {
-		background-color: var(--interactive-accent-hover);
+	.sync-history-list-item-header.is-active {
+		background-color: var(--interactive-accent);
+		color: var(--text-on-accent);
+		// font-weight: var(--bold-weight);
+		&:hover {
+			background-color: var(--interactive-accent-hover);
+		}
+		.u-muted {
+			color: var(--text-on-accent);
+			filter: brightness(85%);
+		}
 	}
 }
 @media only screen and (min-width: 1200px) {
