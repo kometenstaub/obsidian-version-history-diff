@@ -474,6 +474,11 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 	min-width: 95vw;
 	max-height: 90vh;
 
+	.sync-history-list-item-header.is-active {
+		background-color: var(--interactive-accent);
+		color: var(--text-on-accent);
+	}
+
 	.sync-history-list-item-header.is-active:hover {
 		background-color: var(--interactive-accent-hover);
 	}
