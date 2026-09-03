@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.11](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.10...2.3.11) (2026-09-03)
+
+
+### Bug Fixes
+
+* wrong selectors ([064a982](https://github.com/kometenstaub/obsidian-version-history-diff/commit/064a9822cfaa64fae1d200d663dcaf99ee99b45f))
+
 ### [2.3.10](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.9...2.3.10) (2026-09-03)
 
 
