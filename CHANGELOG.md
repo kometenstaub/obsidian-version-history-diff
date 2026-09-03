@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.10](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.9...2.3.10) (2026-09-03)
+
+
+### Bug Fixes
+
+* more Obsidian CSS changes ([60b8636](https://github.com/kometenstaub/obsidian-version-history-diff/commit/60b86368af67726ae21fc6a12d33d73ed4688c18))
+
 ### [2.3.9](https://github.com/kometenstaub/obsidian-version-history-diff/compare/2.3.8...2.3.9) (2026-09-03)
 
 
