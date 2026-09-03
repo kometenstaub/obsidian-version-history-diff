@@ -1,8 +1,5 @@
 import { App, Notice, sanitizeHTMLToDom, TFile } from 'obsidian';
-import type {
-	gHResult,
-	vSyncItem,
-} from './interfaces';
+import type { gHResult, vSyncItem } from './interfaces';
 import type OpenSyncHistoryPlugin from './main';
 import { ITEM_CLASS, SYNC_WARNING } from './constants';
 import DiffView from './abstract_diff_view';
@@ -170,7 +167,8 @@ export default class SyncDiffView extends DiffView {
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl, left);
 					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+						sanitizeHTMLToDom(this.getDiff() as string)
+					);
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -179,7 +177,8 @@ export default class SyncDiffView extends DiffView {
 					)) as vSyncItem;
 					await this.getSyncContent(clickedEl);
 					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+						sanitizeHTMLToDom(this.getDiff() as string)
+					);
 				}
 			});
 		}

@@ -156,7 +156,8 @@ export default class GitDiffView extends DiffView {
 						);
 					}
 					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(await this.getDiff()));
+						sanitizeHTMLToDom(await this.getDiff())
+					);
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -176,7 +177,8 @@ export default class GitDiffView extends DiffView {
 						);
 					}
 					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(await this.getDiff()));
+						sanitizeHTMLToDom(await this.getDiff())
+					);
 				}
 			});
 		}

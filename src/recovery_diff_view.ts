@@ -117,7 +117,8 @@ export default class RecoveryDiffView extends DiffView {
 					)) as vRecoveryItem;
 					this.leftContent = version.data;
 					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+						sanitizeHTMLToDom(this.getDiff() as string)
+					);
 				} else {
 					const clickedEl = (await this.generateVersionListener(
 						div,
@@ -126,7 +127,8 @@ export default class RecoveryDiffView extends DiffView {
 					)) as vRecoveryItem;
 					this.rightContent = version.data;
 					this.syncHistoryContentContainer.replaceChildren(
-						sanitizeHTMLToDom(this.getDiff() as string));
+						sanitizeHTMLToDom(this.getDiff() as string)
+					);
 				}
 			});
 		}

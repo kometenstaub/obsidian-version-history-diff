@@ -135,7 +135,7 @@ export default abstract class DiffView extends Modal {
 		// set title
 		this.titleEl.setText(diffType);
 		// add diff to container
-		const goodHTML = sanitizeHTMLToDom(diff)
+		const goodHTML = sanitizeHTMLToDom(diff);
 		this.syncHistoryContentContainer.replaceChildren(goodHTML);
 
 		// add history lists and diff to DOM
