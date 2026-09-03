@@ -52,11 +52,9 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 		}
 		.sync-history-list-container {
 			flex-direction: column;
-			overflow: scroll;
 
 			button.mod-cta {
 				margin-left: -0.25em;
-				position: fixed;
 			}
 		}
 		.sync-history-list-item-header.is-active {
@@ -442,12 +440,14 @@ mode from @SlRvb, which fall under the same license (MIT license, @kometenstaub 
 
 	.sync-history-list-container {
 		flex-shrink: unset;
+		overflow: scroll;
 
 		button.mod-cta {
 			margin-left: 0.5em;
 			margin-right: 0.5em;
 			margin-top: 0.5em;
 			z-index: 1;
+			position: fixed;
 
 			+ .sync-history-list.sync-history-list {
 				margin-top: 3em;
